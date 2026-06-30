@@ -84,89 +84,88 @@
 <body class="bg-slate-950 text-slate-100 h-full flex flex-col justify-between overflow-hidden select-none">
 
     <!-- ក្បាលកម្មវិធី (App Header) -->
-    <header class="bg-slate-900 text-white px-4 pt-4 pb-3 shadow-md shrink-0 flex justify-between items-center z-30 border-b border-slate-800">
+    <header class="bg-slate-900 text-white px-4 pt-3.5 pb-2.5 shadow-md shrink-0 flex justify-between items-center z-30 border-b border-slate-800">
         <div class="flex items-center gap-2">
-            <div class="bg-amber-500 p-1.5 rounded-xl text-slate-900">
-                <i data-lucide="wrench" class="w-6 h-6"></i>
+            <div class="bg-amber-500 p-1 rounded-lg text-slate-900">
+                <i data-lucide="wrench" class="w-5 h-5"></i>
             </div>
             <div>
-                <h1 class="text-base font-bold leading-none text-amber-400">TRITECH CAMBODIA</h1>
-                <span onmousedown="window.startPress()" onmouseup="window.cancelPress()" onmouseleave="window.cancelPress()" ontouchstart="window.startPress()" ontouchend="window.cancelPress()" class="text-[10px] text-slate-400 select-none active:opacity-80 transition-opacity cursor-pointer">Australian Premium Lubricants 🇦🇺</span>
+                <h1 class="text-sm font-bold leading-none text-amber-400">TRITECH CAMBODIA</h1>
+                <span onmousedown="window.startPress()" onmouseup="window.cancelPress()" onmouseleave="window.cancelPress()" ontouchstart="window.startPress()" ontouchend="window.cancelPress()" class="text-[9px] text-slate-400 select-none active:opacity-80 transition-opacity cursor-pointer">Australian Premium Lubricants 🇦🇺</span>
             </div>
         </div>
         <div class="flex items-center gap-2">
-            <button onclick="window.toggleFavoritesOnly()" id="fav-filter-btn" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-750 active:scale-95 transition-all relative">
-                <i data-lucide="heart" id="fav-filter-icon" class="w-5 h-5 text-slate-400"></i>
+            <button onclick="window.toggleFavoritesOnly()" id="fav-filter-btn" class="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-750 active:scale-95 transition-all relative">
+                <i data-lucide="heart" id="fav-filter-icon" class="w-4 h-4 text-slate-400"></i>
             </button>
             <div class="text-right hidden sm:block">
-                <p class="text-xs text-slate-300 font-medium" id="header-date">ថ្ងៃនេះ</p>
+                <p class="text-[11px] text-slate-300 font-medium" id="header-date">ថ្ងៃនេះ</p>
             </div>
         </div>
     </header>
 
     <!-- តួខ្លួនកម្មវិធី (Main Scrollable Container) -->
-    <main class="flex-1 overflow-y-auto p-4 pb-24 no-scrollbar" id="main-content">
+    <main class="flex-1 overflow-y-auto p-3.5 pb-20 no-scrollbar" id="main-content">
         
         <!-- ================= ផ្នែកទី ១៖ ទំព័រដើម / បង្ហាញផលិតផល ================= -->
-        <section id="page-home" class="space-y-4">
+        <section id="page-home" class="space-y-3.5">
             <!-- ផ្ទាំងផ្សព្វផ្សាយ (Promo Banner) -->
-            <div class="bg-gradient-to-r from-amber-500 via-orange-600 to-red-600 rounded-3xl p-5 text-slate-950 shadow-lg relative overflow-hidden">
+            <div class="bg-gradient-to-r from-amber-500 via-orange-600 to-red-600 rounded-2xl p-4 text-slate-950 shadow-lg relative overflow-hidden">
                 <div class="absolute right-[-10px] bottom-[-15px] opacity-15">
-                    <i data-lucide="gauge" class="w-40 h-40"></i>
+                    <i data-lucide="gauge" class="w-32 h-32"></i>
                 </div>
                 
                 <div class="flex justify-between items-center flex-wrap gap-2 relative z-10">
-                    <span class="bg-slate-950 text-amber-400 text-[9px] font-bold px-2.5 py-1.5 rounded-full uppercase tracking-wider">នាំចូល ១០០% ពីអូស្ត្រាលី 🇦🇺</span>
+                    <span class="bg-slate-950 text-amber-400 text-[8px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">នាំចូល ១០០% ពីអូស្ត្រាលី 🇦🇺</span>
                 </div>
                 
-                <h2 class="text-xl font-extrabold mt-3.5 mb-1 text-slate-950">ប្រេងម៉ាស៊ីនលំដាប់ពិភពលោក! 🏎️</h2>
-                <p class="text-xs text-slate-950 mb-3 font-medium opacity-90">បច្ចេកវិទ្យាការពារម៉ាស៊ីន TriTech កាត់បន្ថយការកកិត និងសឹករីករិលបានខ្ពស់បំផុត។</p>
+                <h2 class="text-base font-extrabold mt-2.5 mb-0.5 text-slate-950">ប្រេងម៉ាស៊ីនលំដាប់ពិភពលោក! 🏎️</h2>
+                <p class="text-[11px] text-slate-950 mb-2.5 font-medium opacity-90">បច្ចេកវិទ្យាការពារម៉ាស៊ីន TriTech កាត់បន្ថយការកកិត និងសឹករីករិលបានខ្ពស់បំផុត។</p>
                 
-                <!-- ជំនួស "មើលកាតាឡុកផលិតផល" ដោយ៖ លេខទូរស័ព្ទខាងឆ្វេង និង Telegram ខាងស្តាំ -->
-                <div class="grid grid-cols-2 gap-2 mt-4 relative z-10">
-                    <a id="shop-phone-banner" href="tel:012345678" class="bg-slate-950 hover:bg-slate-900 text-white text-xs font-bold py-3.5 px-4 rounded-2xl flex items-center justify-center gap-2 transition-all active:scale-95 shadow-lg border border-slate-800">
-                        <i data-lucide="phone-call" class="w-4 h-4 text-amber-400"></i>
+                <!-- ប៊ូតុងលេខទូរស័ព្ទខាងឆ្វេង និង Telegram ខាងស្តាំ (រៀបចំជាប្រភេទ Compact ស្អាត) -->
+                <div class="grid grid-cols-2 gap-2 relative z-10">
+                    <a id="shop-phone-banner" href="tel:012345678" class="bg-slate-950 hover:bg-slate-900 text-white text-[11px] font-bold py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5 transition-all active:scale-95 shadow border border-slate-800">
+                        <i data-lucide="phone-call" class="w-3.5 h-3.5 text-amber-400"></i>
                         <span id="banner-phone-text" class="truncate">012 345 678</span>
                     </a>
-                    <a id="shop-telegram-banner" href="https://t.me/im_hieng" target="_blank" class="bg-sky-500 hover:bg-sky-600 text-slate-950 text-xs font-bold py-3.5 px-4 rounded-2xl flex items-center justify-center gap-2 transition-all active:scale-95 shadow-lg">
-                        <i data-lucide="send" class="w-4 h-4"></i>
+                    <a id="shop-telegram-banner" href="https://t.me/im_hieng" target="_blank" class="bg-sky-500 hover:bg-sky-600 text-slate-950 text-[11px] font-bold py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5 transition-all active:scale-95 shadow">
+                        <i data-lucide="send" class="w-3.5 h-3.5"></i>
                         <span class="truncate">Telegram</span>
                     </a>
                 </div>
             </div>
 
-            <!-- ផ្នែកចម្រោះប្រភេទផលិតផល (កែសម្រួលដកអក្សរចេញ និងដាក់ប្រអប់ចម្រោះនៅកណ្តាលបន្លាយវែងសមរម្យ) -->
-            <div class="flex justify-center items-center w-full my-3 px-1">
-                <!-- Category Dropdown Filter (បន្លាយវែងសមល្មម និងមានរបៀបរៀបរយល្អ) -->
-                <div class="relative w-full max-w-sm">
-                    <select id="category-filter-dropdown" onchange="window.onCategoryDropdownChange(this.value)" class="w-full bg-slate-900 text-slate-200 text-xs font-extrabold pl-4 pr-10 py-3 rounded-2xl border border-slate-800 focus:outline-none focus:border-amber-500 appearance-none cursor-pointer text-center shadow-lg">
+            <!-- ផ្នែកចម្រោះប្រភេទផលិតផល (ប្រអប់ចម្រោះកណ្តាលបន្លាយវែងសមរម្យល្មមស្អាត) -->
+            <div class="flex justify-center items-center w-full my-2 px-1">
+                <div class="relative w-full max-w-[280px]">
+                    <select id="category-filter-dropdown" onchange="window.onCategoryDropdownChange(this.value)" class="w-full bg-slate-900 text-slate-200 text-[11px] font-extrabold pl-3 pr-8 py-2 rounded-xl border border-slate-800 focus:outline-none focus:border-amber-500 appearance-none cursor-pointer text-center shadow-md">
                         <!-- Dynamic categories option list will render here -->
                     </select>
-                    <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-slate-400">
-                        <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                    <div class="absolute inset-y-0 right-3 flex items-center pointer-events-none text-slate-400">
+                        <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
                     </div>
                 </div>
             </div>
 
             <!-- បញ្ជីផលិតផល (Product Grid) -->
-            <div class="grid grid-cols-2 gap-3.5 mt-2" id="products-grid">
+            <div class="grid grid-cols-2 gap-3 mt-1" id="products-grid">
                 <!-- គូរចេញពី JS -->
             </div>
         </section>
 
         <!-- ================= ផ្នែកទី ២៖ កន្ត្រកទំនិញ ================= -->
-        <section id="page-cart" class="hidden space-y-4">
-            <h3 class="text-base font-bold text-slate-200 flex items-center gap-2">
-                <i data-lucide="shopping-bag" class="text-amber-500"></i> កន្ត្រកទំនិញរបស់អ្នក
+        <section id="page-cart" class="hidden space-y-3.5">
+            <h3 class="text-sm font-bold text-slate-200 flex items-center gap-2">
+                <i data-lucide="shopping-bag" class="text-amber-500 w-4 h-4"></i> កន្ត្រកទំនិញរបស់អ្នក
             </h3>
 
-            <div class="space-y-3" id="cart-items-container">
+            <div class="space-y-2.5" id="cart-items-container">
                 <!-- គូរចេញពី JS -->
             </div>
 
             <!-- ផ្ទាំងសរុបតម្លៃ និងប៊ូតុងគិតលុយ -->
-            <div id="cart-summary-card" class="bg-slate-900 rounded-2xl p-4 border border-slate-800 shadow-sm space-y-3 hidden">
-                <div class="space-y-2 text-sm border-b border-slate-800 pb-3">
+            <div id="cart-summary-card" class="bg-slate-900 rounded-2xl p-3.5 border border-slate-800 shadow-sm space-y-2.5 hidden">
+                <div class="space-y-1.5 text-xs border-b border-slate-800 pb-2.5">
                     <div class="flex justify-between text-slate-400">
                         <span>តម្លៃទំនិញសរុប</span>
                         <span id="summary-subtotal">$0.00</span>
@@ -175,149 +174,149 @@
                         <span>ថ្លៃដឹកជញ្ជូនរហ័ស</span>
                         <span class="text-emerald-400 font-medium">ឥតគិតថ្លៃ</span>
                     </div>
-                    <div class="flex justify-between font-bold text-base text-slate-100 pt-1">
+                    <div class="flex justify-between font-bold text-sm text-slate-100 pt-0.5">
                         <span>តម្លៃសរុបចុងក្រោយ</span>
                         <span id="summary-total" class="text-amber-400">$0.00</span>
                     </div>
                 </div>
                 
-                <button onclick="window.openCheckoutModal()" class="w-full bg-amber-500 hover:bg-amber-600 active:scale-[0.98] transition-all text-slate-950 py-3.5 rounded-xl font-extrabold text-sm shadow-md flex justify-center items-center gap-2">
-                    <i data-lucide="credit-card" class="w-4 h-4"></i> បន្តទៅកាន់ការទូទាត់ប្រាក់
+                <button onclick="window.openCheckoutModal()" class="w-full bg-amber-500 hover:bg-amber-600 active:scale-[0.98] transition-all text-slate-950 py-3 rounded-xl font-extrabold text-xs shadow-md flex justify-center items-center gap-1.5">
+                    <i data-lucide="credit-card" class="w-3.5 h-3.5"></i> បន្តទៅកាន់ការទូទាត់ប្រាក់
                 </button>
             </div>
         </section>
 
         <!-- ================= ផ្នែកទី ៣៖ ប្រវត្តិបញ្ជាទិញ ================= -->
-        <section id="page-orders" class="hidden space-y-4">
-            <h3 class="text-base font-bold text-slate-200 flex items-center gap-2">
-                <i data-lucide="receipt" class="text-amber-500"></i> ប្រវត្តិការបញ្ជាទិញរបស់អ្នក
+        <section id="page-orders" class="hidden space-y-3.5">
+            <h3 class="text-sm font-bold text-slate-200 flex items-center gap-2">
+                <i data-lucide="receipt" class="text-amber-500 w-4 h-4"></i> ប្រវត្តិការបញ្ជាទិញរបស់អ្នក
             </h3>
 
             <!-- ផ្ទាំងស្វែងរកការបញ្ជាទិញតាមលេខទូរស័ព្ទ -->
-            <div class="bg-slate-900 p-4 rounded-3xl border border-slate-800 space-y-3 shadow-inner">
-                <p class="text-[11px] text-slate-400 font-medium leading-relaxed">សូមវាយបញ្ចូលលេខទូរស័ព្ទដែលបងបានប្រើប្រាស់ពេលកុម្មង់ ដើម្បីឆែកមើលប្រវត្តិបញ្ជាទិញ និងតាមដានស្ថានភាពដឹកជញ្ជូនរហ័ស៖</p>
+            <div class="bg-slate-900 p-3.5 rounded-2xl border border-slate-800 space-y-2.5 shadow-inner">
+                <p class="text-[10px] text-slate-400 font-medium leading-relaxed">សូមវាយបញ្ចូលលេខទូរស័ព្ទដែលបងបានប្រើប្រាស់ពេលកុម្មង់ ដើម្បីឆែកមើលប្រវត្តិបញ្ជាទិញ និងតាមដានស្ថានភាពដឹកជញ្ជូនរហ័ស៖</p>
                 <div class="flex gap-2">
                     <div class="relative flex-1">
-                        <input type="tel" id="search-phone-input" placeholder="ឧទហរណ៍៖ 012 345 678" class="w-full bg-slate-950 text-slate-100 pl-10 pr-4 py-3 rounded-xl border border-slate-800 focus:outline-none focus:border-amber-500 text-xs font-semibold">
-                        <i data-lucide="phone" class="w-4 h-4 text-slate-500 absolute left-3.5 top-3.5"></i>
+                        <input type="tel" id="search-phone-input" placeholder="ឧទហរណ៍៖ 012 345 678" class="w-full bg-slate-950 text-slate-100 pl-9 pr-3 py-2.5 rounded-xl border border-slate-800 focus:outline-none focus:border-amber-500 text-[11px] font-semibold">
+                        <i data-lucide="phone" class="w-3.5 h-3.5 text-slate-500 absolute left-3 top-3"></i>
                     </div>
-                    <button onclick="window.searchOrdersByPhone()" class="bg-amber-500 hover:bg-amber-600 active:scale-95 text-slate-950 font-extrabold text-xs px-5 rounded-xl shadow-md transition-all flex items-center gap-1.5">
-                        <i data-lucide="search" class="w-4 h-4"></i> ស្វែងរក
+                    <button onclick="window.searchOrdersByPhone()" class="bg-amber-500 hover:bg-amber-600 active:scale-95 text-slate-950 font-extrabold text-[11px] px-4 rounded-xl shadow-md transition-all flex items-center gap-1">
+                        <i data-lucide="search" class="w-3.5 h-3.5"></i> ស្វែងរក
                     </button>
                 </div>
             </div>
 
-            <div class="space-y-3" id="orders-history-container">
+            <div class="space-y-2.5" id="orders-history-container">
                 <!-- គូរចេញពី JS -->
             </div>
         </section>
 
         <!-- ================= ផ្នែកទី ៤៖ ផ្ទាំងគ្រប់គ្រង (Admin Control Panel) ================= -->
-        <section id="page-admin" class="hidden space-y-4">
+        <section id="page-admin" class="hidden space-y-3.5">
             <div class="flex justify-between items-center">
-                <h3 class="text-base font-bold text-slate-200 flex items-center gap-2">
-                    <i data-lucide="shield-check" class="text-amber-500"></i> ប្រព័ន្ធគ្រប់គ្រងហាងប្រេងម៉ាស៊ីន
+                <h3 class="text-sm font-bold text-slate-200 flex items-center gap-2">
+                    <i data-lucide="shield-check" class="text-amber-500 w-4 h-4"></i> ប្រព័ន្ធគ្រប់គ្រងហាងប្រេងម៉ាស៊ីន
                 </h3>
-                <button onclick="window.logoutAdmin()" id="admin-logout-btn" class="hidden text-xs bg-red-500/10 hover:bg-red-500/20 text-red-400 px-3 py-1.5 rounded-xl border border-red-500/25 font-bold">
+                <button onclick="window.logoutAdmin()" id="admin-logout-btn" class="hidden text-[10px] bg-red-500/10 hover:bg-red-500/20 text-red-400 px-2.5 py-1 rounded-lg border border-red-500/25 font-bold">
                     ចាកចេញ
                 </button>
             </div>
 
             <!-- ទម្រង់កូដសម្ងាត់ចូល -->
-            <div id="admin-login-card" class="bg-slate-900 border border-slate-800 rounded-3xl p-6 text-center space-y-4">
-                <div class="p-3 bg-amber-500/10 rounded-2xl w-max mx-auto text-amber-500 border border-amber-500/20">
-                    <i data-lucide="lock" class="w-8 h-8"></i>
+            <div id="admin-login-card" class="bg-slate-900 border border-slate-800 rounded-2xl p-5 text-center space-y-3.5">
+                <div class="p-2.5 bg-amber-500/10 rounded-xl w-max mx-auto text-amber-500 border border-amber-500/20">
+                    <i data-lucide="lock" class="w-6 h-6"></i>
                 </div>
                 <div>
-                    <h4 class="font-bold text-sm text-slate-200">សុវត្ថិភាពអ្នកគ្រប់គ្រង</h4>
-                    <p class="text-[11px] text-slate-400 mt-1">សូមបញ្ចូលលេខកូដសម្ងាត់អ្នកគ្រប់គ្រងដើម្បីបន្ត</p>
+                    <h4 class="font-bold text-xs text-slate-200">សុវត្ថិភាពអ្នកគ្រប់គ្រង</h4>
+                    <p class="text-[10px] text-slate-400 mt-0.5">សូមបញ្ចូលលេខកូដសម្ងាត់អ្នកគ្រប់គ្រងដើម្បីបន្ត</p>
                 </div>
                 <div class="max-w-xs mx-auto space-y-2">
-                    <input type="password" id="admin-pin-input" placeholder="••••" class="w-full text-center tracking-widest bg-slate-950 border border-slate-800 px-4 py-3 rounded-xl text-lg font-bold focus:outline-none focus:border-amber-500 text-amber-400">
-                    <button onclick="window.checkAdminPin()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs py-3.5 rounded-xl shadow-md active:scale-95 transition-all">
+                    <input type="password" id="admin-pin-input" placeholder="••••" class="w-full text-center tracking-widest bg-slate-950 border border-slate-800 px-3 py-2 rounded-xl text-base font-bold focus:outline-none focus:border-amber-500 text-amber-400">
+                    <button onclick="window.checkAdminPin()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-[11px] py-2.5 rounded-xl shadowactive:scale-95 transition-all">
                         ផ្ទៀងផ្ទាត់លេខកូដ
                     </button>
                     <!-- ប៊ូតុងត្រឡប់ក្រោយ -->
-                    <button onclick="window.navigateTo('home')" class="w-full bg-slate-800 hover:bg-slate-750 text-slate-300 font-bold text-xs py-3.5 rounded-xl active:scale-95 transition-all">
+                    <button onclick="window.navigateTo('home')" class="w-full bg-slate-800 hover:bg-slate-750 text-slate-300 font-bold text-[11px] py-2.5 rounded-xl active:scale-95 transition-all">
                         ចាកចេញត្រឡប់ក្រោយ
                     </button>
                 </div>
             </div>
 
             <!-- ផ្ទាំងបញ្ជាអ្នកគ្រប់គ្រងពិតប្រាកដ (Admin Dashboard) -->
-            <div id="admin-dashboard" class="hidden space-y-4">
+            <div id="admin-dashboard" class="hidden space-y-3.5">
                 <!-- ម៉ឺនុយរងសម្រាប់ Admin -->
                 <div class="flex border-b border-slate-800">
-                    <button onclick="window.switchAdminTab('orders')" id="admin-tab-orders" class="flex-1 pb-2.5 font-bold text-xs text-amber-500 border-b-2 border-amber-500 text-center">
+                    <button onclick="window.switchAdminTab('orders')" id="admin-tab-orders" class="flex-1 pb-2 font-bold text-xs text-amber-500 border-b-2 border-amber-500 text-center">
                         ការបញ្ជាទិញថ្មីៗ
                     </button>
-                    <button onclick="window.switchAdminTab('products')" id="admin-tab-products" class="flex-1 pb-2.5 font-bold text-xs text-slate-400 text-center">
+                    <button onclick="window.switchAdminTab('products')" id="admin-tab-products" class="flex-1 pb-2 font-bold text-xs text-slate-400 text-center">
                         គ្រប់គ្រងទំនិញ
                     </button>
                 </div>
 
                 <!-- ផ្នែកការបញ្ជាទិញរបស់អតិថិជន -->
-                <div id="admin-subpage-orders" class="space-y-3">
+                <div id="admin-subpage-orders" class="space-y-2.5">
                     <!-- ទាញចេញពី Local Orders -->
                 </div>
 
                 <!-- ផ្នែកគ្រប់គ្រងផលិតផល -->
                 <div id="admin-subpage-products" class="hidden space-y-3">
                     <!-- ផ្ទាំងសម្រាប់គ្រប់គ្រងទិន្នន័យទំនាក់ទំនងរបស់ហាង -->
-                    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-4 space-y-3 shadow-inner">
-                        <h4 class="text-xs font-bold text-slate-200 flex items-center gap-1.5">
-                            <i data-lucide="phone-call" class="text-amber-500 w-4 h-4"></i> កំណត់ព័ត៌មានទំនាក់ទំនងរបស់ហាង
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3.5 space-y-2.5 shadow-inner">
+                        <h4 class="text-[11px] font-bold text-slate-200 flex items-center gap-1.5">
+                            <i data-lucide="phone-call" class="text-amber-500 w-3.5 h-3.5"></i> កំណត់ព័ត៌មានទំនាក់ទំនងរបស់ហាង
                         </h4>
-                        <div class="space-y-2.5">
+                        <div class="space-y-2">
                             <div>
-                                <label class="text-[10px] font-bold text-slate-400 block mb-1">លេខទូរស័ព្ទហាង (លោតលើ Banner ស្វ័យប្រវត្ត)៖</label>
-                                <input type="text" id="admin-shop-phone-input" placeholder="ឧទហរណ៍៖ 012 345 678" class="w-full bg-slate-950 text-slate-100 px-3.5 py-2.5 rounded-xl border border-slate-800 focus:outline-none focus:border-amber-500 text-xs font-semibold">
+                                <label class="text-[9px] font-bold text-slate-400 block mb-0.5">លេខទូរស័ព្ទហាង (លោតលើ Banner ស្វ័យប្រវត្ត)៖</label>
+                                <input type="text" id="admin-shop-phone-input" placeholder="ឧទហរណ៍៖ 012 345 678" class="w-full bg-slate-950 text-slate-100 px-3 py-2 rounded-lg border border-slate-800 focus:outline-none focus:border-amber-500 text-[11px] font-semibold">
                             </div>
-                            <button onclick="window.saveShopPhone()" class="w-full bg-amber-500 hover:bg-amber-600 active:scale-95 text-slate-950 font-extrabold text-xs py-3 rounded-xl transition-all flex items-center justify-center gap-1.5 shadow">
-                                <i data-lucide="save" class="w-4 h-4"></i> រក្សាទុកការកំណត់
+                            <button onclick="window.saveShopPhone()" class="w-full bg-amber-500 hover:bg-amber-600 active:scale-95 text-slate-950 font-extrabold text-[11px] py-2 rounded-xl transition-all flex items-center justify-center gap-1.5 shadow">
+                                <i data-lucide="save" class="w-3.5 h-3.5"></i> រក្សាទុកការកំណត់
                             </button>
                         </div>
                     </div>
 
                     <!-- ផ្ទាំងសម្រាប់កំណត់ប្រព័ន្ធ Telegram Notifications -->
-                    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-4 space-y-3 shadow-inner">
-                        <h4 class="text-xs font-bold text-slate-200 flex items-center gap-1.5">
-                            <i data-lucide="bell-ring" class="text-sky-400 w-4 h-4"></i> កំណត់ការផ្ញើដំណឹង និងឆាតតាម Telegram
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3.5 space-y-2.5 shadow-inner">
+                        <h4 class="text-[11px] font-bold text-slate-200 flex items-center gap-1.5">
+                            <i data-lucide="bell-ring" class="text-sky-400 w-3.5 h-3.5"></i> កំណត់ការផ្ញើដំណឹង និងឆាតតាម Telegram
                         </h4>
-                        <div class="space-y-2.5">
+                        <div class="space-y-2">
                             <div>
-                                <label class="text-[10px] font-bold text-slate-400 block mb-1">ឈ្មោះគណនី Telegram របស់បង (Username សម្រាប់ភ្ញៀវចុចឆាតសួរ) *</label>
-                                <input type="text" id="admin-telegram-username-input" placeholder="ឧទាហរណ៍៖ im_hieng (កុំដាក់សញ្ញា @)" class="w-full bg-slate-950 text-slate-100 px-3.5 py-2.5 rounded-xl border border-slate-800 focus:outline-none focus:border-amber-500 text-xs font-semibold">
+                                <label class="text-[9px] font-bold text-slate-400 block mb-0.5">ឈ្មោះគណនី Telegram (Username ភ្ញៀវចុចឆាតសួរ) *</label>
+                                <input type="text" id="admin-telegram-username-input" placeholder="ឧទាហរណ៍៖ im_hieng (កុំដាក់សញ្ញា @)" class="w-full bg-slate-950 text-slate-100 px-3 py-2 rounded-lg border border-slate-800 focus:outline-none focus:border-amber-500 text-[11px] font-semibold">
                             </div>
                             <div>
-                                <label class="text-[10px] font-bold text-slate-400 block mb-1">Telegram Bot Token *</label>
-                                <input type="text" id="admin-telegram-token-input" placeholder="ឧទាហរណ៍៖ 8500019843:AAG..." class="w-full bg-slate-950 text-slate-100 px-3.5 py-2.5 rounded-xl border border-slate-800 focus:outline-none focus:border-amber-500 text-xs font-semibold">
+                                <label class="text-[9px] font-bold text-slate-400 block mb-0.5">Telegram Bot Token *</label>
+                                <input type="text" id="admin-telegram-token-input" placeholder="ឧទាហរណ៍៖ 8500019843:AAG..." class="w-full bg-slate-950 text-slate-100 px-3 py-2 rounded-lg border border-slate-800 focus:outline-none focus:border-amber-500 text-[11px] font-semibold">
                             </div>
                             <div>
-                                <label class="text-[10px] font-bold text-slate-400 block mb-1">Telegram Chat ID (ឬ Group ID) *</label>
-                                <input type="text" id="admin-telegram-chatid-input" placeholder="ឧទាហរណ៍៖ 5543262304 ឬ -100xxxxx" class="w-full bg-slate-950 text-slate-100 px-3.5 py-2.5 rounded-xl border border-slate-800 focus:outline-none focus:border-amber-500 text-xs font-semibold">
+                                <label class="text-[9px] font-bold text-slate-400 block mb-0.5">Telegram Chat ID (ឬ Group ID) *</label>
+                                <input type="text" id="admin-telegram-chatid-input" placeholder="ឧទាហរណ៍៖ 5543262304 ឬ -100xxxxx" class="w-full bg-slate-950 text-slate-100 px-3 py-2 rounded-lg border border-slate-800 focus:outline-none focus:border-amber-500 text-[11px] font-semibold">
                             </div>
                             
-                            <div class="grid grid-cols-2 gap-2">
-                                <button onclick="window.saveTelegramSettings()" class="bg-sky-500 hover:bg-sky-600 active:scale-95 text-slate-950 font-extrabold text-xs py-3 rounded-xl transition-all flex items-center justify-center gap-1.5 shadow">
-                                    <i data-lucide="save" class="w-4 h-4"></i> រក្សាទុក
+                            <div class="grid grid-cols-2 gap-2 pt-1">
+                                <button onclick="window.saveTelegramSettings()" class="bg-sky-500 hover:bg-sky-600 active:scale-95 text-slate-950 font-extrabold text-[11px] py-2 rounded-xl transition-all flex items-center justify-center gap-1 shadow">
+                                    <i data-lucide="save" class="w-3.5 h-3.5"></i> រក្សាទុក
                                 </button>
-                                <button onclick="window.testTelegramConnection()" class="bg-slate-800 hover:bg-slate-750 active:scale-95 text-sky-400 border border-sky-500/20 font-extrabold text-xs py-3 rounded-xl transition-all flex items-center justify-center gap-1.5">
-                                    <i data-lucide="send" class="w-4 h-4"></i> សាកល្បងតេស្ត
+                                <button onclick="window.testTelegramConnection()" class="bg-slate-800 hover:bg-slate-750 active:scale-95 text-sky-400 border border-sky-500/20 font-extrabold text-[11px] py-2 rounded-xl transition-all flex items-center justify-center gap-1">
+                                    <i data-lucide="send" class="w-3.5 h-3.5"></i> សាកល្បងតេស្ត
                                 </button>
                             </div>
-                            <div id="telegram-test-status" class="hidden text-xs p-3 rounded-xl"></div>
+                            <div id="telegram-test-status" class="hidden text-[10px] p-2.5 rounded-xl"></div>
                         </div>
                     </div>
 
                     <div class="flex justify-between items-center pt-2">
                         <span class="text-xs text-slate-400">បញ្ជីផលិតផលទាំងអស់</span>
-                        <button onclick="window.openProductFormModal()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold text-[11px] px-3.5 py-2 rounded-xl flex items-center gap-1 shadow">
+                        <button onclick="window.openProductFormModal()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold text-[10px] px-3 py-1.5 rounded-lg flex items-center gap-1 shadow">
                             <i data-lucide="plus-circle" class="w-3.5 h-3.5"></i> បន្ថែមទំនិញថ្មី
                         </button>
                     </div>
                     
-                    <div id="admin-products-list-container" class="space-y-3">
+                    <div id="admin-products-list-container" class="space-y-2.5">
                         <!-- បញ្ជីផលិតផលនឹងបង្ហាញនៅទីនេះ -->
                     </div>
                 </div>
@@ -328,139 +327,142 @@
 
     <!-- ================= ផ្ទាំង MODAL បន្ថែម / កែសម្រួលផលិតផល ================= -->
     <div id="product-form-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-end justify-center hidden opacity-0 transition-opacity duration-300">
-        <div id="product-form-content" class="bg-slate-900 border-t border-slate-800 w-full max-w-md rounded-t-[2.5rem] p-6 space-y-4 shadow-2xl transform translate-y-full transition-transform duration-300 max-h-[90vh] overflow-y-auto no-scrollbar">
+        <div id="product-form-content" class="bg-slate-900 border-t border-slate-800 w-full max-w-md rounded-t-3xl p-5 space-y-3.5 shadow-2xl transform translate-y-full transition-transform duration-300 max-h-[92vh] overflow-y-auto no-scrollbar">
             <div class="flex justify-between items-center">
-                <h4 id="form-modal-title" class="text-sm font-bold text-slate-200 flex items-center gap-2">
-                    <i data-lucide="edit-3" class="text-amber-500"></i> បន្ថែមផលិតផលថ្មី
+                <h4 id="form-modal-title" class="text-xs font-bold text-slate-200 flex items-center gap-1.5">
+                    <i data-lucide="edit-3" class="text-amber-500 w-4 h-4"></i> បន្ថែមផលិតផលថ្មី
                 </h4>
                 <button onclick="window.closeProductFormModal()" class="p-1 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-400">
-                    <i data-lucide="x" class="w-5 h-5"></i>
+                    <i data-lucide="x" class="w-4 h-4"></i>
                 </button>
             </div>
 
             <!-- Form Inputs -->
-            <div class="space-y-3 text-xs">
+            <div class="space-y-2.5 text-[11px]">
                 <input type="hidden" id="form-product-id">
                 
                 <div>
-                    <label class="text-[10px] font-bold text-slate-400 uppercase block mb-1">ឈ្មោះផលិតផល *</label>
-                    <input type="text" id="form-product-name" placeholder="ឧទហរណ៍៖ TriTech SN 5W-30" class="w-full bg-slate-950 text-slate-100 px-4 py-3 rounded-xl border border-slate-800 focus:outline-none focus:border-amber-500 font-semibold text-xs">
+                    <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">ឈ្មោះផលិតផល *</label>
+                    <input type="text" id="form-product-name" placeholder="ឧទហរណ៍៖ TriTech SN 5W-30" class="w-full bg-slate-950 text-slate-100 px-3.5 py-2.5 rounded-xl border border-slate-800 focus:outline-none focus:border-amber-500 font-semibold text-[11px]">
                 </div>
 
-                <!-- ប្រអប់បញ្ចូល ប្រភេទផលិតផល (Full Name, Editable Input) -->
+                <!-- ប្រអប់បញ្ចូល ប្រភេទផលិតផល -->
                 <div>
-                    <label class="text-[10px] font-bold text-slate-400 uppercase block mb-1">ប្រភេទផលិតផល * (ឈ្មោះពេញសម្រាប់បង្ហាញ)</label>
-                    <input type="text" id="form-product-category" placeholder="ឧទាហរណ៍៖ Fully Synthetic (សំយោគពេញលេញ)" list="categories-autocomplete-list" class="w-full bg-slate-950 text-slate-100 px-4 py-3 rounded-xl border border-slate-800 focus:outline-none focus:border-amber-500 font-semibold text-xs">
+                    <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">ប្រភេទផលិតផល * (ឈ្មោះពេញសម្រាប់បង្ហាញ)</label>
+                    <input type="text" id="form-product-category" placeholder="ឧទាហរណ៍៖ Fully Synthetic (សំយោគពេញលេញ)" list="categories-autocomplete-list" class="w-full bg-slate-950 text-slate-100 px-3.5 py-2.5 rounded-xl border border-slate-800 focus:outline-none focus:border-amber-500 font-semibold text-[11px]">
                     <datalist id="categories-autocomplete-list">
                         <!-- Dynamic list from existing products -->
                     </datalist>
                 </div>
 
-                <!-- ប្រអប់បញ្ចូល Category Filter (Short Name, Editable Input) -->
+                <!-- ប្រអប់បញ្ចូល Category Filter -->
                 <div>
-                    <label class="text-[10px] font-bold text-slate-400 uppercase block mb-1">Category Filter * (ឈ្មោះខ្លីសម្រាប់ចម្រោះខាងក្រៅ)</label>
-                    <input type="text" id="form-product-category-filter" placeholder="ឧទាហរណ៍៖ Fully Synthetic" list="category-filters-autocomplete-list" class="w-full bg-slate-950 text-slate-100 px-4 py-3 rounded-xl border border-slate-800 focus:outline-none focus:border-amber-500 font-semibold text-xs">
+                    <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">Category Filter * (ឈ្មោះខ្លីសម្រាប់ចម្រោះខាងក្រៅ)</label>
+                    <input type="text" id="form-product-category-filter" placeholder="ឧទាហរណ៍៖ Fully Synthetic" list="category-filters-autocomplete-list" class="w-full bg-slate-950 text-slate-100 px-3.5 py-2.5 rounded-xl border border-slate-800 focus:outline-none focus:border-amber-500 font-semibold text-[11px]">
                     <datalist id="category-filters-autocomplete-list">
                         <!-- Dynamic list from existing products -->
                     </datalist>
                 </div>
                 
-                <div class="space-y-1.5">
-                    <label class="text-[10px] font-bold text-slate-400 uppercase block">ជម្រើសទំហំ, តម្លៃ និង ស្តុក ($ ឬ អក្សរ) *</label>
-                    <div id="form-variants-container" class="space-y-2">
+                <div class="space-y-1">
+                    <label class="text-[9px] font-bold text-slate-400 uppercase block">ជម្រើសទំហំ, តម្លៃ និង ស្តុក ($ ឬ អក្សរ) *</label>
+                    <div id="form-variants-container" class="space-y-1.5">
                         <!-- Dynamic variants with independent stock by JS -->
                     </div>
-                    <button type="button" onclick="window.addVariantRow()" class="mt-1 text-[10px] text-amber-400 hover:text-amber-300 font-bold flex items-center gap-1 active:scale-95 transition-all">
-                        <i data-lucide="plus-circle" class="w-4 h-4"></i> បន្ថែមជម្រើសទំហំ/តម្លៃថ្មី
+                    <button type="button" onclick="window.addVariantRow()" class="mt-1 text-[9px] text-amber-400 hover:text-amber-300 font-bold flex items-center gap-1 active:scale-95 transition-all">
+                        <i data-lucide="plus-circle" class="w-3.5 h-3.5"></i> បន្ថែមជម្រើសទំហំ/តម្លៃថ្មី
                     </button>
                 </div>
 
                 <div>
-                    <label class="text-[10px] font-bold text-slate-400 uppercase block mb-1">តំណភ្ជាប់រូបភាពពី Imgur (Image URL)</label>
-                    <input type="url" id="form-product-image" placeholder="https://i.imgur.com/..." class="w-full bg-slate-950 text-slate-100 px-4 py-3 rounded-xl border border-slate-800 focus:outline-none focus:border-amber-500 text-xs">
+                    <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">តំណភ្ជាប់រូបភាពពី Imgur (Image URL)</label>
+                    <input type="url" id="form-product-image" placeholder="https://i.imgur.com/..." class="w-full bg-slate-950 text-slate-100 px-3.5 py-2.5 rounded-xl border border-slate-800 focus:outline-none focus:border-amber-500 text-[11px]">
                 </div>
 
                 <!-- ប្រអប់បញ្ចូលតំណភ្ជាប់ឯកសារ PDF -->
                 <div>
-                    <label class="text-[10px] font-bold text-slate-400 uppercase block mb-1">តំណភ្ជាប់ឯកសារ PDF (Google Drive Link)</label>
-                    <input type="url" id="form-product-pdf" placeholder="https://drive.google.com/file/d/..." class="w-full bg-slate-950 text-slate-100 px-4 py-3 rounded-xl border border-slate-800 focus:outline-none focus:border-amber-500 text-xs">
+                    <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">តំណភ្ជាប់ឯកសារ PDF (Google Drive Link)</label>
+                    <input type="url" id="form-product-pdf" placeholder="https://drive.google.com/file/d/..." class="w-full bg-slate-950 text-slate-100 px-3.5 py-2.5 rounded-xl border border-slate-800 focus:outline-none focus:border-amber-500 text-[11px]">
                 </div>
 
                 <div>
-                    <label class="text-[10px] font-bold text-slate-400 uppercase block mb-1">ការពិពណ៌នាលម្អិត *</label>
-                    <textarea id="form-product-desc" rows="4" placeholder="ពិពណ៌នាអំពីអត្ថប្រយោជន៍ និងការប្រើប្រាស់របស់ប្រេង..." class="w-full bg-slate-950 text-slate-100 px-4 py-3 rounded-xl border border-slate-800 focus:outline-none focus:border-amber-500 leading-relaxed text-xs"></textarea>
+                    <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">ការពិពណ៌នាលម្អិត *</label>
+                    <textarea id="form-product-desc" rows="3" placeholder="ពិពណ៌នាអំពីអត្ថប្រយោជន៍ និងការប្រើប្រាស់របស់ប្រេង..." class="w-full bg-slate-950 text-slate-100 px-3.5 py-2 rounded-xl border border-slate-800 focus:outline-none focus:border-amber-500 leading-relaxed text-[11px]"></textarea>
                 </div>
             </div>
 
             <!-- ប៊ូតុងរក្សាទុក -->
-            <button onclick="window.saveProduct()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-sm py-3.5 rounded-xl shadow-lg flex justify-center items-center gap-2 active:scale-95 transition-all">
+            <button onclick="window.saveProduct()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs py-3 rounded-xl shadow-lg flex justify-center items-center gap-1.5 active:scale-95 transition-all">
                 <i data-lucide="save" class="w-4 h-4"></i> រក្សាទុកទិន្នន័យ
             </button>
         </div>
     </div>
 
-    <!-- ================= ផ្ទាំង MODAL ព័ត៌មានលម្អិតផលិតផល (កែសម្រួលដោះស្រាយបញ្ហាគាំង) ================= -->
+    <!-- ================= ផ្ទាំង MODAL ព័ត៌មានលម្អិតផលិតផល (ដោះស្រាយបញ្ហាគាំងកប់ និងបង្រួម Compact) ================= -->
     <div id="product-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-end justify-center hidden opacity-0 transition-opacity duration-300">
-        <div id="product-modal-content" class="bg-slate-900 border-t border-slate-800 w-full max-w-md rounded-t-[2.5rem] p-6 space-y-4 shadow-2xl transform translate-y-full transition-transform duration-300">
-            <!-- Scroll Line -->
-            <div class="w-12 h-1.5 bg-slate-700 rounded-full mx-auto cursor-pointer" onclick="window.closeProductModal()"></div>
+        <!-- បន្ថែម max-h-[92vh] និង overflow-y-auto no-scrollbar លើ Content Wrapper ដើម្បីកុំឱ្យលេចចេញហួសអេក្រង់ -->
+        <div id="product-modal-content" class="bg-slate-900 border-t border-slate-800 w-full max-w-md rounded-t-3xl p-5 space-y-3 shadow-2xl transform translate-y-full transition-transform duration-300 max-h-[92vh] overflow-y-auto no-scrollbar relative">
+            <!-- Scroll Line / ទាញចុះក្រោមក៏បាន -->
+            <div class="w-10 h-1 bg-slate-700 rounded-full mx-auto cursor-pointer mb-1" onclick="window.closeProductModal()"></div>
             
             <div class="flex justify-between items-start">
-                <div id="modal-product-badge" class="bg-amber-500/25 text-amber-400 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase border border-amber-500/30"></div>
+                <div id="modal-product-badge" class="bg-amber-500/25 text-amber-400 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase border border-amber-500/20"></div>
+                <!-- ប៊ូតុង X សម្រាប់បិទគឺស្ថិតនៅក្នុងទីតាំងច្បាស់លាស់ជានិច្ច មិនកប់ទៅលើឡើយ -->
                 <button onclick="window.closeProductModal()" class="p-1 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-400">
-                    <i data-lucide="x" class="w-5 h-5"></i>
+                    <i data-lucide="x" class="w-4.5 h-4.5"></i>
                 </button>
             </div>
 
-            <!-- រូបភាពផលិតផលក្នុង Modal -->
-            <div class="w-full h-48 bg-slate-100 rounded-2xl flex items-center justify-center p-4 border border-slate-300 shadow-inner relative" id="modal-product-img-container">
+            <!-- រូបភាពផលិតផលក្នុង Modal (បង្រួមកម្ពស់ពី h-48 មក h-40 ដើម្បីឱ្យកន្ត្រាក់ខ្លីស្អាត) -->
+            <div class="w-full h-40 bg-slate-100 rounded-xl flex items-center justify-center p-3 border border-slate-300 shadow-inner relative" id="modal-product-img-container">
                 <!-- Rendering dynamic imagery -->
             </div>
 
-            <div class="space-y-1">
-                <h4 id="modal-product-title" class="text-base font-bold text-slate-100 leading-snug"></h4>
-                <div class="flex justify-between items-center pt-1">
-                    <span id="modal-product-price" class="text-xl font-extrabold text-amber-400"></span>
-                    <span id="modal-product-status" class="text-xs font-medium px-2.5 py-1 rounded-xl"></span>
+            <div class="space-y-0.5">
+                <h4 id="modal-product-title" class="text-sm font-bold text-slate-100 leading-snug"></h4>
+                <div class="flex justify-between items-center pt-0.5">
+                    <span id="modal-product-price" class="text-base font-extrabold text-amber-400"></span>
+                    <span id="modal-product-status" class="text-[10px] font-medium px-2 py-0.5 rounded-lg"></span>
                 </div>
             </div>
 
             <!-- ជម្រើសទំហំដប -->
-            <div class="space-y-1.5">
-                <span class="text-[10px] font-bold text-slate-400 uppercase">ជ្រើសរើសទំហំដបប្រេងម៉ាស៊ីន *</span>
-                <div id="modal-variants-selector" class="flex flex-wrap gap-2">
+            <div class="space-y-1">
+                <span class="text-[9px] font-bold text-slate-400 uppercase">ជ្រើសរើសទំហំដបប្រេងម៉ាស៊ីន *</span>
+                <div id="modal-variants-selector" class="flex flex-wrap gap-1.5">
                     <!-- Dynamic Selector Pills -->
                 </div>
             </div>
 
-            <div class="space-y-1 max-h-24 overflow-y-auto no-scrollbar">
-                <span class="text-[10px] font-bold text-slate-400 uppercase">លក្ខណៈបច្គេកទេស & ការពិពណ៌នា</span>
-                <p id="modal-product-desc" class="text-xs text-slate-300 leading-relaxed whitespace-pre-line"></p>
+            <!-- បង្រួមប្រអប់ពិពណ៌នាបន្តិច -->
+            <div class="space-y-0.5 max-h-20 overflow-y-auto no-scrollbar">
+                <span class="text-[9px] font-bold text-slate-400 uppercase">លក្ខណៈបច្គេកទេស & ការពិពណ៌នា</span>
+                <p id="modal-product-desc" class="text-[11px] text-slate-300 leading-relaxed whitespace-pre-line"></p>
             </div>
 
-            <!-- កន្លែងជ្រើសរើសចំនួន និងប៊ូតុងបន្ថែម -->
-            <div class="flex flex-col gap-2 pt-2">
+            <!-- កន្លែងជ្រើសរើសចំនួន និងប៊ូតុងបន្ថែម (ប្រភេទ Compact ស្អាត) -->
+            <div class="flex flex-col gap-1.5 pt-1">
                 
                 <!-- ប៊ូតុងបើក PDF ព័ត៌មានបច្ចេកទេស -->
-                <a id="modal-pdf-btn" href="#" target="_blank" class="w-full bg-slate-950 hover:bg-slate-900 text-amber-400 border border-amber-500/35 font-bold text-xs rounded-xl py-3 shadow-md flex justify-center items-center gap-2 active:scale-95 transition-all hidden">
-                    <i data-lucide="file-text" class="w-4 h-4 text-amber-500"></i>
+                <a id="modal-pdf-btn" href="#" target="_blank" class="w-full bg-slate-950 hover:bg-slate-900 text-amber-400 border border-amber-500/25 font-bold text-[10px] rounded-xl py-2.5 shadow flex justify-center items-center gap-1.5 active:scale-95 transition-all hidden">
+                    <i data-lucide="file-text" class="w-3.5 h-3.5 text-amber-500"></i>
                     <span>📄 មើលព័ត៌មានបច្ចេកទេសលម្អិត (PDF Catalog)</span>
                 </a>
 
-                <div class="flex gap-3">
+                <div class="flex gap-2">
                     <div id="modal-qty-container" class="flex items-center border border-slate-700 rounded-xl bg-slate-950 overflow-hidden">
-                        <button onclick="window.adjustModalQty(-1)" class="px-3.5 py-2 hover:bg-slate-800 active:scale-95 text-slate-300 font-bold">-</button>
-                        <span id="modal-qty" class="px-3 text-sm font-bold text-slate-200">1</span>
-                        <button onclick="window.adjustModalQty(1)" class="px-3.5 py-2 hover:bg-slate-800 active:scale-95 text-slate-300 font-bold">+</button>
+                        <button onclick="window.adjustModalQty(-1)" class="px-2.5 py-1.5 hover:bg-slate-800 active:scale-95 text-slate-300 font-bold text-xs">-</button>
+                        <span id="modal-qty" class="px-2 text-xs font-bold text-slate-200">1</span>
+                        <button onclick="window.adjustModalQty(1)" class="px-2.5 py-1.5 hover:bg-slate-800 active:scale-95 text-slate-300 font-bold text-xs">+</button>
                     </div>
-                    <button id="modal-add-btn" class="flex-1 bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold text-sm rounded-xl py-3 shadow-md active:scale-95 transition-all flex justify-center items-center gap-2">
-                        <i data-lucide="shopping-cart" class="w-4 h-4"></i> បន្ថែមទៅកន្ត្រកទំនិញ
+                    <button id="modal-add-btn" class="flex-1 bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold text-xs rounded-xl py-2.5 shadow active:scale-95 transition-all flex justify-center items-center gap-1.5">
+                        <i data-lucide="shopping-cart" class="w-3.5 h-3.5"></i> បន្ថែមទៅកន្ត្រកទំនិញ
                     </button>
                 </div>
                 
                 <!-- ប៊ូតុងឆាតសួរផ្ទាល់តាម Telegram -->
-                <a id="modal-telegram-chat-btn" href="#" target="_blank" class="w-full bg-slate-800 hover:bg-slate-750 text-sky-400 border border-sky-500/20 font-bold text-xs rounded-xl py-3 shadow-md flex justify-center items-center gap-2 active:scale-95 transition-all">
-                    <i data-lucide="send" class="w-4 h-4"></i> សាកសួរលម្អិតតាម Telegram (Chat)
+                <a id="modal-telegram-chat-btn" href="#" target="_blank" class="w-full bg-slate-800 hover:bg-slate-750 text-sky-400 border border-sky-500/20 font-bold text-[10px] rounded-xl py-2.5 shadow flex justify-center items-center gap-1.5 active:scale-95 transition-all">
+                    <i data-lucide="send" class="w-3.5 h-3.5"></i> សាកសួរលម្អិតតាម Telegram (Chat)
                 </a>
             </div>
         </div>
@@ -468,73 +470,73 @@
 
     <!-- ================= ផ្ទាំង MODAL បញ្ជាទិញ / Checkout ================= -->
     <div id="checkout-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-end justify-center hidden opacity-0 transition-opacity duration-300">
-        <div id="checkout-modal-content" class="bg-slate-900 border-t border-slate-800 w-full max-w-md rounded-t-[2.5rem] p-6 space-y-4 shadow-2xl transform translate-y-full transition-transform duration-300 max-h-[90vh] overflow-y-auto no-scrollbar">
+        <div id="checkout-modal-content" class="bg-slate-900 border-t border-slate-800 w-full max-w-md rounded-t-3xl p-5 space-y-3.5 shadow-2xl transform translate-y-full transition-transform duration-300 max-h-[92vh] overflow-y-auto no-scrollbar">
             <div class="flex justify-between items-center">
-                <h4 class="text-base font-bold text-slate-200 flex items-center gap-2">
-                    <i data-lucide="truck" class="text-amber-500"></i> ព័ត៌មានដឹកជញ្ជូនប្រេងម៉ាស៊ីន
+                <h4 class="text-xs font-bold text-slate-200 flex items-center gap-1.5">
+                    <i data-lucide="truck" class="text-amber-500 w-4 h-4"></i> ព័ត៌មានដឹកជញ្ជូនប្រេងម៉ាស៊ីន
                 </h4>
                 <button onclick="window.closeCheckoutModal()" class="p-1 rounded-full bg-slate-800 hover:bg-slate-750 text-slate-400">
-                    <i data-lucide="x" class="w-5 h-5"></i>
+                    <i data-lucide="x" class="w-4.5 h-4.5"></i>
                 </button>
             </div>
 
-            <!-- ទម្រង់បំពេញព័ត៌មាន -->
-            <div class="space-y-3">
+            <!-- ទម្រង់បំពេញព័ត៌មាន (Compact) -->
+            <div class="space-y-2.5 text-[11px]">
                 <div>
-                    <label class="text-[11px] font-bold text-slate-400 uppercase block mb-1">ឈ្មោះអ្នកទទួល *</label>
-                    <input type="text" id="cust-name" value="បង អុឹម ហៀង" class="w-full bg-slate-950 text-slate-100 px-4 py-3 rounded-xl border border-slate-800 focus:outline-none focus:border-amber-500 text-xs font-semibold">
+                    <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">ឈ្មោះអ្នកទទួល *</label>
+                    <input type="text" id="cust-name" value="បង អុឹម ហៀង" class="w-full bg-slate-950 text-slate-100 px-3.5 py-2.5 rounded-xl border border-slate-800 focus:outline-none focus:border-amber-500 font-semibold">
                 </div>
                 <div>
-                    <label class="text-[11px] font-bold text-slate-400 uppercase block mb-1">លេខទូរស័ព្ទសម្រាប់ទាក់ទង *</label>
-                    <input type="tel" id="cust-phone" placeholder="ឧទហរណ៍៖ 012 345 678" class="w-full bg-slate-950 text-slate-100 px-4 py-3 rounded-xl border border-slate-800 focus:outline-none focus:border-amber-500 text-xs text-slate-200" pattern="[0-9]*">
+                    <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">លេខទូរស័ព្ទសម្រាប់ទាក់ទង *</label>
+                    <input type="tel" id="cust-phone" placeholder="ឧទហរណ៍៖ 012 345 678" class="w-full bg-slate-950 text-slate-100 px-3.5 py-2.5 rounded-xl border border-slate-800 focus:outline-none focus:border-amber-500 font-semibold" pattern="[0-9]*">
                 </div>
                 <div>
-                    <label class="text-[11px] font-bold text-slate-400 uppercase block mb-1">អាសយដ្ឋានដឹកជញ្ជូនរហ័ស *</label>
-                    <textarea id="cust-address" rows="2" placeholder="ផ្ទះលេខ ផ្លូវ សង្កាត់ ខណ្ឌ រាជធានី/ខេត្ត..." class="w-full bg-slate-950 text-slate-100 px-4 py-3 rounded-xl border border-slate-800 focus:outline-none focus:border-amber-500 text-xs text-slate-200"></textarea>
+                    <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">អាសយដ្ឋានដឹកជញ្ជូនរហ័ស *</label>
+                    <textarea id="cust-address" rows="2" placeholder="ផ្ទះលេខ ផ្លូវ សង្កាត់ ខណ្ឌ រាជធានី/ខេត្ត..." class="w-full bg-slate-950 text-slate-100 px-3.5 py-2.5 rounded-xl border border-slate-800 focus:outline-none focus:border-amber-500"></textarea>
                 </div>
 
                 <!-- វិធីសាស្ត្របង់ប្រាក់ -->
                 <div>
-                    <label class="text-[11px] font-bold text-slate-400 uppercase block mb-1.5">វិធីសាស្ត្រទូទាត់ប្រាក់</label>
+                    <label class="text-[9px] font-bold text-slate-400 uppercase block mb-1">វិធីសាស្ត្រទូទាត់ប្រាក់</label>
                     <div class="grid grid-cols-2 gap-2">
-                        <button onclick="window.setPaymentMethod('cod')" id="pay-cod-btn" class="py-3 rounded-xl border-2 border-amber-500 bg-amber-500/10 text-amber-400 font-bold text-xs flex justify-center items-center gap-1.5 transition-all">
-                            <i data-lucide="banknote" class="w-4 h-4"></i> លុយសុទ្ធ (COD)
+                        <button onclick="window.setPaymentMethod('cod')" id="pay-cod-btn" class="py-2 rounded-xl border-2 border-amber-500 bg-amber-500/10 text-amber-400 font-bold flex justify-center items-center gap-1.5 transition-all">
+                            <i data-lucide="banknote" class="w-3.5 h-3.5"></i> លុយសុទ្ធ (COD)
                         </button>
-                        <button onclick="window.setPaymentMethod('aba')" id="pay-aba-btn" class="py-3 rounded-xl border border-slate-800 text-slate-400 font-bold text-xs flex justify-center items-center gap-1.5 transition-all">
-                            <i data-lucide="smartphone" class="w-4 h-4"></i> ABA Pay
+                        <button onclick="window.setPaymentMethod('aba')" id="pay-aba-btn" class="py-2 rounded-xl border border-slate-800 text-slate-400 font-bold flex justify-center items-center gap-1.5 transition-all">
+                            <i data-lucide="smartphone" class="w-3.5 h-3.5"></i> ABA Pay
                         </button>
                     </div>
                 </div>
             </div>
 
             <!-- សេចក្តីសង្ខេបតម្លៃចុងក្រោយ -->
-            <div class="bg-slate-950 p-3 rounded-xl flex justify-between items-center text-xs border border-slate-800">
+            <div class="bg-slate-950 p-2.5 rounded-xl flex justify-between items-center text-[11px] border border-slate-800">
                 <span class="text-slate-400 font-medium">ទឹកប្រាក់ត្រូវទូទាត់សរុប៖</span>
-                <span id="checkout-total-price" class="text-sm font-extrabold text-amber-400">$0.00</span>
+                <span id="checkout-total-price" class="text-xs font-extrabold text-amber-400">$0.00</span>
             </div>
 
             <!-- ប៊ូតុងបញ្ជាក់ការទិញ -->
-            <button onclick="window.placeOrder()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-sm py-3.5 rounded-xl shadow-lg flex justify-center items-center gap-2 active:scale-95 transition-all">
-                <i data-lucide="check-circle-2" class="w-4 h-4"></i> បញ្ជាក់ការកុម្មង់ឥឡូវនេះ
+            <button onclick="window.placeOrder()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-xs py-3 rounded-xl shadow-lg flex justify-center items-center gap-1.5 active:scale-95 transition-all">
+                <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> បញ្ជាក់ការកុម្មង់ឥឡូវនេះ
             </button>
         </div>
     </div>
 
     <!-- ផ្ទាំងបញ្ជាក់ការលុបផលិតផល ឬ ការបញ្ជាទិញ -->
     <div id="confirm-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
-        <div id="confirm-modal-content" class="bg-slate-900 border border-slate-800 w-80 rounded-3xl p-6 space-y-4 shadow-2xl text-center transform scale-95 transition-all duration-300">
-            <div class="p-3 bg-red-500/10 rounded-2xl w-max mx-auto text-red-500 border border-red-500/20">
-                <i data-lucide="alert-triangle" class="w-8 h-8"></i>
+        <div id="confirm-modal-content" class="bg-slate-900 border border-slate-800 w-72 rounded-2xl p-5 space-y-3.5 shadow-2xl text-center transform scale-95 transition-all duration-300">
+            <div class="p-2.5 bg-red-500/10 rounded-xl w-max mx-auto text-red-500 border border-red-500/20">
+                <i data-lucide="alert-triangle" class="w-6 h-6"></i>
             </div>
             <div>
-                <h4 id="confirm-modal-title" class="font-bold text-sm text-slate-200">បញ្ជាក់ការលុប</h4>
-                <p id="confirm-modal-desc" class="text-xs text-slate-400 mt-2">តើបងពិតជាចង់លុបផលិតផលនេះចេញមែនទេ?</p>
+                <h4 id="confirm-modal-title" class="font-bold text-xs text-slate-200">បញ្ជាក់ការលុប</h4>
+                <p id="confirm-modal-desc" class="text-[11px] text-slate-400 mt-1.5 leading-relaxed">តើបងពិតជាចង់លុបផលិតផលនេះចេញមែនទេ?</p>
             </div>
-            <div class="flex gap-2 pt-2">
-                <button onclick="window.closeConfirmModal(false)" class="flex-1 py-3 bg-slate-800 hover:bg-slate-750 text-slate-300 text-xs font-bold rounded-xl active:scale-95 transition-all">
+            <div class="flex gap-2 pt-1">
+                <button onclick="window.closeConfirmModal(false)" class="flex-1 py-2.5 bg-slate-800 hover:bg-slate-750 text-slate-300 text-[11px] font-bold rounded-xl active:scale-95 transition-all">
                     បដិសេធ
                 </button>
-                <button onclick="window.closeConfirmModal(true)" class="flex-1 py-3 bg-red-500 hover:bg-red-600 text-white text-xs font-bold rounded-xl active:scale-95 transition-all">
+                <button onclick="window.closeConfirmModal(true)" class="flex-1 py-2.5 bg-red-500 hover:bg-red-600 text-white text-[11px] font-bold rounded-xl active:scale-95 transition-all">
                     យល់ព្រមលុប
                 </button>
             </div>
@@ -542,25 +544,25 @@
     </div>
 
     <!-- ផ្ទាំងជូនដំណឹងរហ័ស (Toast Alert) -->
-    <div id="toast-message" class="fixed top-5 left-1/2 -translate-x-1/2 bg-slate-900/95 backdrop-blur text-white px-5 py-3.5 rounded-2xl text-xs font-semibold shadow-2xl flex items-center gap-2 transition-all duration-300 transform scale-0 pointer-events-none z-50 border border-slate-800">
-        <i data-lucide="info" class="w-4 h-4 text-amber-400"></i>
+    <div id="toast-message" class="fixed top-5 left-1/2 -translate-x-1/2 bg-slate-900/95 backdrop-blur text-white px-4 py-2.5 rounded-xl text-[11px] font-semibold shadow-2xl flex items-center gap-1.5 transition-all duration-300 transform scale-0 pointer-events-none z-50 border border-slate-800">
+        <i data-lucide="info" class="w-3.5 h-3.5 text-amber-400"></i>
         <span id="toast-text">សារជូនដំណឹង</span>
     </div>
 
     <!-- របារបញ្ជាខាងក្រោម (Bottom Navigation Bar) -->
-    <nav class="fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur border-t border-slate-800 px-2 py-2 flex justify-around items-center shadow-lg z-40 shrink-0">
-        <button onclick="window.navigateTo('home')" id="nav-home" class="flex flex-col items-center gap-1 py-1 px-3 text-amber-500 font-bold scale-105 transition-all duration-200">
-            <i data-lucide="home" class="w-5 h-5"></i>
-            <span class="text-[10px]">ទំព័រដើម</span>
+    <nav class="fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur border-t border-slate-800 px-2 py-1.5 flex justify-around items-center shadow-lg z-40 shrink-0">
+        <button onclick="window.navigateTo('home')" id="nav-home" class="flex flex-col items-center gap-0.5 py-0.5 px-3 text-amber-500 font-bold scale-105 transition-all duration-200">
+            <i data-lucide="home" class="w-4.5 h-4.5"></i>
+            <span class="text-[9px]">ទំព័រដើម</span>
         </button>
-        <button onclick="window.navigateTo('cart')" id="nav-cart" class="flex flex-col items-center gap-1 py-1 px-3 text-slate-400 transition-all duration-200 relative">
-            <i data-lucide="shopping-cart" class="w-5 h-5"></i>
-            <span class="text-[10px]">កន្ត្រកទំនិញ</span>
-            <span id="cart-badge" class="absolute top-0.5 right-2 bg-rose-500 text-white text-[9px] font-extrabold w-4 h-4 rounded-full flex items-center justify-center border border-white scale-0 transition-transform duration-200">0</span>
+        <button onclick="window.navigateTo('cart')" id="nav-cart" class="flex flex-col items-center gap-0.5 py-0.5 px-3 text-slate-400 transition-all duration-200 relative">
+            <i data-lucide="shopping-cart" class="w-4.5 h-4.5"></i>
+            <span class="text-[9px]">កន្ត្រកទំនិញ</span>
+            <span id="cart-badge" class="absolute top-0.5 right-2.5 bg-rose-500 text-white text-[8px] font-extrabold w-3.5 h-3.5 rounded-full flex items-center justify-center border border-white scale-0 transition-transform duration-200">0</span>
         </button>
-        <button onclick="window.navigateTo('orders')" id="nav-orders" class="flex flex-col items-center gap-1 py-1 px-3 text-slate-400 transition-all duration-200">
-            <i data-lucide="receipt" class="w-5 h-5"></i>
-            <span class="text-[10px]">ប្រវត្តិទិញ</span>
+        <button onclick="window.navigateTo('orders')" id="nav-orders" class="flex flex-col items-center gap-0.5 py-0.5 px-3 text-slate-400 transition-all duration-200">
+            <i data-lucide="receipt" class="w-4.5 h-4.5"></i>
+            <span class="text-[9px]">ប្រវត្តិទិញ</span>
         </button>
     </nav>
 
@@ -716,18 +718,18 @@
             return isNaN(p) ? 0 : p;
         }
 
-        function getProductImageHtml(product, customClass = "w-20 h-20 mx-auto object-contain") {
+        function getProductImageHtml(product, customClass = "w-16 h-16 mx-auto object-contain") {
             if (product.image && product.image.trim() !== "") {
-                return `<img src="${product.image}" class="${customClass} rounded-xl" alt="${product.name}" onerror="this.onerror=null; this.src='https://placehold.co/150x150?text=No+Image';">`;
+                return `<img src="${product.image}" class="${customClass} rounded-lg" alt="${product.name}" onerror="this.onerror=null; this.src='https://placehold.co/150x150?text=No+Image';">`;
             }
             return `
-            <div class="w-full h-full rounded-2xl bg-gradient-to-br from-amber-500 to-amber-600 flex flex-col items-center justify-between p-3 text-center text-slate-950 relative overflow-hidden">
-                <div class="text-[8px] font-extrabold tracking-widest opacity-85 uppercase">TRITECH</div>
+            <div class="w-full h-full rounded-xl bg-gradient-to-br from-amber-500 to-amber-600 flex flex-col items-center justify-between p-2 text-center text-slate-950 relative overflow-hidden">
+                <div class="text-[7px] font-extrabold tracking-widest opacity-85 uppercase">TRITECH</div>
                 <div class="my-auto">
-                    <span class="text-xs font-black tracking-tighter block leading-none">PREMIUM</span>
-                    <span class="text-[8px] font-bold uppercase tracking-wider block mt-1">LUBRICANTS</span>
+                    <span class="text-[10px] font-black tracking-tighter block leading-none">PREMIUM</span>
+                    <span class="text-[7px] font-bold uppercase tracking-wider block mt-0.5">LUBRICANTS</span>
                 </div>
-                <div class="text-[7px] font-bold bg-slate-950/20 px-2 py-0.5 rounded-full">AUS 🇦🇺</div>
+                <div class="text-[6px] font-bold bg-slate-950/20 px-1.5 py-0.5 rounded-full">AUS 🇦🇺</div>
             </div>
             `;
         }
@@ -863,7 +865,7 @@
             }
             
             statusEl.classList.remove('hidden');
-            statusEl.className = "text-xs p-3 rounded-xl bg-amber-500/10 text-amber-400 font-semibold animate-pulse border border-amber-500/20";
+            statusEl.className = "text-[10px] p-2 rounded-xl bg-amber-500/10 text-amber-400 font-semibold animate-pulse border border-amber-500/20";
             statusEl.innerText = "⏳ កំពុងតេស្តផ្ញើសារសាកល្បងទៅកាន់ Telegram...";
             
             const url = `https://api.telegram.org/bot${token}/sendMessage`;
@@ -879,18 +881,18 @@
                 });
                 const data = await response.json();
                 if (data.ok) {
-                    statusEl.className = "text-xs p-3.5 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/25";
+                    statusEl.className = "text-[10px] p-2 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/25";
                     statusEl.innerHTML = `
                         <p class="font-bold">✅ ជោគជ័យ ១០០%!</p>
-                        <p class="text-[11px] mt-1 text-slate-300">សារតេស្តបានផ្ញើទៅដល់គ្រុប/គណនីតេឡេក្រាមរបស់បងហើយ。</p>
+                        <p class="text-[9px] mt-0.5 text-slate-300">សារតេស្តបានផ្ញើទៅដល់គ្រុប/គណនីតេឡេក្រាមរបស់បងហើយ。</p>
                     `;
                     window.showToast("🔔 ផ្ញើសារតេស្តជោគជ័យ!");
                 } else {
-                    statusEl.className = "text-xs p-3.5 rounded-xl bg-red-500/10 text-red-400 border border-red-500/25";
+                    statusEl.className = "text-[10px] p-2 rounded-xl bg-red-500/10 text-red-400 border border-red-500/25";
                     statusEl.innerText = "❌ ផ្ញើមិនចេញទេ៖ " + data.description;
                 }
             } catch (error) {
-                statusEl.className = "text-xs p-3.5 rounded-xl bg-red-500/10 text-red-400 border border-red-500/25";
+                statusEl.className = "text-[10px] p-2 rounded-xl bg-red-500/10 text-red-400 border border-red-500/25";
                 statusEl.innerText = "❌ មិនអាចតភ្ជាប់ទៅកាន់ Telegram API ឡើយ។";
             }
         }
@@ -953,7 +955,7 @@
             filteredList.forEach(product => {
                 const isFav = state.favorites.includes(product.id);
                 const card = document.createElement('div');
-                card.className = "bg-slate-900 rounded-3xl p-3.5 border border-slate-800/80 shadow-sm flex flex-col justify-between hover:shadow-md hover:border-amber-500/20 transition-all cursor-pointer relative";
+                card.className = "bg-slate-900 rounded-2xl p-2.5 border border-slate-800/80 shadow-sm flex flex-col justify-between hover:shadow-md hover:border-amber-500/20 transition-all cursor-pointer relative";
                 card.onclick = () => openProductModal(product);
 
                 const variants = product.variants || [{ size: "ដប", price: product.price || "0", stock: "in_stock" }];
@@ -966,7 +968,7 @@
                     const isNoPrice = isNaN(numericPrice) || numericPrice <= 0 || String(variant.price).trim() === "" || String(variant.price).trim().toLowerCase() === "ទាក់ទង";
                     
                     priceRowsHtml += `
-                        <div class="flex justify-between items-center text-[11px] text-slate-400 font-semibold">
+                        <div class="flex justify-between items-center text-[10px] text-slate-400 font-semibold">
                             <span>${variant.size}៖</span>
                             <div class="flex items-center gap-1">
                                 <span class="${isVarOutOfStock ? 'text-slate-500 line-through' : isNoPrice ? 'text-amber-500 font-medium' : 'text-amber-400'} font-extrabold">${formatPrice(variant.price)}</span>
@@ -977,34 +979,34 @@
                 });
 
                 card.innerHTML = `
-                    <button onclick="window.toggleFavorite('${product.id}', event)" class="absolute top-3.5 right-3.5 p-1.5 rounded-full bg-slate-950/80 hover:bg-slate-900 active:scale-90 transition-all z-10">
-                        <i data-lucide="heart" class="w-4 h-4 ${isFav ? 'fill-rose-500 text-rose-500' : 'text-slate-400'}"></i>
+                    <button onclick="window.toggleFavorite('${product.id}', event)" class="absolute top-2.5 right-2.5 p-1 rounded-full bg-slate-950/80 hover:bg-slate-900 active:scale-90 transition-all z-10">
+                        <i data-lucide="heart" class="w-3.5 h-3.5 ${isFav ? 'fill-rose-500 text-rose-500' : 'text-slate-400'}"></i>
                     </button>
 
-                    <div class="aspect-square bg-slate-100 rounded-2xl flex items-center justify-center p-2 mb-3 overflow-hidden relative border-2 border-slate-300 shadow-inner shrink-0">
+                    <div class="aspect-square bg-slate-100 rounded-xl flex items-center justify-center p-1.5 mb-2 overflow-hidden relative border border-slate-300 shadow-inner shrink-0">
                         ${getProductImageHtml(product, "w-full h-full object-contain opacity-95 hover:scale-105 transition-transform duration-300")}
                         
                         ${allVariantsOutOfStock ? `
                             <div class="absolute inset-0 bg-slate-950/70 backdrop-blur-[1.5px] flex items-center justify-center">
-                                <span class="bg-red-600 text-white text-[10px] font-bold px-3 py-1.5 rounded-xl uppercase tracking-wider shadow border border-red-500/30">អស់ពីស្តុក</span>
+                                <span class="bg-red-600 text-white text-[9px] font-bold px-2 py-1 rounded-lg uppercase tracking-wider shadow border border-red-500/20">អស់ពីស្តុក</span>
                             </div>
                         ` : ''}
 
                         <!-- បង្ហាញសញ្ញា PDF Badge បើមាន Link ឯកសារយោង -->
                         ${product.pdf && product.pdf.trim() !== "" ? `
-                            <span class="absolute top-1.5 left-1.5 bg-red-600/90 text-white text-[8px] font-black px-1.5 py-0.5 rounded shadow">PDF</span>
+                            <span class="absolute top-1 left-1 bg-red-600/90 text-white text-[7px] font-black px-1 py-0.5 rounded shadow">PDF</span>
                         ` : ''}
 
-                        <span class="absolute bottom-1.5 right-1.5 bg-slate-900 text-[8px] font-extrabold px-2 py-0.5 rounded-full text-white shadow-sm">AUS 🇦🇺</span>
+                        <span class="absolute bottom-1 right-1 bg-slate-900 text-[7px] font-extrabold px-1.5 py-0.5 rounded-md text-white shadow-sm">AUS 🇦🇺</span>
                     </div>
 
-                    <div class="space-y-1 flex-1 flex flex-col justify-between">
+                    <div class="space-y-0.5 flex-1 flex flex-col justify-between">
                         <div>
-                            <span class="text-[8px] font-bold text-amber-500 uppercase block line-clamp-1">${product.category}</span>
-                            <h4 class="text-xs font-bold text-slate-200 leading-snug line-clamp-2 h-8">${product.name}</h4>
+                            <span class="text-[7px] font-bold text-amber-500 uppercase block line-clamp-1">${product.category}</span>
+                            <h4 class="text-[11px] font-bold text-slate-200 leading-snug line-clamp-2 h-7">${product.name}</h4>
                         </div>
                         
-                        <div class="border-t border-slate-800/85 pt-2 mt-2 space-y-1">
+                        <div class="border-t border-slate-800/85 pt-1.5 mt-1.5 space-y-0.5">
                             ${priceRowsHtml}
                         </div>
                     </div>
@@ -1013,15 +1015,15 @@
             });
 
             if (filteredList.length === 0) {
-                grid.className = "col-span-2 text-center py-12";
+                grid.className = "col-span-2 text-center py-10";
                 grid.innerHTML = `
-                    <div class="space-y-2">
-                        <i data-lucide="alert-circle" class="w-10 h-10 text-slate-600 mx-auto"></i>
+                    <div class="space-y-1.5">
+                        <i data-lucide="alert-circle" class="w-8 h-8 text-slate-600 mx-auto"></i>
                         <p class="text-xs text-slate-400 font-medium">មិនមានផលិតផលបង្ហាញឡើយ</p>
                     </div>
                 `;
             } else {
-                grid.className = "grid grid-cols-2 gap-3.5 mt-2";
+                grid.className = "grid grid-cols-2 gap-3 mt-1";
             }
 
             lucide.createIcons();
@@ -1042,7 +1044,7 @@
             
             document.getElementById('modal-product-img-container').innerHTML = `
                 ${getProductImageHtml(product, "w-full h-full object-contain opacity-95")}
-                <span class="absolute top-3 right-3 bg-slate-900/90 text-[10px] font-extrabold px-3 py-1 rounded-full text-white shadow-md backdrop-blur border border-slate-750 z-10">អូស្ត្រាលី 🇦🇺</span>
+                <span class="absolute top-2 right-2 bg-slate-900/90 text-[8px] font-extrabold px-2 py-0.5 rounded-full text-white shadow backdrop-blur border border-slate-750 z-10">អូស្ត្រាលី 🇦🇺</span>
             `;
 
             document.getElementById('modal-product-desc').innerText = product.desc;
@@ -1067,20 +1069,20 @@
                 const isNoPrice = isNaN(numericPrice) || numericPrice <= 0 || String(v.price).trim() === "" || String(v.price).trim().toLowerCase() === "ទាក់ទង";
                 
                 const btn = document.createElement('button');
-                btn.className = `variant-pill px-3.5 py-2 rounded-xl border text-xs font-bold transition-all active:scale-95 flex items-center gap-1.5 ${isSelected ? 'border-amber-500 bg-amber-500/10 text-amber-400' : 'border-slate-800 bg-slate-950 text-slate-400'}`;
+                btn.className = `variant-pill px-2.5 py-1.5 rounded-lg border text-[10px] font-bold transition-all active:scale-95 flex items-center gap-1 ${isSelected ? 'border-amber-500 bg-amber-500/10 text-amber-400' : 'border-slate-800 bg-slate-950 text-slate-400'}`;
                 
                 btn.innerHTML = `
                     <span class="${isVarOut ? 'line-through opacity-50' : ''}">${v.size}</span>
                     <span class="opacity-60">|</span>
-                    <span class="text-[11px] ${isVarOut ? 'line-through opacity-50' : isNoPrice ? 'text-amber-500 font-medium' : 'text-slate-200'}">${formatPrice(v.price)}</span>
-                    ${isVarOut ? '<span class="text-[8px] bg-red-500/20 text-red-400 px-1.5 py-0.5 rounded-full font-normal">អស់</span>' : ''}
+                    <span class="text-[9px] ${isVarOut ? 'line-through opacity-50' : isNoPrice ? 'text-amber-500 font-medium' : 'text-slate-200'}">${formatPrice(v.price)}</span>
+                    ${isVarOut ? '<span class="text-[7px] bg-red-500/20 text-red-400 px-1 py-0.5 rounded-full font-normal">អស់</span>' : ''}
                 `;
                 
                 btn.onclick = () => {
                     document.querySelectorAll('.variant-pill').forEach(el => {
-                        el.className = 'variant-pill px-3.5 py-2 rounded-xl border text-xs font-bold transition-all active:scale-95 flex items-center gap-1.5 border-slate-800 bg-slate-950 text-slate-400';
+                        el.className = 'variant-pill px-2.5 py-1.5 rounded-lg border text-[10px] font-bold transition-all active:scale-95 flex items-center gap-1 border-slate-800 bg-slate-950 text-slate-400';
                     });
-                    btn.className = 'variant-pill px-3.5 py-2 rounded-xl border text-xs font-bold transition-all active:scale-95 flex items-center gap-1.5 border-amber-500 bg-amber-500/10 text-amber-400';
+                    btn.className = 'variant-pill px-2.5 py-1.5 rounded-lg border text-[10px] font-bold transition-all active:scale-95 flex items-center gap-1 border-amber-500 bg-amber-500/10 text-amber-400';
                     selectedVariantInModal = v;
                     updateModalVariantUI(v);
                 };
@@ -1113,27 +1115,27 @@
 
             if (isVarOut) {
                 statusEl.innerText = "អស់ពីស្តុក";
-                statusEl.className = "text-xs text-red-400 font-medium bg-red-500/10 border border-red-500/20 px-2.5 py-1 rounded-xl";
+                statusEl.className = "text-[9px] text-red-400 font-medium bg-red-500/10 border border-red-500/20 px-2 py-0.5 rounded-lg";
                 qtyContainer.style.display = 'none';
                 addBtn.disabled = true;
                 addBtn.onclick = null;
                 addBtn.innerText = "អស់ពីស្តុក (មិនអាចកុម្មង់បាន)";
-                addBtn.className = "flex-1 bg-slate-800 text-slate-500 font-bold text-xs rounded-xl py-3.5 border border-slate-750 cursor-not-allowed flex justify-center items-center gap-2";
+                addBtn.className = "flex-1 bg-slate-800 text-slate-500 font-bold text-[11px] rounded-xl py-2.5 border border-slate-750 cursor-not-allowed flex justify-center items-center gap-2";
             } else if (isNoPrice) {
                 statusEl.innerText = "គ្មានតម្លៃ / ទាក់ទង";
-                statusEl.className = "text-xs text-amber-400 font-medium bg-amber-500/10 border border-amber-500/20 px-2.5 py-1 rounded-xl";
+                statusEl.className = "text-[9px] text-amber-400 font-medium bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded-lg";
                 qtyContainer.style.display = 'none';
                 addBtn.disabled = true;
                 addBtn.onclick = null;
                 addBtn.innerText = "គ្មានតម្លៃពិតប្រាកដ (មិនអាចកុម្មង់បាន)";
-                addBtn.className = "flex-1 bg-slate-800 text-slate-500 font-bold text-xs rounded-xl py-3.5 border border-slate-750 cursor-not-allowed flex justify-center items-center gap-2";
+                addBtn.className = "flex-1 bg-slate-800 text-slate-500 font-bold text-[11px] rounded-xl py-2.5 border border-slate-750 cursor-not-allowed flex justify-center items-center gap-2";
             } else {
                 statusEl.innerText = "មានក្នុងស្តុក";
-                statusEl.className = "text-xs text-emerald-400 font-medium bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-xl";
+                statusEl.className = "text-[9px] text-emerald-400 font-medium bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-lg";
                 qtyContainer.style.display = 'flex';
                 addBtn.disabled = false;
-                addBtn.innerHTML = `<i data-lucide="shopping-cart" class="w-4 h-4"></i> បន្ថែមទៅកន្ត្រកទំនិញ`;
-                addBtn.className = "flex-1 bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold text-sm rounded-xl py-3 shadow-md active:scale-95 transition-all flex justify-center items-center gap-2";
+                addBtn.innerHTML = `<i data-lucide="shopping-cart" class="w-3.5 h-3.5"></i> បន្ថែមទៅកន្ត្រកទំនិញ`;
+                addBtn.className = "flex-1 bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold text-[11px] rounded-xl py-2.5 shadow active:scale-95 transition-all flex justify-center items-center gap-1.5";
                 addBtn.onclick = () => {
                     addToCart(selectedProductForModal.id, v.size, modalQuantity);
                     closeProductModal();
@@ -1255,27 +1257,27 @@
                     subtotal += itemPriceTotal;
 
                     const row = document.createElement('div');
-                    row.className = "bg-slate-900 p-3 rounded-2xl border border-slate-800 shadow-sm flex items-center justify-between gap-3";
+                    row.className = "bg-slate-900 p-2.5 rounded-xl border border-slate-800 shadow-sm flex items-center justify-between gap-2.5";
                     
                     row.innerHTML = `
-                        <div class="w-14 h-14 bg-slate-100 rounded-xl flex items-center justify-center shrink-0 border-2 border-slate-300 p-1 overflow-hidden">
+                        <div class="w-11 h-11 bg-slate-100 rounded-lg flex items-center justify-center shrink-0 border border-slate-300 p-1 overflow-hidden">
                             ${getProductImageHtml(product, "w-full h-full object-contain")}
                         </div>
 
                         <div class="flex-1 space-y-0.5">
-                            <h4 class="text-xs font-bold text-slate-200 line-clamp-1">${product.name} <span class="text-amber-500 font-extrabold text-[11px]">(${cartItem.size})</span></h4>
-                            <span class="text-[11px] font-extrabold text-amber-400 block">${formatPrice(variant.price)}</span>
+                            <h4 class="text-[11px] font-bold text-slate-200 line-clamp-1">${product.name} <span class="text-amber-500 font-extrabold text-[10px]">(${cartItem.size})</span></h4>
+                            <span class="text-[10px] font-extrabold text-amber-400 block">${formatPrice(variant.price)}</span>
                         </div>
 
-                        <div class="flex items-center gap-2 shrink-0">
-                            <div class="flex items-center border border-slate-800 bg-slate-950 rounded-xl overflow-hidden">
-                                <button onclick="window.adjustCartItemQty('${product.id}', '${cartItem.size}', -1)" class="px-2.5 py-1 text-slate-400 font-bold hover:bg-slate-800 text-xs">-</button>
-                                <span class="px-2 text-xs font-bold text-slate-200">${cartItem.quantity}</span>
-                                <button onclick="window.adjustCartItemQty('${product.id}', '${cartItem.size}', 1)" class="px-2.5 py-1 text-slate-400 font-bold hover:bg-slate-800 text-xs">+</button>
+                        <div class="flex items-center gap-1.5 shrink-0">
+                            <div class="flex items-center border border-slate-800 bg-slate-950 rounded-lg overflow-hidden">
+                                <button onclick="window.adjustCartItemQty('${product.id}', '${cartItem.size}', -1)" class="px-2 py-0.5 text-slate-400 font-bold hover:bg-slate-800 text-[10px]">-</button>
+                                <span class="px-1.5 text-[10px] font-bold text-slate-200">${cartItem.quantity}</span>
+                                <button onclick="window.adjustCartItemQty('${product.id}', '${cartItem.size}', 1)" class="px-2 py-0.5 text-slate-400 font-bold hover:bg-slate-800 text-[10px]">+</button>
                             </div>
                             
-                            <button onclick="window.removeCartItem('${product.id}', '${cartItem.size}')" class="p-2 bg-red-500/10 hover:bg-red-500/20 text-red-400 rounded-xl border border-red-500/20 active:scale-90 transition-all">
-                                <i data-lucide="trash-2" class="w-4 h-4"></i>
+                            <button onclick="window.removeCartItem('${product.id}', '${cartItem.size}')" class="p-1.5 bg-red-500/10 hover:bg-red-500/20 text-red-400 rounded-lg border border-red-500/20 active:scale-90 transition-all">
+                                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
                             </button>
                         </div>
                     `;
@@ -1285,11 +1287,11 @@
 
             if (state.cart.length === 0) {
                 container.innerHTML = `
-                    <div class="bg-slate-900 rounded-3xl p-8 border border-slate-850 shadow-sm text-center">
-                        <i data-lucide="shopping-cart" class="w-12 h-12 text-slate-700 mx-auto mb-3"></i>
-                        <h4 class="font-bold text-slate-300 text-sm mb-1">កន្ត្រកទំនិញរបស់អ្នកទទេស្អាត</h4>
-                        <p class="text-xs text-slate-500">សូមអញ្ជើញត្រលប់ទៅទំព័រដើម ដើម្បីជ្រើសរើសប្រេងម៉ាស៊ីន TriTech គុណភាពខ្ពស់។</p>
-                        <button onclick="window.navigateTo('home')" class="mt-4 bg-amber-500 text-slate-950 font-bold text-xs py-2.5 px-5 rounded-xl">ទៅទិញប្រេងម៉ាស៊ីន</button>
+                    <div class="bg-slate-900 rounded-2xl p-6 border border-slate-850 shadow-sm text-center">
+                        <i data-lucide="shopping-cart" class="w-10 h-10 text-slate-700 mx-auto mb-2"></i>
+                        <h4 class="font-bold text-slate-300 text-xs mb-0.5">កន្ត្រកទំនិញរបស់អ្នកទទេស្អាត</h4>
+                        <p class="text-[10px] text-slate-500">សូមអញ្ជើញត្រលប់ទៅទំព័រដើម ដើម្បីជ្រើសរើសប្រេងម៉ាស៊ីន TriTech គុណភាពខ្ពស់។</p>
+                        <button onclick="window.navigateTo('home')" class="mt-3 bg-amber-500 text-slate-950 font-bold text-[10px] py-2 px-4 rounded-lg">ទៅទិញប្រេងម៉ាស៊ីន</button>
                     </div>
                 `;
                 if (summaryCard) summaryCard.classList.add('hidden');
@@ -1346,11 +1348,11 @@
             const btnAba = document.getElementById('pay-aba-btn');
 
             if (method === 'cod') {
-                btnCod.className = "py-3 rounded-xl border-2 border-amber-500 bg-amber-500/10 text-amber-400 font-bold text-xs flex justify-center items-center gap-1.5 transition-all";
-                btnAba.className = "py-3 rounded-xl border border-slate-800 text-slate-400 font-bold text-xs flex justify-center items-center gap-1.5 transition-all";
+                btnCod.className = "py-2 rounded-xl border-2 border-amber-500 bg-amber-500/10 text-amber-400 font-bold text-[10px] flex justify-center items-center gap-1.5 transition-all";
+                btnAba.className = "py-2 rounded-xl border border-slate-800 text-slate-400 font-bold text-[10px] flex justify-center items-center gap-1.5 transition-all";
             } else {
-                btnCod.className = "py-3 rounded-xl border border-slate-800 text-slate-400 font-bold text-xs flex justify-center items-center gap-1.5 transition-all";
-                btnAba.className = "py-3 rounded-xl border-2 border-sky-500 bg-sky-500/10 text-sky-400 font-bold text-xs flex justify-center items-center gap-1.5 transition-all";
+                btnCod.className = "py-2 rounded-xl border border-slate-800 text-slate-400 font-bold text-[10px] flex justify-center items-center gap-1.5 transition-all";
+                btnAba.className = "py-2 rounded-xl border-2 border-sky-500 bg-sky-500/10 text-sky-400 font-bold text-[10px] flex justify-center items-center gap-1.5 transition-all";
             }
             lucide.createIcons();
         }
@@ -1450,7 +1452,7 @@
             document.getElementById('search-phone-input').value = phone;
             window.searchOrdersByPhone();
             
-            window.showToast("🎉 การបញ្ជាទិញប្រេងម៉ាស៊ីន TriTech ទទួលបានជោគជ័យ!");
+            window.showToast("🎉 ការបញ្ជាទិញប្រេងម៉ាស៊ីន TriTech ទទួលបានជោគជ័យ!");
             setTimeout(() => { navigateTo('orders'); }, 500);
         }
 
@@ -1474,13 +1476,13 @@
 
             if (!filterPhone) {
                 container.innerHTML = `
-                    <div class="bg-slate-900 rounded-3xl p-8 border border-slate-850 text-center space-y-3">
-                        <div class="p-3 bg-amber-500/5 rounded-2xl w-max mx-auto text-slate-500 border border-slate-800/50">
-                            <i data-lucide="search" class="w-10 h-10"></i>
+                    <div class="bg-slate-900 rounded-2xl p-6 border border-slate-850 text-center space-y-2">
+                        <div class="p-2 bg-amber-500/5 rounded-xl w-max mx-auto text-slate-500 border border-slate-800/50">
+                            <i data-lucide="search" class="w-8 h-8"></i>
                         </div>
                         <div>
                             <h4 class="font-bold text-slate-300 text-xs">ស្វែងរកការបញ្ជាទិញ</h4>
-                            <p class="text-[11px] text-slate-500 mt-1 leading-relaxed">សូមវាយបញ្ចូលលេខទូរស័ព្ទរបស់បងខាងលើ ដើម្បីឆែកមើលការបញ្ជាទិញ និងតាមដានស្ថានភាពដឹកជញ្ជូន។</p>
+                            <p class="text-[10px] text-slate-500 mt-1 leading-relaxed">សូមវាយបញ្ចូលលេខទូរស័ព្ទរបស់បងខាងលើ ដើម្បីឆែកមើលការបញ្ជាទិញ និងតាមដានស្ថានភាពដឹកជញ្ជូន។</p>
                         </div>
                     </div>
                 `;
@@ -1497,13 +1499,13 @@
 
             myOrders.forEach(order => {
                 const orderCard = document.createElement('div');
-                orderCard.className = "bg-slate-900 rounded-2xl p-4 border border-slate-800/70 shadow-sm space-y-3";
+                orderCard.className = "bg-slate-900 rounded-2xl p-3.5 border border-slate-800/70 shadow-sm space-y-2.5";
                 
                 let itemsListHtml = '';
                 (order.items || []).forEach(it => {
                     const priceNumeric = getNumericPrice(it.price);
                     itemsListHtml += `
-                        <div class="flex justify-between text-xs text-slate-400 py-0.5">
+                        <div class="flex justify-between text-[11px] text-slate-400 py-0.5">
                             <span>${it.name} <span class="font-bold text-amber-400">x${it.quantity}</span></span>
                             <span class="font-semibold">${formatPrice(priceNumeric * it.quantity)}</span>
                         </div>
@@ -1516,22 +1518,22 @@
                 if (order.status === "ជោគជ័យ") statusColor = "text-emerald-400 bg-emerald-500/10 border-emerald-500/20";
 
                 orderCard.innerHTML = `
-                    <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+                    <div class="flex justify-between items-center border-b border-slate-800 pb-1.5">
                         <div>
-                            <span class="font-extrabold text-sm text-amber-400 block">${order.id}</span>
-                            <span class="text-[10px] text-slate-500 block">${order.date}</span>
+                            <span class="font-extrabold text-xs text-amber-400 block">${order.id}</span>
+                            <span class="text-[9px] text-slate-500 block">${order.date}</span>
                         </div>
-                        <span class="text-[10px] font-bold px-2.5 py-1 rounded-full uppercase border ${statusColor}">${order.status}</span>
+                        <span class="text-[9px] font-bold px-2 py-0.5 rounded-full uppercase border ${statusColor}">${order.status}</span>
                     </div>
-                    <div class="divide-y divide-slate-850 py-1">${itemsListHtml}</div>
-                    <div class="border-t border-slate-800 pt-2 flex justify-between items-center text-xs">
+                    <div class="divide-y divide-slate-850 py-0.5">${itemsListHtml}</div>
+                    <div class="border-t border-slate-800 pt-2 flex justify-between items-center text-[10px]">
                         <div>
-                            <span class="text-[10px] text-slate-500 block">ទូទាត់តាម៖ ${order.payment}</span>
-                            <span class="text-[10px] text-slate-400 block">អ្នកទទួល៖ ${order.name} (${order.phone})</span>
+                            <span class="text-[9px] text-slate-500 block">ទូទាត់តាម៖ ${order.payment}</span>
+                            <span class="text-[9px] text-slate-400 block">អ្នកទទួល៖ ${order.name} (${order.phone})</span>
                         </div>
                         <div class="text-right">
-                            <span class="text-[10px] text-slate-500 block">តម្លៃសរុប៖</span>
-                            <span class="text-sm font-extrabold text-amber-400">${formatPrice(order.total || 0)}</span>
+                            <span class="text-[9px] text-slate-500 block">តម្លៃសរុប៖</span>
+                            <span class="text-xs font-extrabold text-amber-400">${formatPrice(order.total || 0)}</span>
                         </div>
                     </div>
                 `;
@@ -1540,10 +1542,10 @@
 
             if (myOrders.length === 0) {
                 container.innerHTML = `
-                    <div class="bg-slate-900 rounded-3xl p-8 border border-slate-850 shadow-sm text-center">
-                        <i data-lucide="receipt" class="w-12 h-12 text-slate-700 mx-auto mb-3"></i>
-                        <h4 class="font-bold text-slate-300 text-sm mb-1">រកមិនឃើញប្រវត្តិកុម្មង់ឡើយ</h4>
-                        <p class="text-xs text-slate-500">មិនទាន់មានការបញ្ជាទិញដែលបានចុះឈ្មោះជាមួយលេខទូរស័ព្ទ <strong>${filterPhone}</strong> ឡើយ。</p>
+                    <div class="bg-slate-900 rounded-2xl p-6 border border-slate-850 shadow-sm text-center">
+                        <i data-lucide="receipt" class="w-10 h-10 text-slate-700 mx-auto mb-2"></i>
+                        <h4 class="font-bold text-slate-300 text-xs mb-0.5">រកមិនឃើញប្រវត្តិកុម្មង់ឡើយ</h4>
+                        <p class="text-[10px] text-slate-500">មិនទាន់មានការបញ្ជាទិញដែលបានចុះឈ្មោះជាមួយលេខទូរស័ព្ទ <strong>${filterPhone}</strong> ឡើយ。</p>
                     </div>
                 `;
             }
@@ -1597,14 +1599,14 @@
             const pageProducts = document.getElementById('admin-subpage-products');
 
             if (subTab === 'orders') {
-                btnOrders.className = "flex-1 pb-2.5 font-bold text-xs text-amber-500 border-b-2 border-amber-500 text-center";
-                btnProducts.className = "flex-1 pb-2.5 font-bold text-xs text-slate-400 text-center";
+                btnOrders.className = "flex-1 pb-2 font-bold text-xs text-amber-500 border-b-2 border-amber-500 text-center";
+                btnProducts.className = "flex-1 pb-2 font-bold text-xs text-slate-400 text-center";
                 pageOrders.classList.remove('hidden');
                 pageProducts.classList.add('hidden');
                 renderAdminOrdersList();
             } else {
-                btnOrders.className = "flex-1 pb-2.5 font-bold text-xs text-slate-400 text-center";
-                btnProducts.className = "flex-1 pb-2.5 font-bold text-xs text-amber-500 border-b-2 border-amber-500 text-center";
+                btnOrders.className = "flex-1 pb-2 font-bold text-xs text-slate-400 text-center";
+                btnProducts.className = "flex-1 pb-2 font-bold text-xs text-amber-500 border-b-2 border-amber-500 text-center";
                 pageOrders.classList.add('hidden');
                 pageProducts.classList.remove('hidden');
                 renderAdminProductsList();
@@ -1625,19 +1627,19 @@
 
             if (state.orders.length === 0) {
                 container.innerHTML = `
-                    <p class="text-xs text-slate-500 text-center py-8">មិនទាន់មានការបញ្ជាទិញថ្មីៗពីអតិថិជនឡើយ。</p>
+                    <p class="text-[11px] text-slate-500 text-center py-6">មិនទាន់មានការបញ្ជាទិញថ្មីៗពីអតិថិជនឡើយ。</p>
                 `;
                 return;
             }
 
             state.orders.forEach(order => {
                 const orderCard = document.createElement('div');
-                orderCard.className = "bg-slate-900 border border-slate-800 rounded-2xl p-4 space-y-3";
+                orderCard.className = "bg-slate-900 border border-slate-800 rounded-2xl p-3 space-y-2.5";
                 
                 let itemsListHtml = '';
                 (order.items || []).forEach(it => {
                     itemsListHtml += `
-                        <div class="flex justify-between text-xs text-slate-400 py-0.5">
+                        <div class="flex justify-between text-[11px] text-slate-400 py-0.5">
                             <span>• ${it.name} <span class="font-bold text-amber-400">x${it.quantity}</span></span>
                             <span>${formatPrice(getNumericPrice(it.price) * it.quantity)}</span>
                         </div>
@@ -1650,31 +1652,31 @@
                 if (order.status === 'ជោគជ័យ') selectColorClass = "bg-emerald-950/40 text-emerald-400 border-emerald-500/30";
 
                 orderCard.innerHTML = `
-                    <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+                    <div class="flex justify-between items-center border-b border-slate-800 pb-1.5">
                         <div>
-                            <span class="font-extrabold text-sm text-amber-400 block">${order.id}</span>
-                            <span class="text-[10px] text-slate-500 block">${order.date}</span>
+                            <span class="font-extrabold text-xs text-amber-400 block">${order.id}</span>
+                            <span class="text-[9px] text-slate-500 block">${order.date}</span>
                         </div>
                         <div class="flex items-center gap-1.5">
-                            <select onchange="window.updateOrderStatus('${order.id}', this.value)" class="${selectColorClass} border text-[10px] font-bold px-2.5 py-1.5 rounded-xl focus:outline-none transition-all duration-300">
+                            <select onchange="window.updateOrderStatus('${order.id}', this.value)" class="${selectColorClass} border text-[9px] font-bold px-2 py-1 rounded-lg focus:outline-none transition-all duration-300">
                                 <option value="កំពុងរៀបចំ" ${order.status === 'កំពុងរៀបចំ' ? 'selected' : ''}>កំពុងរៀបចំ</option>
                                 <option value="កំពុងពិនិត្យការបញ្ជាទិញ" ${order.status === 'កំពុងពិនិត្យការបញ្ជាទិញ' ? 'selected' : ''}>កំពុងពិនិត្យ</option>
                                 <option value="កំពុងដឹកជញ្ជូន" ${order.status === 'កំពុងដឹកជញ្ជូន' ? 'selected' : ''}>កំពុងដឹក</option>
                                 <option value="ជោគជ័យ" ${order.status === 'ជោគជ័យ' ? 'selected' : ''}>ជោគជ័យ</option>
                             </select>
                             
-                            <button onclick="window.deleteOrder('${order.id}')" class="p-2 bg-red-500/10 hover:bg-red-500/20 text-red-400 rounded-xl border border-red-500/20 active:scale-95 transition-all">
-                                <i data-lucide="trash-2" class="w-4 h-4"></i>
+                            <button onclick="window.deleteOrder('${order.id}')" class="p-1.5 bg-red-500/10 hover:bg-red-500/20 text-red-400 rounded-lg border border-red-500/20 active:scale-95 transition-all">
+                                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
                             </button>
                         </div>
                     </div>
-                    <div class="py-1">${itemsListHtml}</div>
-                    <div class="border-t border-slate-800 pt-2 text-xs text-slate-400 space-y-1">
+                    <div class="py-0.5">${itemsListHtml}</div>
+                    <div class="border-t border-slate-800 pt-1.5 text-[10px] text-slate-400 space-y-0.5">
                         <p><span class="font-bold text-slate-300">អតិថិជន៖</span> ${order.name} (${order.phone})</p>
                         <p><span class="font-bold text-slate-300">អាសយដ្ឋាន៖</span> ${order.address}</p>
                         <div class="flex justify-between items-center pt-1">
-                            <span class="text-[10px] bg-slate-950 px-2 py-1 rounded text-slate-400 border border-slate-800/60">${order.payment}</span>
-                            <span class="font-extrabold text-amber-400 text-sm">សរុប៖ ${formatPrice(order.total || 0)}</span>
+                            <span class="text-[8px] bg-slate-950 px-1.5 py-0.5 rounded text-slate-400 border border-slate-800/60">${order.payment}</span>
+                            <span class="font-extrabold text-amber-400 text-xs">សរុប៖ ${formatPrice(order.total || 0)}</span>
                         </div>
                     </div>
                 `;
@@ -1720,38 +1722,38 @@
                     const displayPrice = isNoPrice ? "ទាក់ទង" : formatPrice(v.price);
 
                     variantsSummaryHtml += `
-                        <span class="bg-slate-950 px-2 py-0.5 rounded text-[10px] font-bold border ${isVarOut ? 'border-red-500/25 text-red-400' : isNoPrice ? 'border-amber-500/25 text-amber-400' : 'border-slate-800/50 text-slate-300'}">
+                        <span class="bg-slate-950 px-1.5 py-0.5 rounded text-[8px] font-bold border ${isVarOut ? 'border-red-500/25 text-red-400' : isNoPrice ? 'border-amber-500/25 text-amber-400' : 'border-slate-800/50 text-slate-300'}">
                             ${v.size}: ${displayPrice} ${isVarOut ? '(អស់)' : ''}
                         </span> 
                     `;
                 });
 
                 const row = document.createElement('div');
-                row.className = "bg-slate-900 p-3 rounded-2xl border border-slate-800 flex items-center justify-between gap-3";
+                row.className = "bg-slate-900 p-2.5 rounded-xl border border-slate-800 flex items-center justify-between gap-2.5";
                 row.innerHTML = `
-                    <div class="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center shrink-0 border-2 border-slate-300 p-1 overflow-hidden">
+                    <div class="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center shrink-0 border border-slate-300 p-1 overflow-hidden">
                         ${getProductImageHtml(prod, "w-full h-full object-contain")}
                     </div>
-                    <div class="flex-1 space-y-1">
-                        <div class="flex items-center gap-1.5">
-                            <h4 class="text-xs font-bold text-slate-100 line-clamp-1">${prod.name}</h4>
-                            <span class="text-[8px] bg-slate-950 text-amber-500 px-1.5 py-0.5 rounded font-black border border-slate-800">${prod.categoryFilter || 'No Filter'}</span>
-                            ${prod.pdf ? '<span class="text-[8px] bg-red-600 text-white px-1.5 py-0.5 rounded font-black">PDF</span>' : ''}
+                    <div class="flex-1 space-y-0.5">
+                        <div class="flex items-center gap-1">
+                            <h4 class="text-[11px] font-bold text-slate-100 line-clamp-1">${prod.name}</h4>
+                            <span class="text-[7px] bg-slate-950 text-amber-500 px-1 py-0.5 rounded font-black border border-slate-800">${prod.categoryFilter || 'No Filter'}</span>
+                            ${prod.pdf ? '<span class="text-[7px] bg-red-600 text-white px-1 py-0.5 rounded font-black">PDF</span>' : ''}
                         </div>
                         <div class="flex flex-wrap gap-1">${variantsSummaryHtml}</div>
                     </div>
-                    <div class="flex items-center gap-1.5 shrink-0">
-                        <button onclick="window.moveProduct(${index}, 'up')" class="p-2 bg-slate-800 hover:bg-slate-750 text-slate-300 rounded-xl border border-slate-750 active:scale-95 transition-all ${index === 0 ? 'opacity-30 cursor-not-allowed' : ''}" ${index === 0 ? 'disabled' : ''}>
-                            <i data-lucide="arrow-up" class="w-3.5 h-3.5"></i>
+                    <div class="flex items-center gap-1 shrink-0">
+                        <button onclick="window.moveProduct(${index}, 'up')" class="p-1.5 bg-slate-800 hover:bg-slate-750 text-slate-300 rounded-lg border border-slate-750 active:scale-95 transition-all ${index === 0 ? 'opacity-30 cursor-not-allowed' : ''}" ${index === 0 ? 'disabled' : ''}>
+                            <i data-lucide="arrow-up" class="w-3 h-3"></i>
                         </button>
-                        <button onclick="window.moveProduct(${index}, 'down')" class="p-2 bg-slate-800 hover:bg-slate-750 text-slate-300 rounded-xl border border-slate-750 active:scale-95 transition-all ${index === state.cachedProducts.length - 1 ? 'opacity-30 cursor-not-allowed' : ''}" ${index === state.cachedProducts.length - 1 ? 'disabled' : ''}>
-                            <i data-lucide="arrow-down" class="w-3.5 h-3.5"></i>
+                        <button onclick="window.moveProduct(${index}, 'down')" class="p-1.5 bg-slate-800 hover:bg-slate-750 text-slate-300 rounded-lg border border-slate-750 active:scale-95 transition-all ${index === state.cachedProducts.length - 1 ? 'opacity-30 cursor-not-allowed' : ''}" ${index === state.cachedProducts.length - 1 ? 'disabled' : ''}>
+                            <i data-lucide="arrow-down" class="w-3 h-3"></i>
                         </button>
-                        <button onclick="window.openProductFormModal('${prod.id}')" class="p-2 bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 rounded-xl border border-amber-500/20">
-                            <i data-lucide="edit" class="w-3.5 h-3.5"></i>
+                        <button onclick="window.openProductFormModal('${prod.id}')" class="p-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 rounded-lg border border-amber-500/20">
+                            <i data-lucide="edit" class="w-3 h-3"></i>
                         </button>
-                        <button onclick="window.deleteProduct('${prod.id}')" class="p-2 bg-red-500/10 hover:bg-red-500/20 text-red-400 rounded-xl border border-red-500/20">
-                            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                        <button onclick="window.deleteProduct('${prod.id}')" class="p-1.5 bg-red-500/10 hover:bg-red-500/20 text-red-400 rounded-lg border border-red-500/20">
+                            <i data-lucide="trash-2" class="w-3 h-3"></i>
                         </button>
                     </div>
                 `;
@@ -1781,22 +1783,22 @@
             const container = document.getElementById('form-variants-container');
             if (!container) return;
             const row = document.createElement('div');
-            row.className = "variant-row flex gap-2 items-center bg-slate-950 p-2 rounded-xl border border-slate-850";
+            row.className = "variant-row flex gap-1.5 items-center bg-slate-950 p-1.5 rounded-xl border border-slate-850";
             row.innerHTML = `
                 <div class="flex-1">
-                    <input type="text" placeholder="ទំហំ (ឧ. 4L)" value="${size}" class="variant-size w-full bg-slate-900 text-slate-100 px-3 py-2.5 rounded-lg border border-slate-800 focus:outline-none focus:border-amber-500 text-[11px] font-semibold">
+                    <input type="text" placeholder="ទំហំ (ឧ. 4L)" value="${size}" class="variant-size w-full bg-slate-900 text-slate-100 px-2 py-1.5 rounded-lg border border-slate-800 focus:outline-none focus:border-amber-500 text-[10px] font-semibold">
                 </div>
                 <div class="flex-1">
-                    <input type="text" placeholder="តម្លៃ (ឧ. 40)" value="${price}" class="variant-price w-full bg-slate-900 text-slate-100 px-3 py-2.5 rounded-lg border border-slate-800 focus:outline-none focus:border-amber-500 text-[11px] font-semibold">
+                    <input type="text" placeholder="តម្លៃ (ឧ. 40)" value="${price}" class="variant-price w-full bg-slate-900 text-slate-100 px-2 py-1.5 rounded-lg border border-slate-800 focus:outline-none focus:border-amber-500 text-[10px] font-semibold">
                 </div>
-                <div class="w-24 shrink-0">
-                    <select class="variant-stock w-full bg-slate-900 text-slate-100 px-2 py-2.5 rounded-lg border border-slate-800 focus:outline-none focus:border-amber-500 text-[10px] font-bold">
+                <div class="w-20 shrink-0">
+                    <select class="variant-stock w-full bg-slate-900 text-slate-100 px-1.5 py-1.5 rounded-lg border border-slate-800 focus:outline-none focus:border-amber-500 text-[9px] font-bold">
                         <option value="in_stock" ${stock === 'in_stock' ? 'selected' : ''}>មានស្តុក</option>
                         <option value="out_of_stock" ${stock === 'out_of_stock' ? 'selected' : ''}>អស់ស្តុក</option>
                     </select>
                 </div>
-                <button type="button" onclick="this.parentElement.remove()" class="p-2.5 bg-red-500/10 hover:bg-red-500/20 text-red-400 rounded-lg border border-red-500/20 active:scale-95 transition-all shrink-0">
-                    <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                <button type="button" onclick="this.parentElement.remove()" class="p-1.5 bg-red-500/10 hover:bg-red-500/20 text-red-400 rounded-lg border border-red-500/20 active:scale-95 transition-all shrink-0">
+                    <i data-lucide="trash-2" class="w-3 h-3"></i>
                 </button>
             `;
             container.appendChild(row);
@@ -1856,7 +1858,7 @@
             variantsContainer.innerHTML = '';
 
             if (productId) {
-                title.innerHTML = `<i data-lucide="edit-3" class="text-amber-500"></i> កែសម្រួលព័ត៌មានប្រេងម៉ាស៊ីន`;
+                title.innerHTML = `<i data-lucide="edit-3" class="text-amber-500 w-4 h-4"></i> កែសម្រួលព័ត៌មានប្រេងម៉ាស៊ីន`;
                 const product = state.cachedProducts.find(p => p.id === productId);
                 if (product) {
                     document.getElementById('form-product-id').value = product.id;
@@ -1873,7 +1875,7 @@
                     });
                 }
             } else {
-                title.innerHTML = `<i data-lucide="plus-circle" class="text-amber-500"></i> បន្ថែមផលិតផលថ្មី`;
+                title.innerHTML = `<i data-lucide="plus-circle" class="text-amber-500 w-4 h-4"></i> បន្ថែមផលិតផលថ្មី`;
                 addVariantRow("5L", "", "in_stock");
             }
 
@@ -1982,6 +1984,7 @@
             lucide.createIcons();
         }
 
+        // មុខងារបិទផ្ទាំងលុប
         function closeConfirmModal(confirm) {
             const modal = document.getElementById('confirm-modal');
             const content = document.getElementById('confirm-modal-content');
@@ -2025,9 +2028,9 @@
                 const navBtn = document.getElementById(`nav-${t}`);
                 if (navBtn) {
                     if (t === tabId) {
-                        navBtn.className = "flex flex-col items-center gap-1 py-1 px-3 text-amber-500 font-bold scale-105 transition-all duration-200";
+                        navBtn.className = "flex flex-col items-center gap-0.5 py-0.5 px-3 text-amber-500 font-bold scale-105 transition-all duration-200";
                     } else {
-                        navBtn.className = "flex flex-col items-center gap-1 py-1 px-3 text-slate-400 transition-all duration-200";
+                        navBtn.className = "flex flex-col items-center gap-0.5 py-0.5 px-3 text-slate-400 transition-all duration-200";
                     }
                 }
             });
@@ -2059,12 +2062,12 @@
             const icon = document.getElementById('fav-filter-icon');
 
             if (showFavsOnly) {
-                btn.className = "p-2 rounded-xl bg-rose-600 hover:bg-rose-700 active:scale-95 transition-all relative text-white";
-                icon.className = "w-5 h-5 text-white";
+                btn.className = "p-1.5 rounded-lg bg-rose-600 hover:bg-rose-700 active:scale-95 transition-all relative text-white";
+                icon.className = "w-4 h-4 text-white";
                 window.showToast("បង្ហាញតែផលិតផលដែលពេញចិត្ត");
             } else {
-                btn.className = "p-2 rounded-xl bg-slate-800 hover:bg-slate-750 active:scale-95 transition-all relative";
-                icon.className = "w-5 h-5 text-slate-400";
+                btn.className = "p-1.5 rounded-lg bg-slate-800 hover:bg-slate-750 active:scale-95 transition-all relative";
+                icon.className = "w-4 h-4 text-slate-400";
                 window.showToast("បង្ហាញផលិតផលទាំងអស់ឡើងវិញ");
             }
             renderProducts();
