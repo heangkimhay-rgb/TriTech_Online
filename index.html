@@ -23,10 +23,9 @@
     <!-- Google Fonts for Khmer -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght=300;400;500;600;700&display=swap" rel="stylesheet">
     
     <script>
-        window.pressTimer = null;
         window.toastTimer = null;
 
         // អនុគមន៍បង្ហាញសារជូនដំណឹងរហ័ស (Toast Alert)
@@ -44,24 +43,6 @@
                 toast.classList.remove('scale-100');
                 toast.classList.add('scale-0', 'pointer-events-none');
             }, 3000);
-        };
-
-        window.triggerAdmin = function() {
-            if (typeof window.navigateTo === 'function') {
-                window.navigateTo('admin');
-                window.showToast("🔓 ស្វាគមន៍មកកាន់របារគ្រប់គ្រងសម្ងាត់!");
-            }
-        };
-        window.startPress = function() {
-            window.pressTimer = window.setTimeout(function() {
-                window.triggerAdmin();
-            }, 1500);
-        };
-        window.cancelPress = function() {
-            if (window.pressTimer) {
-                window.clearTimeout(window.pressTimer);
-                window.pressTimer = null;
-            }
         };
     </script>
     
@@ -91,7 +72,8 @@
             </div>
             <div>
                 <h1 class="text-sm font-bold leading-none text-amber-400">TRITECH CAMBODIA</h1>
-                <span onmousedown="window.startPress()" onmouseup="window.cancelPress()" onmouseleave="window.cancelPress()" ontouchstart="window.startPress()" ontouchend="window.cancelPress()" class="text-[9px] text-slate-400 select-none active:opacity-80 transition-opacity cursor-pointer">Australian Premium Lubricants 🇦🇺</span>
+                <!-- Hold Trigger ត្រូវបានកំណត់នៅលើអក្សរនេះ -->
+                <span id="secret-admin-trigger" class="text-[9px] text-slate-400 select-none cursor-pointer hover:text-amber-400 transition-colors duration-200">Australian Premium Lubricants 🇦🇺</span>
             </div>
         </div>
         <div class="flex items-center gap-2">
@@ -122,7 +104,7 @@
                 <h2 class="text-base font-extrabold mt-2.5 mb-0.5 text-slate-950">ប្រេងម៉ាស៊ីនលំដាប់ពិភពលោក! 🏎️</h2>
                 <p class="text-[11px] text-slate-950 mb-2.5 font-medium opacity-90">បច្ចេកវិទ្យាការពារម៉ាស៊ីន TriTech កាត់បន្ថយការកកិត និងសឹករីករិលបានខ្ពស់បំផុត។</p>
                 
-                <!-- ប៊ូតុងលេខទូរស័ព្ទខាងឆ្វេង និង Telegram ខាងស្តាំ (រៀបចំជាប្រភេទ Compact ស្អាត) -->
+                <!-- ប៊ូតុងលេខទូរស័ព្ទខាងឆ្វេង និង Telegram ខាងស្តាំ -->
                 <div class="grid grid-cols-2 gap-2 relative z-10">
                     <a id="shop-phone-banner" href="tel:012345678" class="bg-slate-950 hover:bg-slate-900 text-white text-[11px] font-bold py-2.5 px-3 rounded-xl flex items-center justify-center gap-1.5 transition-all active:scale-95 shadow border border-slate-800">
                         <i data-lucide="phone-call" class="w-3.5 h-3.5 text-amber-400"></i>
@@ -135,7 +117,7 @@
                 </div>
             </div>
 
-            <!-- ផ្នែកចម្រោះប្រភេទផលិតផល (ប្រអប់ចម្រោះកណ្តាលបន្លាយវែងសមរម្យល្មមស្អាត) -->
+            <!-- ផ្នែកចម្រោះប្រភេទផលិតផល -->
             <div class="flex justify-center items-center w-full my-2 px-1">
                 <div class="relative w-full max-w-[280px]">
                     <select id="category-filter-dropdown" onchange="window.onCategoryDropdownChange(this.value)" class="w-full bg-slate-900 text-slate-200 text-[11px] font-extrabold pl-3 pr-8 py-2 rounded-xl border border-slate-800 focus:outline-none focus:border-amber-500 appearance-none cursor-pointer text-center shadow-md">
@@ -228,12 +210,12 @@
                     <i data-lucide="lock" class="w-6 h-6"></i>
                 </div>
                 <div>
-                    <h4 class="font-bold text-xs text-slate-200">សុវត្ថិភាពអ្នកគ្រប់គ្រង</h4>
-                    <p class="text-[10px] text-slate-400 mt-0.5">សូមបញ្ចូលលេខកូដសម្ងាត់អ្នកគ្រប់គ្រងដើម្បីបន្ត</p>
+                    <h4 class="font-bold text-xs text-slate-200">សុវត្ថិភាពចូលប្រព័ន្ធ</h4>
+                    <p class="text-[10px] text-slate-400 mt-0.5">សូមបញ្ចូលលេខកូដសម្ងាត់អ្នកគ្រប់គ្រង ឬបុគ្គលិកដឹកជញ្ជូនដើម្បីបន្ត</p>
                 </div>
                 <div class="max-w-xs mx-auto space-y-2">
                     <input type="password" id="admin-pin-input" placeholder="••••" class="w-full text-center tracking-widest bg-slate-950 border border-slate-800 px-3 py-2 rounded-xl text-base font-bold focus:outline-none focus:border-amber-500 text-amber-400">
-                    <button onclick="window.checkAdminPin()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-[11px] py-2.5 rounded-xl shadowactive:scale-95 transition-all">
+                    <button onclick="window.checkAdminPin()" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-[11px] py-2.5 rounded-xl shadow active:scale-95 transition-all">
                         ផ្ទៀងផ្ទាត់លេខកូដ
                     </button>
                     <!-- ប៊ូតុងត្រឡប់ក្រោយ -->
@@ -245,19 +227,27 @@
 
             <!-- ផ្ទាំងបញ្ជាអ្នកគ្រប់គ្រងពិតប្រាកដ (Admin Dashboard) -->
             <div id="admin-dashboard" class="hidden space-y-3.5">
-                <!-- ម៉ឺនុយរងសម្រាប់ Admin -->
-                <div class="flex border-b border-slate-800">
-                    <button onclick="window.switchAdminTab('orders')" id="admin-tab-orders" class="flex-1 pb-2 font-bold text-xs text-amber-500 border-b-2 border-amber-500 text-center">
+                <!-- ម៉ឺនុយរងសម្រាប់ Admin & Staff (៣ Tab ស្អាត) -->
+                <div class="flex border-b border-slate-800 mb-3" id="admin-tabs-bar">
+                    <button id="admin-tab-orders" class="flex-1 pb-2 font-bold text-xs text-center">
                         ការបញ្ជាទិញថ្មីៗ
                     </button>
-                    <button onclick="window.switchAdminTab('products')" id="admin-tab-products" class="flex-1 pb-2 font-bold text-xs text-slate-400 text-center">
+                    <button id="admin-tab-delivery" class="flex-1 pb-2 font-bold text-xs text-center">
+                        ដឹកជញ្ជូន
+                    </button>
+                    <button id="admin-tab-products" class="flex-1 pb-2 font-bold text-xs text-center">
                         គ្រប់គ្រងទំនិញ
                     </button>
                 </div>
 
-                <!-- ផ្នែកការបញ្ជាទិញរបស់អតិថិជន -->
+                <!-- ផ្នែកការបញ្ជាទិញរបស់អតិថិជន (New Orders) -->
                 <div id="admin-subpage-orders" class="space-y-2.5">
                     <!-- ទាញចេញពី Local Orders -->
+                </div>
+
+                <!-- ផ្នែកដឹកជញ្ជូនសកម្ម (Delivery - មិនបង្ហាញ 'ជោគជ័យ' ឡើយ) -->
+                <div id="admin-subpage-delivery" class="hidden space-y-2.5">
+                    <!-- ទាញចេញពី Local Orders មិនរាប់ ជោគជ័យ -->
                 </div>
 
                 <!-- ផ្នែកគ្រប់គ្រងផលិតផល -->
@@ -309,6 +299,28 @@
                         </div>
                     </div>
 
+                    <!-- ផ្ទាំងសុវត្ថិភាពកំណត់លេខសម្ងាត់ថ្មី (Password Management) -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3.5 space-y-2.5 shadow-inner">
+                        <h4 class="text-[11px] font-bold text-slate-200 flex items-center gap-1.5">
+                            <i data-lucide="key-round" class="text-amber-500 w-3.5 h-3.5"></i> កំណត់លេខសម្ងាត់សុវត្ថិភាពប្រព័ន្ធ (Passwords)
+                        </h4>
+                        <div class="space-y-2">
+                            <div class="grid grid-cols-2 gap-2">
+                                <div>
+                                    <label class="text-[9px] font-bold text-slate-400 block mb-0.5">លេខសម្ងាត់ Admin *</label>
+                                    <input type="password" id="admin-password-setting-input" placeholder="1234" class="w-full bg-slate-950 text-slate-100 px-3 py-2 rounded-lg border border-slate-800 focus:outline-none focus:border-amber-500 text-[11px] font-semibold text-center">
+                                </div>
+                                <div>
+                                    <label class="text-[9px] font-bold text-slate-400 block mb-0.5">លេខសម្ងាត់ Staff/Delivery *</label>
+                                    <input type="password" id="staff-password-setting-input" placeholder="5678" class="w-full bg-slate-950 text-slate-100 px-3 py-2 rounded-lg border border-slate-800 focus:outline-none focus:border-amber-500 text-[11px] font-semibold text-center">
+                                </div>
+                            </div>
+                            <button onclick="window.saveSystemPasswords()" class="w-full bg-amber-500 hover:bg-amber-600 active:scale-95 text-slate-950 font-extrabold text-[11px] py-2 rounded-xl transition-all flex items-center justify-center gap-1.5 shadow">
+                                <i data-lucide="shield-check" class="w-3.5 h-3.5"></i> រក្សាទុកលេខសម្ងាត់ថ្មី
+                            </button>
+                        </div>
+                    </div>
+
                     <div class="flex justify-between items-center pt-2">
                         <span class="text-xs text-slate-400">បញ្ជីផលិតផលទាំងអស់</span>
                         <button onclick="window.openProductFormModal()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold text-[10px] px-3 py-1.5 rounded-lg flex items-center gap-1 shadow">
@@ -351,7 +363,7 @@
                     <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">ប្រភេទផលិតផល * (ឈ្មោះពេញសម្រាប់បង្ហាញ)</label>
                     <input type="text" id="form-product-category" placeholder="ឧទាហរណ៍៖ Fully Synthetic (សំយោគពេញលេញ)" list="categories-autocomplete-list" class="w-full bg-slate-950 text-slate-100 px-3.5 py-2.5 rounded-xl border border-slate-800 focus:outline-none focus:border-amber-500 font-semibold text-[11px]">
                     <datalist id="categories-autocomplete-list">
-                        <!-- Dynamic list from existing products -->
+                        <!-- dynamic list -->
                     </datalist>
                 </div>
 
@@ -360,14 +372,14 @@
                     <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">Category Filter * (ឈ្មោះខ្លីសម្រាប់ចម្រោះខាងក្រៅ)</label>
                     <input type="text" id="form-product-category-filter" placeholder="ឧទាហរណ៍៖ Fully Synthetic" list="category-filters-autocomplete-list" class="w-full bg-slate-950 text-slate-100 px-3.5 py-2.5 rounded-xl border border-slate-800 focus:outline-none focus:border-amber-500 font-semibold text-[11px]">
                     <datalist id="category-filters-autocomplete-list">
-                        <!-- Dynamic list from existing products -->
+                        <!-- dynamic list -->
                     </datalist>
                 </div>
                 
                 <div class="space-y-1">
                     <label class="text-[9px] font-bold text-slate-400 uppercase block">ជម្រើសទំហំ, តម្លៃ និង ស្តុក ($ ឬ អក្សរ) *</label>
                     <div id="form-variants-container" class="space-y-1.5">
-                        <!-- Dynamic variants with independent stock by JS -->
+                        <!-- dynamic variants rendering -->
                     </div>
                     <button type="button" onclick="window.addVariantRow()" class="mt-1 text-[9px] text-amber-400 hover:text-amber-300 font-bold flex items-center gap-1 active:scale-95 transition-all">
                         <i data-lucide="plus-circle" class="w-3.5 h-3.5"></i> បន្ថែមជម្រើសទំហំ/តម្លៃថ្មី
@@ -398,24 +410,22 @@
         </div>
     </div>
 
-    <!-- ================= ផ្ទាំង MODAL ព័ត៌មានលម្អិតផលិតផល (ដោះស្រាយបញ្ហាគាំងកប់ និងបង្រួម Compact) ================= -->
+    <!-- ================= ផ្ទាំង MODAL ព័ត៌មានលម្អិតផលិតផល ================= -->
     <div id="product-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-end justify-center hidden opacity-0 transition-opacity duration-300">
-        <!-- បន្ថែម max-h-[92vh] និង overflow-y-auto no-scrollbar លើ Content Wrapper ដើម្បីកុំឱ្យលេចចេញហួសអេក្រង់ -->
         <div id="product-modal-content" class="bg-slate-900 border-t border-slate-800 w-full max-w-md rounded-t-3xl p-5 space-y-3 shadow-2xl transform translate-y-full transition-transform duration-300 max-h-[92vh] overflow-y-auto no-scrollbar relative">
-            <!-- Scroll Line / ទាញចុះក្រោមក៏បាន -->
+            <!-- Scroll Line -->
             <div class="w-10 h-1 bg-slate-700 rounded-full mx-auto cursor-pointer mb-1" onclick="window.closeProductModal()"></div>
             
             <div class="flex justify-between items-start">
                 <div id="modal-product-badge" class="bg-amber-500/25 text-amber-400 text-[9px] font-bold px-2 py-0.5 rounded-full uppercase border border-amber-500/20"></div>
-                <!-- ប៊ូតុង X សម្រាប់បិទគឺស្ថិតនៅក្នុងទីតាំងច្បាស់លាស់ជានិច្ច មិនកប់ទៅលើឡើយ -->
                 <button onclick="window.closeProductModal()" class="p-1 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-400">
                     <i data-lucide="x" class="w-4.5 h-4.5"></i>
                 </button>
             </div>
 
-            <!-- រូបភាពផលិតផលក្នុង Modal (បង្រួមកម្ពស់ពី h-48 មក h-40 ដើម្បីឱ្យកន្ត្រាក់ខ្លីស្អាត) -->
+            <!-- រូបភាពផលិតផលក្នុង Modal -->
             <div class="w-full h-40 bg-slate-100 rounded-xl flex items-center justify-center p-3 border border-slate-300 shadow-inner relative" id="modal-product-img-container">
-                <!-- Rendering dynamic imagery -->
+                <!-- dynamic image -->
             </div>
 
             <div class="space-y-0.5">
@@ -430,19 +440,18 @@
             <div class="space-y-1">
                 <span class="text-[9px] font-bold text-slate-400 uppercase">ជ្រើសរើសទំហំដបប្រេងម៉ាស៊ីន *</span>
                 <div id="modal-variants-selector" class="flex flex-wrap gap-1.5">
-                    <!-- Dynamic Selector Pills -->
+                    <!-- dynamic size selection -->
                 </div>
             </div>
 
-            <!-- បង្រួមប្រអប់ពិពណ៌នាបន្តិច -->
+            <!-- ប្រអប់ពិពណ៌នា -->
             <div class="space-y-0.5 max-h-20 overflow-y-auto no-scrollbar">
                 <span class="text-[9px] font-bold text-slate-400 uppercase">លក្ខណៈបច្គេកទេស & ការពិពណ៌នា</span>
                 <p id="modal-product-desc" class="text-[11px] text-slate-300 leading-relaxed whitespace-pre-line"></p>
             </div>
 
-            <!-- កន្លែងជ្រើសរើសចំនួន និងប៊ូតុងបន្ថែម (ប្រភេទ Compact ស្អាត) -->
+            <!-- កន្លែងជ្រើសរើសចំនួន និងប៊ូតុងបន្ថែម -->
             <div class="flex flex-col gap-1.5 pt-1">
-                
                 <!-- ប៊ូតុងបើក PDF ព័ត៌មានបច្ចេកទេស -->
                 <a id="modal-pdf-btn" href="#" target="_blank" class="w-full bg-slate-950 hover:bg-slate-900 text-amber-400 border border-amber-500/25 font-bold text-[10px] rounded-xl py-2.5 shadow flex justify-center items-center gap-1.5 active:scale-95 transition-all hidden">
                     <i data-lucide="file-text" class="w-3.5 h-3.5 text-amber-500"></i>
@@ -480,7 +489,7 @@
                 </button>
             </div>
 
-            <!-- ទម្រង់បំពេញព័ត៌មាន (Compact) -->
+            <!-- ទម្រង់បំពេញព័ត៌មាន -->
             <div class="space-y-2.5 text-[11px]">
                 <div>
                     <label class="text-[9px] font-bold text-slate-400 uppercase block mb-0.5">ឈ្មោះអ្នកទទួល *</label>
@@ -522,7 +531,7 @@
         </div>
     </div>
 
-    <!-- ផ្ទាំងបញ្ជាក់ការលុបផលិតផល ឬ ការបញ្ជាទិញ -->
+    <!-- ផ្ទាំងបញ្ជាក់ការលុប -->
     <div id="confirm-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
         <div id="confirm-modal-content" class="bg-slate-900 border border-slate-800 w-72 rounded-2xl p-5 space-y-3.5 shadow-2xl text-center transform scale-95 transition-all duration-300">
             <div class="p-2.5 bg-red-500/10 rounded-xl w-max mx-auto text-red-500 border border-red-500/20">
@@ -530,7 +539,7 @@
             </div>
             <div>
                 <h4 id="confirm-modal-title" class="font-bold text-xs text-slate-200">បញ្ជាក់ការលុប</h4>
-                <p id="confirm-modal-desc" class="text-[11px] text-slate-400 mt-1.5 leading-relaxed">តើបងពិតជាចង់លុបផលិតផលនេះចេញមែនទេ?</p>
+                <p id="confirm-modal-desc" class="text-[11px] text-slate-400 mt-1.5 leading-relaxed">តើបងពិតជាចង់លុបវាចេញមែនទេ?</p>
             </div>
             <div class="flex gap-2 pt-1">
                 <button onclick="window.closeConfirmModal(false)" class="flex-1 py-2.5 bg-slate-800 hover:bg-slate-750 text-slate-300 text-[11px] font-bold rounded-xl active:scale-95 transition-all">
@@ -564,6 +573,10 @@
             <i data-lucide="receipt" class="w-4.5 h-4.5"></i>
             <span class="text-[9px]">ប្រវត្តិទិញ</span>
         </button>
+        <button onclick="window.navigateTo('admin')" id="nav-admin" class="flex flex-col items-center gap-0.5 py-0.5 px-3 text-slate-400 transition-all duration-200">
+            <i data-lucide="settings" class="w-4.5 h-4.5"></i>
+            <span class="text-[9px]">គ្រប់គ្រង</span>
+        </button>
     </nav>
 
     <!-- ================= JAVASCRIPT LOCAL DB LOGIC ================= -->
@@ -576,10 +589,11 @@
         let modalQuantity = 1;
         let checkoutPaymentMethod = 'cod';
         let adminAuthenticated = false;
-        let currentAdminTab = 'orders';
+        let userRole = null; // 'admin' or 'staff'
+        let currentAdminTab = 'orders'; // 'orders', 'delivery', 'products'
         let deleteTargetId = null;
         let deleteType = 'product'; // 'product' or 'order'
-        let selectedCategory = 'all'; // ប្រភេទផលិតផលសម្រាប់ចម្រោះ
+        let selectedCategory = 'all';
 
         let state = {
             cart: [],
@@ -589,12 +603,14 @@
             shopPhone: "012 345 678",
             telegramToken: "8500019843:AAGiaayCZgfdmW21ewMbTB9xGru7LCdoOk0",
             telegramChatId: "5543262304",
-            telegramUsername: "im_hieng"
+            telegramUsername: "im_hieng",
+            adminPin: "1234", // លេខកូដ Admin លំនាំដើម
+            staffPin: "5678"  // លេខកូដ Staff លំនាំដើម
         };
 
         const LOCAL_STORAGE_KEY = 'tritech_lubricants_local_v2026';
 
-        // --- Initial Products Array (ជាមួយនឹងតំណភ្ជាប់ PDF របស់បង អុឹម ហៀង ផ្ទាល់ត្រង់ផលិតផលទី ៣) ---
+        // --- Initial Products Array ---
         const INITIAL_PRODUCTS = [
             {
                 id: "1",
@@ -743,7 +759,6 @@
             }
         }
 
-        // ផ្ទុកទិន្នន័យពី Local Storage
         function loadFromLocalStorage() {
             try {
                 const data = localStorage.getItem(LOCAL_STORAGE_KEY);
@@ -755,17 +770,13 @@
                     
                     if (!state.cachedProducts || state.cachedProducts.length === 0) {
                         state.cachedProducts = JSON.parse(JSON.stringify(INITIAL_PRODUCTS));
-                    } else {
-                        // ជួយសរសេរបន្ថែម PDF ទៅក្នុង Cache
-                        const prod10w40 = state.cachedProducts.find(p => p.id === "3");
-                        if (prod10w40 && (!prod10w40.pdf || prod10w40.pdf === "")) {
-                            prod10w40.pdf = "https://drive.google.com/file/d/1mP5uLpALTMHMU-Nvrhp7yfZCk0qGrz8d/preview";
-                        }
                     }
                     if (!state.shopPhone) state.shopPhone = "012 345 678";
                     if (!state.telegramToken) state.telegramToken = "8500019843:AAGiaayCZgfdmW21ewMbTB9xGru7LCdoOk0";
                     if (!state.telegramChatId) state.telegramChatId = "5543262304";
                     if (!state.telegramUsername) state.telegramUsername = "im_hieng";
+                    if (!state.adminPin) state.adminPin = "1234";
+                    if (!state.staffPin) state.staffPin = "5678";
                 } else {
                     state = {
                         cart: [],
@@ -775,7 +786,9 @@
                         shopPhone: "012 345 678",
                         telegramToken: "8500019843:AAGiaayCZgfdmW21ewMbTB9xGru7LCdoOk0",
                         telegramChatId: "5543262304",
-                        telegramUsername: "im_hieng"
+                        telegramUsername: "im_hieng",
+                        adminPin: "1234",
+                        staffPin: "5678"
                     };
                     saveToLocalStorage();
                 }
@@ -854,6 +867,23 @@
         }
         window.saveTelegramSettings = saveTelegramSettings;
 
+        // --- អនុគមន៍រក្សាទុកលេខសម្ងាត់ប្រព័ន្ធថ្មី ---
+        function saveSystemPasswords() {
+            const adminPinVal = document.getElementById('admin-password-setting-input').value.trim();
+            const staffPinVal = document.getElementById('staff-password-setting-input').value.trim();
+
+            if (!adminPinVal || !staffPinVal) {
+                window.showToast("⚠️ សូមបំពេញលេខសម្ងាត់ទាំងពីរឱ្យបានគ្រប់គ្រាន់!");
+                return;
+            }
+
+            state.adminPin = adminPinVal;
+            state.staffPin = staffPinVal;
+            saveToLocalStorage();
+            window.showToast("✅ បានរក្សាទុកលេខសម្ងាត់ប្រព័ន្ធថ្មីដោយជោគជ័យ!");
+        }
+        window.saveSystemPasswords = saveSystemPasswords;
+
         async function testTelegramConnection() {
             const token = document.getElementById('admin-telegram-token-input').value.trim();
             const chatId = document.getElementById('admin-telegram-chatid-input').value.trim();
@@ -884,7 +914,7 @@
                     statusEl.className = "text-[10px] p-2 rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/25";
                     statusEl.innerHTML = `
                         <p class="font-bold">✅ ជោគជ័យ ១០០%!</p>
-                        <p class="text-[9px] mt-0.5 text-slate-300">សារតេស្តបានផ្ញើទៅដល់គ្រុប/គណនីតេឡេក្រាមរបស់បងហើយ。</p>
+                        <p class="text-[9px] mt-0.5 text-slate-300">សារតេស្តបានផ្ញើទៅដល់គ្រុប/គណនីតេឡេក្រាមរបស់បងហើយ។</p>
                     `;
                     window.showToast("🔔 ផ្ញើសារតេស្តជោគជ័យ!");
                 } else {
@@ -898,7 +928,7 @@
         }
         window.testTelegramConnection = testTelegramConnection;
 
-        // --- គូរ Dropbox Filter ចម្រោះប្រភេទផលិតផលជា Dropbox ពី Category Filter ខ្លីៗ ---
+        // --- គូរ Dropbox Filter ចម្រោះប្រភេទផលិតផល ---
         function renderCategoryDropdown() {
             const selectEl = document.getElementById('category-filter-dropdown');
             if (!selectEl) return;
@@ -912,14 +942,12 @@
                 }
             });
 
-            // បន្ថែមជម្រើស "បង្ហាញទាំងអស់"
             const optAll = document.createElement('option');
             optAll.value = 'all';
             optAll.selected = selectedCategory === 'all';
             optAll.innerText = 'ប្រភេទប្រេងរំអិលទាំងអស់ 📦';
             selectEl.appendChild(optAll);
 
-            // បន្ថែមជម្រើសតាម Category Filter ខ្លីៗ
             uniqueFilters.forEach(f => {
                 const opt = document.createElement('option');
                 opt.value = f;
@@ -992,7 +1020,6 @@
                             </div>
                         ` : ''}
 
-                        <!-- បង្ហាញសញ្ញា PDF Badge បើមាន Link ឯកសារយោង -->
                         ${product.pdf && product.pdf.trim() !== "" ? `
                             <span class="absolute top-1 left-1 bg-red-600/90 text-white text-[7px] font-black px-1 py-0.5 rounded shadow">PDF</span>
                         ` : ''}
@@ -1029,7 +1056,7 @@
             lucide.createIcons();
         }
 
-        // --- Modal Product Details (កែសម្រួល ID និងប្រព័ន្ធបិទបើក ការពារការគាំង) ---
+        // --- Modal Product Details ---
         function openProductModal(product) {
             selectedProductForModal = product;
             modalQuantity = 1;
@@ -1049,7 +1076,6 @@
 
             document.getElementById('modal-product-desc').innerText = product.desc;
 
-            // --- ការគ្រប់គ្រងប៊ូតុងបើក PDF ព័ត៌មានលម្អិត ---
             const pdfBtn = document.getElementById('modal-pdf-btn');
             if (product.pdf && product.pdf.trim() !== "") {
                 pdfBtn.classList.remove('hidden');
@@ -1104,7 +1130,7 @@
 
         function updateModalVariantUI(v) {
             const numericPrice = getNumericPrice(v.price);
-            const isNoPrice = isNaN(numericPrice) || numericPrice <= 0 || String(v.price).trim() === "" || String(v.price).trim().toLowerCase() === "ទាក់ទង";
+            const isNoPrice = isNaN(numericPrice) || numericPrice <= 0 || String(v.price).trim() === "" || String(v.price).trim().toLowerCase() === "ទាក់ង";
 
             document.getElementById('modal-product-price').innerText = formatPrice(v.price);
             
@@ -1290,7 +1316,7 @@
                     <div class="bg-slate-900 rounded-2xl p-6 border border-slate-850 shadow-sm text-center">
                         <i data-lucide="shopping-cart" class="w-10 h-10 text-slate-700 mx-auto mb-2"></i>
                         <h4 class="font-bold text-slate-300 text-xs mb-0.5">កន្ត្រកទំនិញរបស់អ្នកទទេស្អាត</h4>
-                        <p class="text-[10px] text-slate-500">សូមអញ្ជើញត្រលប់ទៅទំព័រដើម ដើម្បីជ្រើសរើសប្រេងម៉ាស៊ីន TriTech គុណភាពខ្ពស់។</p>
+                        <p class="text-[10px] text-slate-500">សូមអញ្ជើញត្រលប់ទៅទំព័រដើម ដើម្បីជ្រើសរើសប្រេងម៉ាស៊ីន TriTech គុណភាពខ្ពស់。</p>
                         <button onclick="window.navigateTo('home')" class="mt-3 bg-amber-500 text-slate-950 font-bold text-[10px] py-2 px-4 rounded-lg">ទៅទិញប្រេងម៉ាស៊ីន</button>
                     </div>
                 `;
@@ -1438,7 +1464,7 @@
                 normalizedPhone: cleanPhone,
                 address: address,
                 payment: checkoutPaymentMethod === 'cod' ? 'លុយសុទ្ធ (COD)' : 'ABA Pay',
-                status: 'កំពុងរៀបចំ'
+                status: 'កំពុងពិនិត្យ'
             };
 
             state.orders.unshift(newOrder);
@@ -1513,7 +1539,8 @@
                 });
 
                 let statusColor = "text-red-500 bg-red-500/10 border-red-500/20";
-                if (order.status === "កំពុងពិនិត្យការបញ្ជាទិញ") statusColor = "text-amber-400 bg-amber-500/10 border-amber-500/20";
+                if (order.status === "កំពុងពិនិត្យ") statusColor = "text-purple-400 bg-purple-500/10 border-purple-500/20";
+                if (order.status === "កំពុងរៀបចំ") statusColor = "text-amber-400 bg-amber-500/10 border-amber-500/20";
                 if (order.status === "កំពុងដឹកជញ្ជូន") statusColor = "text-sky-400 bg-sky-500/10 border-sky-500/20";
                 if (order.status === "ជោគជ័យ") statusColor = "text-emerald-400 bg-emerald-500/10 border-emerald-500/20";
 
@@ -1567,15 +1594,31 @@
             document.getElementById('admin-login-card').classList.add('hidden');
             document.getElementById('admin-dashboard').classList.remove('hidden');
             document.getElementById('admin-logout-btn').classList.remove('hidden');
+
+            if (userRole === 'staff') {
+                currentAdminTab = 'delivery';
+            } else {
+                currentAdminTab = 'orders';
+            }
             switchAdminTab(currentAdminTab);
         }
 
         function checkAdminPin() {
             const pin = document.getElementById('admin-pin-input').value.trim();
-            if (pin === '1234') {
+            const currentAdminPin = state.adminPin || '1234';
+            const currentStaffPin = state.staffPin || '5678';
+
+            if (pin === currentAdminPin) {
                 adminAuthenticated = true;
+                userRole = 'admin';
                 document.getElementById('admin-pin-input').value = '';
-                window.showToast("🔓 ចូលប្រព័ន្ធអ្នកគ្រប់គ្រងជោគជ័យ!");
+                window.showToast("🔓 ស្វាគមន៍មកកាន់ប្រព័ន្ធគ្រប់គ្រងហាង (Admin)!");
+                showAdminDashboard();
+            } else if (pin === currentStaffPin) {
+                adminAuthenticated = true;
+                userRole = 'staff';
+                document.getElementById('admin-pin-input').value = '';
+                window.showToast("🔓 ស្វាគមន៍បុគ្កលិកដឹកជញ្ជូន (Staff)!");
                 showAdminDashboard();
             } else {
                 window.showToast("❌ លេខកូដសម្ងាត់មិនត្រឹមត្រូវឡើយ!");
@@ -1585,37 +1628,85 @@
 
         function logoutAdmin() {
             adminAuthenticated = false;
-            window.showToast("🔒 បានចាកចេញពីប្រព័ន្ធអ្នកគ្រប់គ្រង");
+            userRole = null;
+            window.showToast("🔒 បានចាកចេញពីប្រព័ន្ធសុវត្ថិភាព");
             showAdminLogin();
             navigateTo('home');
         }
         window.logoutAdmin = logoutAdmin;
 
+        function renderAdminTabs() {
+            const btnOrders = document.getElementById('admin-tab-orders');
+            const btnDelivery = document.getElementById('admin-tab-delivery');
+            const btnProducts = document.getElementById('admin-tab-products');
+
+            if (!btnOrders || !btnDelivery || !btnProducts) return;
+
+            if (userRole === 'staff') {
+                // ចាក់សោរ Tab ពិនិត្យការបញ្ជាទិញ
+                btnOrders.innerHTML = `🔒 ពិនិត្យបញ្ជាទិញ`;
+                btnOrders.className = "flex-1 pb-2 font-bold text-xs text-slate-600 text-center cursor-not-allowed opacity-50 flex items-center justify-center gap-1";
+                btnOrders.onclick = () => window.showToast("🔒 ផ្នែកនេះត្រូវបានចាក់សោរសម្រាប់បុគ្គលិក!");
+
+                // ចាក់សោរ Tab គ្រប់គ្រងទំនិញ
+                btnProducts.innerHTML = `🔒 គ្រប់គ្រងទំនិញ`;
+                btnProducts.className = "flex-1 pb-2 font-bold text-xs text-slate-600 text-center cursor-not-allowed opacity-50 flex items-center justify-center gap-1";
+                btnProducts.onclick = () => window.showToast("🔒 ផ្នែកនេះត្រូវបានចាក់សោរសម្រាប់បុគ្គលិក!");
+
+                // បើកតែ Tab ដឹកជញ្ជូន
+                btnDelivery.innerHTML = `🚚 ដឹកជញ្ជូន`;
+                btnDelivery.className = "flex-1 pb-2 font-bold text-xs text-amber-500 border-b-2 border-amber-500 text-center cursor-pointer";
+                btnDelivery.onclick = () => window.switchAdminTab('delivery');
+            } else {
+                // Admin អាចប្រើប្រាស់បានទាំងអស់
+                btnOrders.innerHTML = `📥 បញ្ជាទិញថ្មីៗ`;
+                btnOrders.className = `flex-1 pb-2 font-bold text-xs text-center cursor-pointer ${currentAdminTab === 'orders' ? 'text-amber-500 border-b-2 border-amber-500' : 'text-slate-400'}`;
+                btnOrders.onclick = () => window.switchAdminTab('orders');
+
+                btnDelivery.innerHTML = `🚚 ដឹកជញ្ជូន`;
+                btnDelivery.className = `flex-1 pb-2 font-bold text-xs text-center cursor-pointer ${currentAdminTab === 'delivery' ? 'text-amber-500 border-b-2 border-amber-500' : 'text-slate-400'}`;
+                btnDelivery.onclick = () => window.switchAdminTab('delivery');
+
+                btnProducts.innerHTML = `⚙️ គ្រប់គ្រងទំនិញ`;
+                btnProducts.className = `flex-1 pb-2 font-bold text-xs text-center cursor-pointer ${currentAdminTab === 'products' ? 'text-amber-500 border-b-2 border-amber-500' : 'text-slate-400'}`;
+                btnProducts.onclick = () => window.switchAdminTab('products');
+            }
+            lucide.createIcons();
+        }
+
         function switchAdminTab(subTab) {
             currentAdminTab = subTab;
-            const btnOrders = document.getElementById('admin-tab-orders');
-            const btnProducts = document.getElementById('admin-tab-products');
+
             const pageOrders = document.getElementById('admin-subpage-orders');
+            const pageDelivery = document.getElementById('admin-subpage-delivery');
             const pageProducts = document.getElementById('admin-subpage-products');
 
+            if (pageOrders) pageOrders.classList.add('hidden');
+            if (pageDelivery) pageDelivery.classList.add('hidden');
+            if (pageProducts) pageProducts.classList.add('hidden');
+
             if (subTab === 'orders') {
-                btnOrders.className = "flex-1 pb-2 font-bold text-xs text-amber-500 border-b-2 border-amber-500 text-center";
-                btnProducts.className = "flex-1 pb-2 font-bold text-xs text-slate-400 text-center";
-                pageOrders.classList.remove('hidden');
-                pageProducts.classList.add('hidden');
+                if (pageOrders) pageOrders.classList.remove('hidden');
                 renderAdminOrdersList();
-            } else {
-                btnOrders.className = "flex-1 pb-2 font-bold text-xs text-slate-400 text-center";
-                btnProducts.className = "flex-1 pb-2 font-bold text-xs text-amber-500 border-b-2 border-amber-500 text-center";
-                pageOrders.classList.add('hidden');
-                pageProducts.classList.remove('hidden');
+            } else if (subTab === 'delivery') {
+                if (pageDelivery) pageDelivery.classList.remove('hidden');
+                renderAdminDeliveryList();
+            } else if (subTab === 'products') {
+                if (pageProducts) pageProducts.classList.remove('hidden');
                 renderAdminProductsList();
                 
                 const adminPhoneInput = document.getElementById('admin-shop-phone-input');
                 if (adminPhoneInput) adminPhoneInput.value = state.shopPhone;
 
+                const adminPassInput = document.getElementById('admin-password-setting-input');
+                const staffPassInput = document.getElementById('staff-password-setting-input');
+                if (adminPassInput) adminPassInput.value = state.adminPin || '1234';
+                if (staffPassInput) staffPassInput.value = state.staffPin || '5678';
+
                 updateTelegramUI();
             }
+
+            renderAdminTabs();
             lucide.createIcons();
         }
         window.switchAdminTab = switchAdminTab;
@@ -1647,7 +1738,8 @@
                 });
 
                 let selectColorClass = "bg-red-950/40 text-red-400 border-red-500/30";
-                if (order.status === 'កំពុងពិនិត្យការបញ្ជាទិញ') selectColorClass = "bg-amber-950/40 text-amber-400 border-amber-500/30";
+                if (order.status === 'កំពុងពិនិត្យ') selectColorClass = "bg-purple-950/40 text-purple-400 border-purple-500/30";
+                if (order.status === 'កំពុងរៀបចំ') selectColorClass = "bg-amber-950/40 text-amber-400 border-amber-500/30";
                 if (order.status === 'កំពុងដឹកជញ្ជូន') selectColorClass = "bg-sky-950/40 text-sky-400 border-sky-500/30";
                 if (order.status === 'ជោគជ័យ') selectColorClass = "bg-emerald-950/40 text-emerald-400 border-emerald-500/30";
 
@@ -1659,15 +1751,17 @@
                         </div>
                         <div class="flex items-center gap-1.5">
                             <select onchange="window.updateOrderStatus('${order.id}', this.value)" class="${selectColorClass} border text-[9px] font-bold px-2 py-1 rounded-lg focus:outline-none transition-all duration-300">
+                                <option value="កំពុងពិនិត្យ" ${order.status === 'កំពុងពិនិត្យ' ? 'selected' : ''}>កំពុងពិនិត្យ</option>
                                 <option value="កំពុងរៀបចំ" ${order.status === 'កំពុងរៀបចំ' ? 'selected' : ''}>កំពុងរៀបចំ</option>
-                                <option value="កំពុងពិនិត្យការបញ្ជាទិញ" ${order.status === 'កំពុងពិនិត្យការបញ្ជាទិញ' ? 'selected' : ''}>កំពុងពិនិត្យ</option>
-                                <option value="កំពុងដឹកជញ្ជូន" ${order.status === 'កំពុងដឹកជញ្ជូន' ? 'selected' : ''}>កំពុងដឹក</option>
+                                <option value="កំពុងដឹកជញ្ជូន" ${order.status === 'កំពុងដឹកជញ្ជូន' ? 'selected' : ''}>កំពុងដឹកជញ្ជូន</option>
                                 <option value="ជោគជ័យ" ${order.status === 'ជោគជ័យ' ? 'selected' : ''}>ជោគជ័យ</option>
                             </select>
                             
+                            ${userRole === 'admin' ? `
                             <button onclick="window.deleteOrder('${order.id}')" class="p-1.5 bg-red-500/10 hover:bg-red-500/20 text-red-400 rounded-lg border border-red-500/20 active:scale-95 transition-all">
                                 <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
                             </button>
+                            ` : ''}
                         </div>
                     </div>
                     <div class="py-0.5">${itemsListHtml}</div>
@@ -1685,13 +1779,85 @@
             lucide.createIcons();
         }
 
+        function renderAdminDeliveryList() {
+            const container = document.getElementById('admin-subpage-delivery');
+            if (!container) return;
+            container.innerHTML = '';
+
+            const deliveryOrders = state.orders.filter(o => o.status !== 'ជោគជ័យ');
+
+            if (deliveryOrders.length === 0) {
+                container.innerHTML = `
+                    <p class="text-[11px] text-slate-500 text-center py-6">មិនទាន់មានការដឹកជញ្ជូនដែលសកម្មឡើយបង។</p>
+                `;
+                return;
+            }
+
+            deliveryOrders.forEach(order => {
+                const orderCard = document.createElement('div');
+                orderCard.className = "bg-slate-900 border border-slate-800 rounded-2xl p-3 space-y-2.5";
+                
+                let itemsListHtml = '';
+                (order.items || []).forEach(it => {
+                    itemsListHtml += `
+                        <div class="flex justify-between text-[11px] text-slate-400 py-0.5">
+                            <span>• ${it.name} <span class="font-bold text-amber-400">x${it.quantity}</span></span>
+                            <span>${formatPrice(getNumericPrice(it.price) * it.quantity)}</span>
+                        </div>
+                    `;
+                });
+
+                let selectColorClass = "bg-red-950/40 text-red-400 border-red-500/30";
+                if (order.status === 'កំពុងពិនិត្យ') selectColorClass = "bg-purple-950/40 text-purple-400 border-purple-500/30";
+                if (order.status === 'កំពុងរៀបចំ') selectColorClass = "bg-amber-950/40 text-amber-400 border-amber-500/30";
+                if (order.status === 'កំពុងដឹកជញ្ជូន') selectColorClass = "bg-sky-950/40 text-sky-400 border-sky-500/30";
+
+                orderCard.innerHTML = `
+                    <div class="flex justify-between items-center border-b border-slate-800 pb-1.5">
+                        <div>
+                            <span class="font-extrabold text-xs text-amber-400 block">${order.id}</span>
+                            <span class="text-[9px] text-slate-500 block">${order.date}</span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <select onchange="window.updateOrderStatus('${order.id}', this.value)" class="${selectColorClass} border text-[9px] font-bold px-2 py-1 rounded-lg focus:outline-none transition-all duration-300">
+                                <option value="កំពុងពិនិត្យ" ${order.status === 'កំពុងពិនិត្យ' ? 'selected' : ''}>កំពុងពិនិត្យ</option>
+                                <option value="កំពុងរៀបចំ" ${order.status === 'កំពុងរៀបចំ' ? 'selected' : ''}>កំពុងរៀបចំ</option>
+                                <option value="កំពុងដឹកជញ្ជូន" ${order.status === 'កំពុងដឹកជញ្ជូន' ? 'selected' : ''}>កំពុងដឹកជញ្ជូន</option>
+                                <option value="ជោគជ័យ" ${order.status === 'ជោគជ័យ' ? 'selected' : ''}>ជោគជ័យ</option>
+                            </select>
+                            
+                            ${userRole === 'admin' ? `
+                            <button onclick="window.deleteOrder('${order.id}')" class="p-1.5 bg-red-500/10 hover:bg-red-500/20 text-red-400 rounded-lg border border-red-500/20 active:scale-95 transition-all">
+                                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                            </button>
+                            ` : ''}
+                        </div>
+                    </div>
+                    <div class="py-0.5">${itemsListHtml}</div>
+                    <div class="border-t border-slate-800 pt-1.5 text-[10px] text-slate-400 space-y-0.5">
+                        <p><span class="font-bold text-slate-300">អតិថិជន៖</span> ${order.name} (${order.phone})</p>
+                        <p><span class="font-bold text-slate-300">អាសយដ្ឋាន៖</span> ${order.address}</p>
+                        <div class="flex justify-between items-center pt-1">
+                            <span class="text-[8px] bg-slate-950 px-1.5 py-0.5 rounded text-slate-400 border border-slate-800/60">${order.payment}</span>
+                            <span class="font-extrabold text-amber-400 text-xs">សរុប៖ ${formatPrice(order.total || 0)}</span>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(orderCard);
+            });
+            lucide.createIcons();
+        }
+        window.renderAdminDeliveryList = renderAdminDeliveryList;
+
         function updateOrderStatus(orderId, newStatus) {
             const order = state.orders.find(o => o.id === orderId);
             if (order) {
                 order.status = newStatus;
                 saveToLocalStorage();
                 window.showToast("✅ បានប្តូរស្ថានភាពបញ្ជាទិញរួចរាល់!");
+                
                 renderAdminOrdersList();
+                renderAdminDeliveryList();
             }
         }
         window.updateOrderStatus = updateOrderStatus;
@@ -1806,7 +1972,6 @@
         }
         window.addVariantRow = addVariantRow;
 
-        // --- គូរ Autocomplete សម្រាប់ categories និង category filters ក្នុង Admin Form ---
         function populateAutocompleteLists() {
             const catsList = document.getElementById('categories-autocomplete-list');
             const filtersList = document.getElementById('category-filters-autocomplete-list');
@@ -1863,20 +2028,20 @@
                 if (product) {
                     document.getElementById('form-product-id').value = product.id;
                     document.getElementById('form-product-name').value = product.name;
-                    document.getElementById('form-product-category').value = product.category || '';
-                    document.getElementById('form-product-category-filter').value = product.categoryFilter || '';
-                    document.getElementById('form-product-image').value = product.image || '';
+                    document.getElementById('form-product-category').value = product.category;
+                    document.getElementById('form-product-category-filter').value = product.categoryFilter;
+                    document.getElementById('form-product-image').value = product.image;
                     document.getElementById('form-product-pdf').value = product.pdf || ''; 
-                    document.getElementById('form-product-desc').value = product.desc || '';
+                    document.getElementById('form-product-desc').value = product.desc;
 
-                    const variants = product.variants || [{ size: "5L", price: product.price || "0", stock: "in_stock" }];
-                    variants.forEach(v => {
-                        addVariantRow(v.size, v.price, v.stock || "in_stock");
+                    const vars = product.variants || [{ size: "ដប", price: product.price || "0", stock: "in_stock" }];
+                    vars.forEach(v => {
+                        addVariantRow(v.size, v.price, v.stock);
                     });
                 }
             } else {
-                title.innerHTML = `<i data-lucide="plus-circle" class="text-amber-500 w-4 h-4"></i> បន្ថែមផលិតផលថ្មី`;
-                addVariantRow("5L", "", "in_stock");
+                title.innerHTML = `<i data-lucide="plus-circle" class="text-amber-500 w-4 h-4"></i> បន្ថែមប្រេងម៉ាស៊ីនថ្មី`;
+                addVariantRow("4L", "", "in_stock");
             }
 
             modal.classList.remove('hidden');
@@ -1884,7 +2049,6 @@
                 modal.classList.remove('opacity-0');
                 if (content) content.classList.remove('translate-y-full');
             }, 50);
-
             lucide.createIcons();
         }
         window.openProductFormModal = openProductFormModal;
@@ -1902,57 +2066,67 @@
         window.closeProductFormModal = closeProductFormModal;
 
         function saveProduct() {
-            const productId = document.getElementById('form-product-id').value;
+            const id = document.getElementById('form-product-id').value;
             const name = document.getElementById('form-product-name').value.trim();
             const category = document.getElementById('form-product-category').value.trim();
             const categoryFilter = document.getElementById('form-product-category-filter').value.trim();
             const image = document.getElementById('form-product-image').value.trim();
-            const pdf = document.getElementById('form-product-pdf').value.trim(); 
+            const pdf = document.getElementById('form-product-pdf').value.trim();
             const desc = document.getElementById('form-product-desc').value.trim();
 
-            const variantRows = document.querySelectorAll('.variant-row');
-            const variants = [];
-            variantRows.forEach(row => {
-                const sizeVal = row.querySelector('.variant-size').value.trim();
-                const priceVal = row.querySelector('.variant-price').value.trim();
-                const stockVal = row.querySelector('.variant-stock').value;
-                if (sizeVal) {
-                    variants.push({ 
-                        size: sizeVal, 
-                        price: priceVal, 
-                        stock: stockVal 
-                    });
-                }
-            });
-
-            if (!name || !category || !categoryFilter || variants.length === 0 || !desc) {
-                window.showToast("⚠️ សូមបំពេញព័ត៌មានចាំបាច់ (*) ឱ្យបានត្រឹមត្រូវ!");
+            if (!name || !category || !categoryFilter || !desc) {
+                window.showToast("⚠️ សូមបំពេញព័ត៌មានចាំបាច់ឱ្យបានគ្រប់គ្រាន់!");
                 return;
             }
 
-            const productData = {
-                name: name,
-                category: category,
-                categoryFilter: categoryFilter,
-                variants: variants,
-                price: variants[0].price,
-                image: image,
-                pdf: pdf, 
-                desc: desc
-            };
+            const variantRows = document.querySelectorAll('.variant-row');
+            const variants = [];
+            let variantError = false;
 
-            if (productId) {
-                const index = state.cachedProducts.findIndex(p => p.id === productId);
-                if (index > -1) {
-                    state.cachedProducts[index] = { ...state.cachedProducts[index], ...productData };
-                    window.showToast("✅ បានកែសម្រួលទិន្នន័យផលិតផលជោគជ័យ!");
+            variantRows.forEach(row => {
+                const size = row.querySelector('.variant-size').value.trim();
+                const price = row.querySelector('.variant-price').value.trim();
+                const stock = row.querySelector('.variant-stock').value;
+
+                if (!size || !price) {
+                    variantError = true;
+                } else {
+                    variants.push({ size, price, stock });
                 }
-            } else {
-                const newId = (state.cachedProducts.length > 0) ? (Math.max(...state.cachedProducts.map(p => parseInt(p.id || 0))) + 1).toString() : "1";
-                state.cachedProducts.push({ id: newId, ...productData });
-                window.showToast("🎉 បានបន្ថែមផលិតផលថ្មីជោគជ័យ!");
+            });
+
+            if (variantError || variants.length === 0) {
+                window.showToast("⚠️ សូមបំពេញទំហំ និងតម្លៃឱ្យបានគ្រប់គ្រាន់ក្នុងជម្រើសនីមួយៗ!");
+                return;
             }
-            
+
+            if (id) {
+                const product = state.cachedProducts.find(p => p.id === id);
+                if (product) {
+                    product.name = name;
+                    product.category = category;
+                    product.categoryFilter = categoryFilter;
+                    product.image = image;
+                    product.pdf = pdf;
+                    product.desc = desc;
+                    product.variants = variants;
+                }
+                window.showToast("✅ បានកែសម្រួលព័ត៌មានប្រេងម៉ាស៊ីនរួចរាល់!");
+            } else {
+                const newProduct = {
+                    id: 'PROD-' + Date.now(),
+                    name,
+                    category,
+                    categoryFilter,
+                    image,
+                    pdf,
+                    desc,
+                    variants
+                };
+                state.cachedProducts.push(newProduct);
+                window.showToast("✅ បានបន្ថែមប្រេងម៉ាស៊ីនថ្មីរួចរាល់!");
+            }
+
             saveToLocalStorage();
             renderCategoryDropdown();
             renderProducts();
@@ -1966,83 +2140,116 @@
             deleteType = 'product';
             
             document.getElementById('confirm-modal-title').innerText = "បញ្ជាក់ការលុបផលិតផល";
-            document.getElementById('confirm-modal-desc').innerText = "តើបងពិតជាចង់លុបផលិតផលនេះចេញមែនទេ?";
+            document.getElementById('confirm-modal-desc').innerText = "តើបងពិតជាចង់លុបផលិតផលនេះចេញពីបញ្ជីលក់មែនទេ?";
             
             openConfirmModal();
         }
         window.deleteProduct = deleteProduct;
 
+        // --- Confirmation Modal ---
         function openConfirmModal() {
             const modal = document.getElementById('confirm-modal');
             const content = document.getElementById('confirm-modal-content');
-            if (!modal) return;
             modal.classList.remove('hidden');
             setTimeout(() => {
                 modal.classList.remove('opacity-0');
                 if (content) content.classList.remove('scale-95');
             }, 50);
-            lucide.createIcons();
         }
 
-        // មុខងារបិទផ្ទាំងលុប
-        function closeConfirmModal(confirm) {
+        function closeConfirmModal(confirmed) {
             const modal = document.getElementById('confirm-modal');
             const content = document.getElementById('confirm-modal-content');
-            if (!modal) return;
+            
             modal.classList.add('opacity-0');
             if (content) content.classList.add('scale-95');
+            
             setTimeout(() => {
                 modal.classList.add('hidden');
-            }, 300);
-
-            if (confirm && deleteTargetId) {
-                if (deleteType === 'product') {
-                    state.cachedProducts = state.cachedProducts.filter(p => p.id !== deleteTargetId);
-                    saveToLocalStorage();
-                    renderCategoryDropdown();
-                    renderProducts();
-                    renderAdminProductsList();
-                    window.showToast("🗑️ បានលុបផលិតផលរួចរាល់!");
-                } else if (deleteType === 'order') {
-                    state.orders = state.orders.filter(o => o.id !== deleteTargetId);
-                    saveToLocalStorage();
-                    renderAdminOrdersList();
-                    window.showToast("🗑️ បានលុបការបញ្ជាទិញរួចរាល់!");
+                
+                if (confirmed) {
+                    if (deleteType === 'product' && deleteTargetId) {
+                        state.cachedProducts = state.cachedProducts.filter(p => p.id !== deleteTargetId);
+                        saveToLocalStorage();
+                        renderCategoryDropdown();
+                        renderProducts();
+                        renderAdminProductsList();
+                        window.showToast("🗑️ បានលុបផលិតផលជោគជ័យ!");
+                    } else if (deleteType === 'order' && deleteTargetId) {
+                        state.orders = state.orders.filter(o => o.id !== deleteTargetId);
+                        saveToLocalStorage();
+                        renderAdminOrdersList();
+                        renderAdminDeliveryList();
+                        window.showToast("🗑️ បានលុបការបញ្ជាទិញជោគជ័យ!");
+                    }
                 }
-            }
-            deleteTargetId = null;
+                deleteTargetId = null;
+            }, 300);
         }
         window.closeConfirmModal = closeConfirmModal;
 
-        // --- Tab Navigation ---
+        // --- Favorites logic ---
+        function toggleFavorite(productId, event) {
+            if (event) event.stopPropagation();
+            const idx = state.favorites.indexOf(productId);
+            if (idx > -1) {
+                state.favorites.splice(idx, 1);
+                window.showToast("💔 បានដកចេញពីបញ្ជីពេញចិត្ត");
+            } else {
+                state.favorites.push(productId);
+                window.showToast("❤️ បានបន្ថែមទៅបញ្ជីពេញចិត្ត");
+            }
+            saveToLocalStorage();
+            renderProducts();
+        }
+        window.toggleFavorite = toggleFavorite;
+
+        function toggleFavoritesOnly() {
+            showFavsOnly = !showFavsOnly;
+            const btn = document.getElementById('fav-filter-btn');
+            const icon = document.getElementById('fav-filter-icon');
+            if (showFavsOnly) {
+                btn.className = "p-1.5 rounded-lg bg-rose-500/20 text-rose-500 border border-rose-500/30 active:scale-95 transition-all relative";
+                icon.className = "w-4 h-4 fill-rose-500 text-rose-500";
+                window.showToast("🔍 កំពុងត្រងបង្ហាញតែទំនិញពេញចិត្ត");
+            } else {
+                btn.className = "p-1.5 rounded-lg bg-slate-800 hover:bg-slate-750 active:scale-95 transition-all relative";
+                icon.className = "w-4 h-4 text-slate-400";
+                window.showToast("📦 បង្ហាញផលិតផលទាំងអស់ឡើងវិញ");
+            }
+            renderProducts();
+        }
+        window.toggleFavoritesOnly = toggleFavoritesOnly;
+
+        // --- Navigation ---
         function navigateTo(tabId) {
+            currentTab = tabId;
+
             document.getElementById('page-home').classList.add('hidden');
             document.getElementById('page-cart').classList.add('hidden');
             document.getElementById('page-orders').classList.add('hidden');
             document.getElementById('page-admin').classList.add('hidden');
-            
+
             document.getElementById(`page-${tabId}`).classList.remove('hidden');
-            
-            const tabs = ['home', 'cart', 'orders', 'admin'];
-            tabs.forEach(t => {
-                const navBtn = document.getElementById(`nav-${t}`);
-                if (navBtn) {
-                    if (t === tabId) {
-                        navBtn.className = "flex flex-col items-center gap-0.5 py-0.5 px-3 text-amber-500 font-bold scale-105 transition-all duration-200";
-                    } else {
-                        navBtn.className = "flex flex-col items-center gap-0.5 py-0.5 px-3 text-slate-400 transition-all duration-200";
-                    }
+
+            const navs = ['home', 'cart', 'orders', 'admin'];
+            navs.forEach(n => {
+                const btn = document.getElementById(`nav-${n}`);
+                if (n === tabId) {
+                    btn.className = "flex flex-col items-center gap-0.5 py-0.5 px-3 text-amber-500 font-bold scale-105 transition-all duration-200";
+                } else {
+                    btn.className = "flex flex-col items-center gap-0.5 py-0.5 px-3 text-slate-400 transition-all duration-200";
                 }
             });
-            
-            currentTab = tabId;
-            
-            if (tabId === 'cart') renderCart();
-            if (tabId === 'orders') {
+
+            if (tabId === 'home') {
+                renderProducts();
+            } else if (tabId === 'cart') {
+                renderCart();
+            } else if (tabId === 'orders') {
                 const searchInput = document.getElementById('search-phone-input');
                 renderOrders(searchInput ? searchInput.value.trim() : '');
-            }
-            if (tabId === 'admin') {
+            } else if (tabId === 'admin') {
                 if (adminAuthenticated) {
                     showAdminDashboard();
                 } else {
@@ -2050,84 +2257,54 @@
                 }
             }
 
-            lucide.createIcons();
             document.getElementById('main-content').scrollTop = 0;
+            lucide.createIcons();
         }
         window.navigateTo = navigateTo;
 
-        // --- Filter Favorite Actions ---
-        function toggleFavoritesOnly() {
-            showFavsOnly = !showFavsOnly;
-            const btn = document.getElementById('fav-filter-btn');
-            const icon = document.getElementById('fav-filter-icon');
+        // --- Hold trigger logic to enter Admin ---
+        function setupHoldTrigger() {
+            const trigger = document.getElementById('secret-admin-trigger');
+            let timer;
+            
+            if (trigger) {
+                // សម្រាប់ Desktop Mouse
+                trigger.addEventListener('mousedown', () => {
+                    timer = setTimeout(() => {
+                        window.navigateTo('admin');
+                        window.showToast("🔑 កំពុងចូលទៅកាន់ប្រព័ន្ធគ្រប់គ្រង...");
+                    }, 1500);
+                });
+                trigger.addEventListener('mouseup', () => clearTimeout(timer));
+                trigger.addEventListener('mouseleave', () => clearTimeout(timer));
 
-            if (showFavsOnly) {
-                btn.className = "p-1.5 rounded-lg bg-rose-600 hover:bg-rose-700 active:scale-95 transition-all relative text-white";
-                icon.className = "w-4 h-4 text-white";
-                window.showToast("បង្ហាញតែផលិតផលដែលពេញចិត្ត");
-            } else {
-                btn.className = "p-1.5 rounded-lg bg-slate-800 hover:bg-slate-750 active:scale-95 transition-all relative";
-                icon.className = "w-4 h-4 text-slate-400";
-                window.showToast("បង្ហាញផលិតផលទាំងអស់ឡើងវិញ");
+                // សម្រាប់ Mobile Touch Screen
+                trigger.addEventListener('touchstart', (e) => {
+                    timer = setTimeout(() => {
+                        window.navigateTo('admin');
+                        window.showToast("🔑 កំពុងចូលទៅកាន់ប្រព័ន្ធគ្រប់គ្រង...");
+                    }, 1500);
+                });
+                trigger.addEventListener('touchend', () => clearTimeout(timer));
             }
-            renderProducts();
-        }
-        window.toggleFavoritesOnly = toggleFavoritesOnly;
-
-        function toggleFavorite(id, event) {
-            event.stopPropagation();
-            const index = state.favorites.indexOf(id);
-            if (index > -1) {
-                state.favorites.splice(index, 1);
-                window.showToast("បានដកចេញពីបញ្ជីពេញចិត្ត");
-            } else {
-                state.favorites.push(id);
-                window.showToast("បានរក្សាទុកក្នុងបញ្ជីពេញចិត្ត ❤️");
-            }
-            saveToLocalStorage();
-            renderProducts();
-        }
-        window.toggleFavorite = toggleFavorite;
-
-        // --- Setup Backdrop Clicks for Closing Modals ---
-        function setupBackdropListeners() {
-            document.getElementById('product-modal').addEventListener('click', function(e) {
-                if (e.target === this) window.closeProductModal();
-            });
-            document.getElementById('product-form-modal').addEventListener('click', function(e) {
-                if (e.target === this) window.closeProductFormModal();
-            });
-            document.getElementById('checkout-modal').addEventListener('click', function(e) {
-                if (e.target === this) window.closeCheckoutModal();
-            });
         }
 
-        // --- App Initial Window Onload ---
+        // --- Window Onload ---
         window.onload = function() {
             loadFromLocalStorage();
 
             const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            const today = new Date();
-            document.getElementById('header-date').innerText = today.toLocaleDateString('km-KH', options);
+            const dateStr = new Date().toLocaleDateString('km-KH', options);
+            const dateHeader = document.getElementById('header-date');
+            if (dateHeader) dateHeader.innerText = dateStr;
 
             renderCategoryDropdown();
             renderProducts();
             updateCartBadge();
-            renderCart();
-            setupBackdropListeners();
-            
+            setupHoldTrigger();
+
             lucide.createIcons();
         };
-
-        window.openProductModal = openProductModal;
-        window.closeProductModal = closeProductModal;
-        window.adjustModalQty = adjustModalQty;
-        window.adjustCartItemQty = adjustCartItemQty;
-        window.openCheckoutModal = openCheckoutModal;
-        window.closeCheckoutModal = closeCheckoutModal;
-        window.setPaymentMethod = setPaymentMethod;
-        window.placeOrder = placeOrder;
-
     </script>
 </body>
 </html>
