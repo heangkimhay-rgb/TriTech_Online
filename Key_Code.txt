@@ -1,0 +1,7 @@
+apiKey: "AIzaSyDO8d6Ufrtbg3ecJA4sIWZAP9kYaMvUpDQ",
+  authDomain: "tritech-cambodia-online-shop.firebaseapp.com",
+  projectId: "tritech-cambodia-online-shop",
+  storageBucket: "tritech-cambodia-online-shop.firebasestorage.app",
+  messagingSenderId: "259036623131",
+  appId: "1:259036623131:web:6c2203ef34fed9b51823be",
+  measurementId: "G-2BCX38J1M7"
