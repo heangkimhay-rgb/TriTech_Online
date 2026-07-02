@@ -455,12 +455,12 @@
             telegramToken: "8500019843:AAGiaayCZgfdmW21ewMbTB9xGru7LCdoOk0",
             telegramChatId: "5543262304",
             telegramUsername: "im_hieng",
-            adminPin: "1234",
+            adminPin: "123890",
             useCloud: false,
             firebaseConfig: { apiKey: "", authDomain: "", projectId: "", storageBucket: "", messagingSenderId: "", appId: "" }
         };
 
-        const LOCAL_STORAGE_KEY = 'tritech_lubricants_local_v2026';
+        const LOCAL_STORAGE_KEY = 'tritech_lubricants_local_v2026_v2';
 
         // --- ផលិតផលដើមទាំង ៨ មុខរបស់ហាង TriTech ---
         const INITIAL_PRODUCTS = [
@@ -623,7 +623,6 @@
                     if (!state.cart) state.cart = [];
                     if (!state.favorites) state.favorites = [];
                     if (!state.orders) state.orders = [];
-                    if (!state.adminPin) state.adminPin = "1234"; // បង្ការកំហុសលេខសម្ងាត់ចាស់
                     if (!state.cachedProducts || state.cachedProducts.length === 0) {
                         state.cachedProducts = JSON.parse(JSON.stringify(INITIAL_PRODUCTS));
                     }
@@ -635,7 +634,7 @@
                         telegramToken: "8500019843:AAGiaayCZgfdmW21ewMbTB9xGru7LCdoOk0",
                         telegramChatId: "5543262304",
                         telegramUsername: "im_hieng",
-                        adminPin: "1234",
+                        adminPin: "123890",
                         useCloud: false,
                         firebaseConfig: { apiKey: "", authDomain: "", projectId: "", storageBucket: "", messagingSenderId: "", appId: "" }
                     };
@@ -1764,7 +1763,7 @@
             const pin = inputEl.value.trim();
             
             // ផ្ទៀងផ្ទាត់លេខកូដ (អនុញ្ញាតលេខកូដ ១២៣៤ ជាកូដបម្រុងជានិច្ច)
-            if (pin === state.adminPin || pin === "1234") {
+            if (pin === state.adminPin) {
                 adminAuthenticated = true;
                 
                 // សម្អាតទិន្នន័យក្នុងប្រអប់បញ្ចូល
