@@ -5,3 +5,8 @@ apiKey: "AIzaSyDO8d6Ufrtbg3ecJA4sIWZAP9kYaMvUpDQ",
   messagingSenderId: "259036623131",
   appId: "1:259036623131:web:6c2203ef34fed9b51823be",
   measurementId: "G-2BCX38J1M7"
+========================================
+រាល់ពេលកែកូដត្រូវប្រើប្រាស់ពាក្យបញ្ជាទាំងបីនេះនៅក្នុង Terminal
+1) git add .
+2) git commit -m "Change password"
+3) git push
