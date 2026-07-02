@@ -7,6 +7,19 @@ apiKey: "AIzaSyDO8d6Ufrtbg3ecJA4sIWZAP9kYaMvUpDQ",
   measurementId: "G-2BCX38J1M7"
 ========================================
 រាល់ពេលកែកូដត្រូវប្រើប្រាស់ពាក្យបញ្ជាទាំងបីនេះនៅក្នុង Terminal
-1) git add .
-2) git commit -m "Change password"
-3) git push
+ដោយឯកសារយើងរក្សាទុកក្នុង Drive: D -> Folder:My_App -> Folder:TriTech_Online
+	ជំហានទី ១៖ ប្ដូរទៅកាន់ Drive D
+		PS C:\Users\Acer> d:
+	ជំហានទី ២៖ ចូលទៅកាន់ Folder កូដរបស់អ្នក
+		PS D:\> cd \My_App\TriTech_Online
+	ជំហានទី ៣៖
+		PS D:\My_App\TriTech_Online> git add .
+	ជំហានទី ៤៖
+		PS D:\My_App\TriTech_Online> git commit -m "Chang Password" ប្រសិនបើប្ដូលេខសម្ងាត់
+	ជំហានទី ៥៖
+		PS D:\My_App\TriTech_Online> git push
+ចំណុចសំខាន់
+១) git add .
+២)​ git commit -m "មូលហេតុកែកូដ"
+៣) git push
+==========================================
