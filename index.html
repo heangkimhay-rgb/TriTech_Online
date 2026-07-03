@@ -460,7 +460,7 @@
             firebaseConfig: { apiKey: "", authDomain: "", projectId: "", storageBucket: "", messagingSenderId: "", appId: "" }
         };
 
-        const LOCAL_STORAGE_KEY = 'tritech_lubricants_local_v2029';
+        const LOCAL_STORAGE_KEY = 'tritech_lubricants_local_v2026';
 
         // --- ផលិតផលដើមទាំង ៨ មុខរបស់ហាង TriTech ---
         const INITIAL_PRODUCTS = [
@@ -623,6 +623,7 @@
                     if (!state.cart) state.cart = [];
                     if (!state.favorites) state.favorites = [];
                     if (!state.orders) state.orders = [];
+                    if (!state.adminPin) state.adminPin = "123$098"; // បង្ការកំហុសលេខសម្ងាត់ចាស់
                     if (!state.cachedProducts || state.cachedProducts.length === 0) {
                         state.cachedProducts = JSON.parse(JSON.stringify(INITIAL_PRODUCTS));
                     }
@@ -1763,7 +1764,7 @@
             const pin = inputEl.value.trim();
             
             // ផ្ទៀងផ្ទាត់លេខកូដ (អនុញ្ញាតលេខកូដ ១២៣៤ ជាកូដបម្រុងជានិច្ច)
-            if (pin === state.adminPin || pin === "123$098") {
+            if (pin === state.adminPin) {
                 adminAuthenticated = true;
                 
                 // សម្អាតទិន្នន័យក្នុងប្រអប់បញ្ចូល
