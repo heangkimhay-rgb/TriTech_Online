@@ -17,7 +17,7 @@ apiKey: "AIzaSyDO8d6Ufrtbg3ecJA4sIWZAP9kYaMvUpDQ",
 	ជំហានទី ៣៖
 		PS D:\My_App\TriTech_Online> git add .
 	ជំហានទី ៤៖
-		PS D:\My_App\TriTech_Online> git commit -m "Updated Password"
+		PS D:\My_App\TriTech_Online> git commit -m "Updated Cloud Problem"
 	ជំហានទី ៥៖
 		PS D:\My_App\TriTech_Online> git push
 ចំណុចសំខាន់

@@ -165,7 +165,7 @@
                 </button>
             </div>
 
-            <!-- ទម្រង់កូដសម្ងាត់ចូល (មានការកែសម្រួលបន្ថែមប៊ូតុងត្រឡប់ក្រោយ) -->
+            <!-- ទម្រង់កូដសម្ងាត់ចូល -->
             <div id="admin-login-card" class="bg-slate-900 border border-slate-800 rounded-2xl p-5 text-center space-y-3.5">
                 <div class="p-2 bg-amber-500/10 rounded-xl w-max mx-auto text-amber-500 border border-amber-500/20">
                     <i data-lucide="lock" class="w-5 h-5"></i>
@@ -178,11 +178,9 @@
                     <input type="password" id="admin-pin-input" placeholder="••••" class="w-full text-center tracking-widest bg-slate-950 border border-slate-800 px-3 py-2.5 rounded-xl text-sm font-bold focus:outline-none focus:border-amber-500 text-amber-400">
                     
                     <div class="flex gap-2">
-                        <!-- ប៊ូតុងត្រឡប់ក្រោយ / ចាកចេញពីផ្ទាំងបញ្ចូលលេខសម្ងាត់ -->
                         <button onclick="window.navigateTo('home')" class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-[10px] py-2.5 rounded-xl shadow active:scale-95 transition-all flex items-center justify-center gap-1">
                             <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> ត្រឡប់ក្រោយ
                         </button>
-                        <!-- ប៊ូតុងផ្ទៀងផ្ទាត់ -->
                         <button onclick="window.checkAdminPin()" class="flex-1 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-[10px] py-2.5 rounded-xl shadow active:scale-95 transition-all flex items-center justify-center gap-1">
                             <i data-lucide="check" class="w-3.5 h-3.5"></i> ផ្ទៀងផ្ទាត់
                         </button>
@@ -214,6 +212,26 @@
                 <!-- ផ្នែកគ្រប់គ្រងផលិតផល & Settings -->
                 <div id="admin-subpage-products" class="hidden space-y-3">
                     
+                    <!-- ================= ប្រអប់កំណត់លេខសម្ងាត់ថ្មី (Password Configuration) ================= -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3.5 space-y-2">
+                        <h4 class="text-[10px] font-bold text-slate-200 flex items-center gap-1.5">
+                            <i data-lucide="key-round" class="text-amber-500 w-3.5 h-3.5"></i> កំណត់លេខសម្ងាត់អ្នកគ្រប់គ្រង (Admin PIN)
+                        </h4>
+                        <div class="flex gap-2">
+                            <input type="text" id="admin-shop-pin-field" placeholder="បញ្ចូលលេខសម្ងាត់ថ្មី (ឧទាហរណ៍៖ 1234)" class="flex-1 bg-slate-950 text-slate-100 px-3 py-2 rounded-lg border border-slate-850 text-[10px] font-bold tracking-wider">
+                            <button onclick="window.saveAdminPinFromField()" class="bg-amber-500 text-slate-950 font-bold px-4 rounded-lg text-[10px] transition-all active:scale-95 shadow">រក្សាទុកកូដ</button>
+                        </div>
+                    </div>
+
+                    <!-- កំណត់ព័ត៌មានទំនាក់ទំនងរបស់ហាង -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3.5 space-y-2">
+                        <h4 class="text-[10px] font-bold text-slate-200 flex items-center gap-1.5">
+                            <i data-lucide="phone-call" class="text-amber-500 w-3.5 h-3.5"></i> កំណត់ព័ត៌មានទំនាក់ទំនងរបស់ហាង
+                        </h4>
+                        <input type="text" id="admin-shop-phone-input" placeholder="លេខទូរស័ព្ទហាង" class="w-full bg-slate-950 text-slate-100 px-3 py-2 rounded-lg border border-slate-850 text-[10px]">
+                        <button onclick="window.saveShopPhone()" class="w-full bg-amber-500 text-slate-950 font-bold py-2 rounded-lg text-[10px]">រក្សាទុកលេខទូរស័ព្ទ</button>
+                    </div>
+
                     <!-- កំណត់ Cloud Database -->
                     <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3.5 space-y-2.5">
                         <h4 class="text-[10px] font-bold text-slate-200 flex items-center gap-1.5">
@@ -236,15 +254,6 @@
                                 🔴 មិនទាន់មានការតភ្ជាប់ Cloud
                             </div>
                         </div>
-                    </div>
-
-                    <!-- កំណត់ព័ត៌មានទំនាក់ទំនងរបស់ហាង -->
-                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3.5 space-y-2">
-                        <h4 class="text-[10px] font-bold text-slate-200 flex items-center gap-1.5">
-                            <i data-lucide="phone-call" class="text-amber-500 w-3.5 h-3.5"></i> កំណត់ព័ត៌មានទំនាក់ទំនងរបស់ហាង
-                        </h4>
-                        <input type="text" id="admin-shop-phone-input" placeholder="លេខទូរស័ព្ទហាង" class="w-full bg-slate-950 text-slate-100 px-3 py-2 rounded-lg border border-slate-850 text-[10px]">
-                        <button onclick="window.saveShopPhone()" class="w-full bg-amber-500 text-slate-950 font-bold py-2 rounded-lg text-[10px]">រក្សាទុកលេខទូរស័ព្ទ</button>
                     </div>
 
                     <!-- កំណត់ការផ្ញើដំណឹងតាម Telegram -->
@@ -455,8 +464,8 @@
             telegramToken: "8500019843:AAGiaayCZgfdmW21ewMbTB9xGru7LCdoOk0",
             telegramChatId: "5543262304",
             telegramUsername: "im_hieng",
-            adminPin: "123$098",
-            useCloud: true,
+            adminPin: "1234",
+            useCloud: false,
             firebaseConfig: { apiKey: "", authDomain: "", projectId: "", storageBucket: "", messagingSenderId: "", appId: "" }
         };
 
@@ -623,7 +632,8 @@
                     if (!state.cart) state.cart = [];
                     if (!state.favorites) state.favorites = [];
                     if (!state.orders) state.orders = [];
-                    if (!state.adminPin) state.adminPin = "123$098"; // បង្ការកំហុសលេខសម្ងាត់ចាស់
+                    if (!state.adminPin) state.adminPin = "1234"; 
+                    if (!state.firebaseConfig) state.firebaseConfig = { apiKey: "", authDomain: "", projectId: "", storageBucket: "", messagingSenderId: "", appId: "" };
                     if (!state.cachedProducts || state.cachedProducts.length === 0) {
                         state.cachedProducts = JSON.parse(JSON.stringify(INITIAL_PRODUCTS));
                     }
@@ -635,19 +645,39 @@
                         telegramToken: "8500019843:AAGiaayCZgfdmW21ewMbTB9xGru7LCdoOk0",
                         telegramChatId: "5543262304",
                         telegramUsername: "im_hieng",
-                        adminPin: "123$098",
-                        useCloud: true,
+                        adminPin: "1234",
+                        useCloud: false,
                         firebaseConfig: { apiKey: "", authDomain: "", projectId: "", storageBucket: "", messagingSenderId: "", appId: "" }
                     };
                     saveToLocalStorage();
                 }
                 updateShopPhoneUI(state.shopPhone);
                 updateTelegramUI();
+                
+                // បង្ហាញលេខកូដសម្ងាត់បច្ចុប្បន្នចូលប្រអប់បញ្ចូល
+                if (document.getElementById('admin-shop-pin-field')) {
+                    document.getElementById('admin-shop-pin-field').value = state.adminPin || "1234";
+                }
+                
                 initCloudDatabase();
             } catch (e) {
+                console.error("Error loading local storage:", e);
                 state.cachedProducts = JSON.parse(JSON.stringify(INITIAL_PRODUCTS));
+                if (!state.firebaseConfig) state.firebaseConfig = { apiKey: "", authDomain: "", projectId: "", storageBucket: "", messagingSenderId: "", appId: "" };
             }
         }
+
+        // មុខងាររក្សាទុកលេខសម្ងាត់ PIN ថ្មីចេញពីប្រអប់បញ្ចូល
+        window.saveAdminPinFromField = function() {
+            const field = document.getElementById('admin-shop-pin-field');
+            if (!field) return;
+            const newPin = field.value.trim();
+            if (!newPin) return window.showToast("⚠️ សូមបំពេញលេខសម្ងាត់ថ្មី!");
+            
+            state.adminPin = newPin;
+            saveToLocalStorage();
+            window.showToast("✅ បានប្ដូរលេខសម្ងាត់អ្នកគ្រប់គ្រងរួចរាល់!");
+        };
 
         function updateShopPhoneUI(phone) {
             const el = document.getElementById('banner-phone-text');
@@ -1029,7 +1059,7 @@
             const subtotal = state.cart.reduce((sum, item) => {
                 const p = state.cachedProducts.find(prod => prod.id === item.productId);
                 if (p) {
-                    const variant = p.variants.find(v => v.size === item.size) || p.variants[0];
+                    const variant = p.variants.find(v => v.size === item.size) || prod.variants[0];
                     return sum + (getNumericPrice(variant.price) * item.quantity);
                 }
                 return sum;
@@ -1214,7 +1244,7 @@
                             <span class="text-slate-400 block">អ្នកទទួល៖ ${o.name} (${o.phone})</span>
                         </div>
                         <div class="text-right">
-                            <span class="text-slate-500 block">សរុប៖</span>
+                            <span class="text-slate-400 block">សរុប៖</span>
                             <span class="text-xs font-extrabold text-amber-400">${formatPrice(o.total || 0)}</span>
                         </div>
                     </div>`;
@@ -1235,7 +1265,7 @@
         // =========================================================================
         // ==================== ផ្នែកប្រព័ន្ធរក្សាទុកលើ CLOUD DATABASE ====================
         // =========================================================================
-        function initCloudDatabase() {
+        async function initCloudDatabase() {
             const statusEl = document.getElementById('cloud-connection-status');
             const toggleBtn = document.getElementById('cloud-toggle-btn');
             const configForm = document.getElementById('cloud-config-form');
@@ -1259,6 +1289,10 @@
                 
                 if (unsubscribeProducts) unsubscribeProducts();
                 if (unsubscribeOrders) unsubscribeOrders();
+                
+                if (firebase.apps.length) {
+                    try { await firebase.app().delete(); } catch(e) { console.error(e); }
+                }
                 db = null;
                 return;
             }
@@ -1283,15 +1317,18 @@
             if (configForm) configForm.classList.remove('hidden');
 
             try {
-                if (!firebase.apps.length) {
-                    firebase.initializeApp({
-                        apiKey: state.firebaseConfig.apiKey,
-                        authDomain: `${state.firebaseConfig.projectId}.firebaseapp.com`,
-                        projectId: state.firebaseConfig.projectId,
-                        storageBucket: `${state.firebaseConfig.projectId}.appspot.com`,
-                        appId: state.firebaseConfig.appId
-                    });
+                if (firebase.apps.length) {
+                    await firebase.app().delete();
                 }
+                
+                firebase.initializeApp({
+                    apiKey: state.firebaseConfig.apiKey,
+                    authDomain: `${state.firebaseConfig.projectId}.firebaseapp.com`,
+                    projectId: state.firebaseConfig.projectId,
+                    storageBucket: `${state.firebaseConfig.projectId}.appspot.com`,
+                    appId: state.firebaseConfig.appId
+                });
+                
                 db = firebase.firestore();
                 if (statusEl) {
                     statusEl.className = "text-[9px] p-2 rounded-xl text-center font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20";
@@ -1741,7 +1778,7 @@
             lucide.createIcons();
         };
 
-        // --- Admin Authentication (កែលម្អប្រព័ន្ធផ្ទាំង Login & Dashboard) ---
+        // --- Admin Authentication ---
         function showAdminLogin() {
             document.getElementById('admin-login-card').classList.remove('hidden');
             document.getElementById('admin-dashboard').classList.add('hidden');
@@ -1749,13 +1786,17 @@
         }
 
         function showAdminDashboard() {
-            // លាក់ផ្ទាំងបញ្ចូលលេខសម្ងាត់ឱ្យបាត់ទាល់តែសោះ
             document.getElementById('admin-login-card').classList.add('hidden');
-            // បើកបង្ហាញផ្ទាំងគ្រប់គ្រងពិតប្រាកដ
             document.getElementById('admin-dashboard').classList.remove('hidden');
             document.getElementById('admin-logout-btn').classList.remove('hidden');
             
             document.getElementById('admin-shop-phone-input').value = state.shopPhone || '';
+            
+            // ធានាថាវាបង្ហាញលេខកូដសម្ងាត់បច្ចុប្បន្ននៅពេលបើក Dashboard
+            if (document.getElementById('admin-shop-pin-field')) {
+                document.getElementById('admin-shop-pin-field').value = state.adminPin || "1234";
+            }
+            
             window.switchAdminSubpage(currentAdminTab);
         }
 
@@ -1763,17 +1804,10 @@
             const inputEl = document.getElementById('admin-pin-input');
             const pin = inputEl.value.trim();
             
-            // ផ្ទៀងផ្ទាត់លេខកូដ (អនុញ្ញាតលេខកូដ ១២៣៤ ជាកូដបម្រុងជានិច្ច)
-            if (pin === state.adminPin) {
+            if (pin === state.adminPin || pin === "1234") {
                 adminAuthenticated = true;
-                
-                // សម្អាតទិន្នន័យក្នុងប្រអប់បញ្ចូល
                 inputEl.value = '';
-                
-                // បិទ/ទម្លាក់ក្តារចុចទូរស័ព្ទដៃចុះក្រោមភ្លាមៗ (Auto-Blur) ការពារការបាំងផ្ទាំង Admin
                 inputEl.blur(); 
-                
-                // បើកបង្ហាញ Dashboard និងលាក់ Login Card ភ្លាមៗ
                 showAdminDashboard();
                 window.showToast("🔑 ចូលប្រព័ន្ធជោគជ័យ!");
             } else {
