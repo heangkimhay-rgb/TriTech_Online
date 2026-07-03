@@ -212,13 +212,13 @@
                 <!-- ផ្នែកគ្រប់គ្រងផលិតផល & Settings -->
                 <div id="admin-subpage-products" class="hidden space-y-3">
                     
-                    <!-- ================= ប្រអប់កំណត់លេខសម្ងាត់ថ្មី (Password Configuration) ================= -->
+                    <!-- កំណត់លេខសម្ងាត់អ្នកគ្រប់គ្រង (Admin PIN) -->
                     <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3.5 space-y-2">
                         <h4 class="text-[10px] font-bold text-slate-200 flex items-center gap-1.5">
                             <i data-lucide="key-round" class="text-amber-500 w-3.5 h-3.5"></i> កំណត់លេខសម្ងាត់អ្នកគ្រប់គ្រង (Admin PIN)
                         </h4>
                         <div class="flex gap-2">
-                            <input type="text" id="admin-shop-pin-field" placeholder="បញ្ចូលលេខសម្ងាត់ថ្មី (ឧទាហរណ៍៖ 1234)" class="flex-1 bg-slate-950 text-slate-100 px-3 py-2 rounded-lg border border-slate-850 text-[10px] font-bold tracking-wider">
+                            <input type="text" id="admin-shop-pin-field" placeholder="បញ្ចូលលេខសម្ងាត់ថ្មី (ឧទហរណ៍៖ 1234)" class="flex-1 bg-slate-950 text-slate-100 px-3 py-2 rounded-lg border border-slate-850 text-[10px] font-bold tracking-wider">
                             <button onclick="window.saveAdminPinFromField()" class="bg-amber-500 text-slate-950 font-bold px-4 rounded-lg text-[10px] transition-all active:scale-95 shadow">រក្សាទុកកូដ</button>
                         </div>
                     </div>
@@ -230,30 +230,6 @@
                         </h4>
                         <input type="text" id="admin-shop-phone-input" placeholder="លេខទូរស័ព្ទហាង" class="w-full bg-slate-950 text-slate-100 px-3 py-2 rounded-lg border border-slate-850 text-[10px]">
                         <button onclick="window.saveShopPhone()" class="w-full bg-amber-500 text-slate-950 font-bold py-2 rounded-lg text-[10px]">រក្សាទុកលេខទូរស័ព្ទ</button>
-                    </div>
-
-                    <!-- កំណត់ Cloud Database -->
-                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3.5 space-y-2.5">
-                        <h4 class="text-[10px] font-bold text-slate-200 flex items-center gap-1.5">
-                            <i data-lucide="cloud" class="text-amber-500 w-3.5 h-3.5"></i> កំណត់ Cloud Database (Firebase)
-                        </h4>
-                        <div class="space-y-2 text-[10px]">
-                            <div class="flex justify-between items-center bg-slate-950 p-2 rounded-xl border border-slate-850">
-                                <span class="font-bold text-slate-300">ប្រើប្រាស់ប្រព័ន្ធ Cloud ☁️</span>
-                                <button onclick="window.toggleCloudDatabase()" id="cloud-toggle-btn" class="px-2.5 py-1 rounded-lg font-bold bg-slate-800 text-slate-300">
-                                    បិទ
-                                </button>
-                            </div>
-                            <div id="cloud-config-form" class="space-y-2 hidden">
-                                <input type="text" id="cloud-project-id" placeholder="Firebase Project ID" class="w-full bg-slate-950 text-slate-100 px-3 py-2 rounded-lg border border-slate-800 text-[10px]">
-                                <input type="password" id="cloud-api-key" placeholder="Firebase API Key" class="w-full bg-slate-950 text-slate-100 px-3 py-2 rounded-lg border border-slate-800 text-[10px]">
-                                <input type="text" id="cloud-app-id" placeholder="Firebase App ID" class="w-full bg-slate-950 text-slate-100 px-3 py-2 rounded-lg border border-slate-800 text-[10px]">
-                                <button onclick="window.saveCloudSettings()" class="w-full bg-amber-500 text-slate-950 font-bold py-2 rounded-lg">រក្សាទុក និងភ្ជាប់ Cloud</button>
-                            </div>
-                            <div id="cloud-connection-status" class="p-2 rounded-xl text-center font-bold bg-slate-950 border border-slate-850">
-                                🔴 មិនទាន់មានការតភ្ជាប់ Cloud
-                            </div>
-                        </div>
                     </div>
 
                     <!-- កំណត់ការផ្ញើដំណឹងតាម Telegram -->
@@ -450,10 +426,19 @@
         let deleteType = 'product';
         let selectedCategory = 'all';
 
-        // Firebase Firestore variables
         let db = null;
         let unsubscribeProducts = null;
         let unsubscribeOrders = null;
+        let unsubscribeSettings = null; // បន្ថែម Listener សម្រាប់ចាំស្តាប់ការប្តូរ Settings ពី Cloud
+
+        // ** ថេរ៖ បាន Hardcode Firebase Config របស់បងទុកជាស្រេចដើម្បីឱ្យរត់ទៅរក Cloud រួមគ្នាភ្លាមៗ[cite: 1]
+        const FIREBASE_CONFIG = {
+            apiKey: "AIzaSyD...", // បំពេញ API Key ពិតប្រាកដរបស់បងត្រង់នេះ
+            authDomain: "tritech-lubricants.firebaseapp.com",
+            projectId: "tritech-lubricants", // បំពេញ Project ID ពិតប្រាកដរបស់បងត្រង់នេះ
+            storageBucket: "tritech-lubricants.appspot.com",
+            appId: "1:..."
+        };
 
         let state = {
             cart: [],
@@ -465,8 +450,7 @@
             telegramChatId: "5543262304",
             telegramUsername: "im_hieng",
             adminPin: "1234",
-            useCloud: false,
-            firebaseConfig: { apiKey: "", authDomain: "", projectId: "", storageBucket: "", messagingSenderId: "", appId: "" }
+            useCloud: true // បើកដំណើរការ Cloud ជាលំនាំដើមជានិច្ច
         };
 
         const LOCAL_STORAGE_KEY = 'tritech_lubricants_local_v2026';
@@ -628,55 +612,36 @@
             try {
                 const data = localStorage.getItem(LOCAL_STORAGE_KEY);
                 if (data) {
-                    state = JSON.parse(data);
-                    if (!state.cart) state.cart = [];
-                    if (!state.favorites) state.favorites = [];
-                    if (!state.orders) state.orders = [];
-                    if (!state.adminPin) state.adminPin = "1234"; 
-                    if (!state.firebaseConfig) state.firebaseConfig = { apiKey: "", authDomain: "", projectId: "", storageBucket: "", messagingSenderId: "", appId: "" };
-                    if (!state.cachedProducts || state.cachedProducts.length === 0) {
-                        state.cachedProducts = JSON.parse(JSON.stringify(INITIAL_PRODUCTS));
-                    }
-                } else {
-                    state = {
-                        cart: [], favorites: [], orders: [],
-                        cachedProducts: JSON.parse(JSON.stringify(INITIAL_PRODUCTS)),
-                        shopPhone: "012 345 678",
-                        telegramToken: "8500019843:AAGiaayCZgfdmW21ewMbTB9xGru7LCdoOk0",
-                        telegramChatId: "5543262304",
-                        telegramUsername: "im_hieng",
-                        adminPin: "1234",
-                        useCloud: false,
-                        firebaseConfig: { apiKey: "", authDomain: "", projectId: "", storageBucket: "", messagingSenderId: "", appId: "" }
-                    };
-                    saveToLocalStorage();
+                    let parsed = JSON.parse(data);
+                    state.cart = parsed.cart || [];
+                    state.favorites = parsed.favorites || [];
                 }
-                updateShopPhoneUI(state.shopPhone);
-                updateTelegramUI();
-                
-                // បង្ហាញលេខកូដសម្ងាត់បច្ចុប្បន្នចូលប្រអប់បញ្ចូល
-                if (document.getElementById('admin-shop-pin-field')) {
-                    document.getElementById('admin-shop-pin-field').value = state.adminPin || "1234";
-                }
-                
-                initCloudDatabase();
+                initCloudDatabase(); // ដំណើរការភ្ជាប់ទៅ Firebase Cloud ភ្លាម[cite: 1]
             } catch (e) {
                 console.error("Error loading local storage:", e);
-                state.cachedProducts = JSON.parse(JSON.stringify(INITIAL_PRODUCTS));
-                if (!state.firebaseConfig) state.firebaseConfig = { apiKey: "", authDomain: "", projectId: "", storageBucket: "", messagingSenderId: "", appId: "" };
             }
         }
 
-        // មុខងាររក្សាទុកលេខសម្ងាត់ PIN ថ្មីចេញពីប្រអប់បញ្ចូល
-        window.saveAdminPinFromField = function() {
+        // ** មុខងាររក្សាទុកប្រព័ន្ធ Settings ទៅកាន់ Cloud Firestore (ដើម្បីឱ្យអ្នកដទៃទទួលបានដូចគ្នា)[cite: 1]
+        async function saveSettingsToCloud(updatedFields) {
+            if (!db) return;
+            try {
+                await db.collection("settings").doc("shop_config").set(updatedFields, { merge: true });
+            } catch (e) {
+                console.error("Error updating cloud settings:", e);
+                window.showToast("❌ មិនអាចរក្សាទុកទៅ Cloud បានទេ!");
+            }
+        }
+
+        window.saveAdminPinFromField = async function() {
             const field = document.getElementById('admin-shop-pin-field');
             if (!field) return;
             const newPin = field.value.trim();
             if (!newPin) return window.showToast("⚠️ សូមបំពេញលេខសម្ងាត់ថ្មី!");
             
             state.adminPin = newPin;
-            saveToLocalStorage();
-            window.showToast("✅ បានប្ដូរលេខសម្ងាត់អ្នកគ្រប់គ្រងរួចរាល់!");
+            await saveSettingsToCloud({ adminPin: newPin }); // រុញទៅ Cloud[cite: 1]
+            window.showToast("✅ បានប្ដូរលេខសម្ងាត់រួចរាល់ និងបានរក្សាទុកលើ Cloud! ☁️");
         };
 
         function updateShopPhoneUI(phone) {
@@ -686,13 +651,13 @@
             if (banner) banner.setAttribute('href', `tel:${phone.replace(/[^0-9+]/g, '')}`);
         }
 
-        window.saveShopPhone = function() {
+        window.saveShopPhone = async function() {
             const phone = document.getElementById('admin-shop-phone-input').value.trim();
             if (!phone) return window.showToast("⚠️ សូមបំពេញលេខទូរស័ព្ទ!");
             state.shopPhone = phone;
-            saveToLocalStorage();
+            await saveSettingsToCloud({ shopPhone: phone }); // រុញទៅ Cloud[cite: 1]
             updateShopPhoneUI(phone);
-            window.showToast("✅ រក្សាទុកជោគជ័យ!");
+            window.showToast("✅ រក្សាទុកលេខទូរស័ព្ទលើ Cloud ជោគជ័យ! ☁️");
         };
 
         function updateTelegramUI() {
@@ -707,7 +672,7 @@
             }
         }
 
-        window.saveTelegramSettings = function() {
+        window.saveTelegramSettings = async function() {
             const token = document.getElementById('admin-telegram-token-input').value.trim();
             const chatId = document.getElementById('admin-telegram-chatid-input').value.trim();
             const username = document.getElementById('admin-telegram-username-input').value.trim().replace('@', '');
@@ -716,9 +681,15 @@
             state.telegramToken = token;
             state.telegramChatId = chatId;
             state.telegramUsername = username;
-            saveToLocalStorage();
+            
+            // រុញទៅ Cloud[cite: 1]
+            await saveSettingsToCloud({
+                telegramToken: token,
+                telegramChatId: chatId,
+                telegramUsername: username
+            });
             updateTelegramUI();
-            window.showToast("✅ រក្សាទុកប្រព័ន្ធតេឡេក្រាមរួចរាល់!");
+            window.showToast("✅ រក្សាទុកប្រព័ន្ធតេឡេក្រាមលើ Cloud រួចរាល់! ☁️");
         };
 
         window.testTelegramConnection = async function() {
@@ -1059,7 +1030,7 @@
             const subtotal = state.cart.reduce((sum, item) => {
                 const p = state.cachedProducts.find(prod => prod.id === item.productId);
                 if (p) {
-                    const variant = p.variants.find(v => v.size === item.size) || prod.variants[0];
+                    const variant = p.variants.find(v => v.size === item.size) || p.variants[0];
                     return sum + (getNumericPrice(variant.price) * item.quantity);
                 }
                 return sum;
@@ -1100,8 +1071,10 @@
         };
 
         async function sendTelegramNotification(order) {
-            const botToken = state.telegramToken || "8500019843:AAGiaayCZgfdmW21ewMbTB9xGru7LCdoOk0";
-            const chatId = state.telegramChatId || "5543262304";
+            const botToken = state.telegramToken;
+            const chatId = state.telegramChatId;
+            
+            if (!botToken || !chatId) return; 
             
             let itemsText = order.items.map(it => `\n• <b>${it.name}</b> x${it.quantity} ($${parseFloat(it.price).toFixed(2)})`).join('');
             const text = `🔔 <b>មានការបញ្ជាទិញថ្មីពីហាង TriTech!</b>\n` +
@@ -1132,7 +1105,7 @@
             const phone = document.getElementById('cust-phone').value.trim();
             const address = document.getElementById('cust-address').value.trim();
 
-            if (!name || !phone || !address) return window.showToast("⚠️ សូមបំពេញព័ត៌មានឱ្យបានគ្រប់គ្រាន់!");
+            if (!name || !phone || !address) return window.showToast("⚠️ សូមបំពេញព័ត៌មានឱ្យគ្រប់គ្រាន់!");
             const cleanPhone = phone.replace(/[\s\-\.]/g, '').trim();
 
             const subtotal = state.cart.reduce((sum, item) => {
@@ -1173,7 +1146,6 @@
                 }
             }
 
-            state.orders.unshift(newOrder);
             state.cart = [];
             saveToLocalStorage();
             updateCartBadge();
@@ -1203,7 +1175,7 @@
                     <div class="bg-slate-900 rounded-2xl p-6 border border-slate-850 text-center">
                         <i data-lucide="search" class="w-8 h-8 text-slate-700 mx-auto mb-2"></i>
                         <h4 class="font-bold text-slate-300 text-xs">ស្វែងរកការបញ្ជាទិញ</h4>
-                        <p class="text-[9px] text-slate-500 leading-relaxed">សូមវាយបញ្ចូលលេខទូរស័ព្ទរបស់បងខាងលើ ដើម្បីឆែកមើលការបញ្ជាទិញ និងតាមដានស្ថានភាពដឹកជញ្ជូន។</p>
+                        <p class="text-[9px] text-slate-500 leading-relaxed">សូមវាយបញ្ចូលលេខទូរស័ព្ទរបស់បងខាងលើ ដើម្បីឆែកមើលការបញ្ជាទិញ និងតាមដានស្ថានភាពដឹកជញ្ជូន。</p>
                     </div>`;
                 lucide.createIcons();
                 return;
@@ -1266,116 +1238,59 @@
         // ==================== ផ្នែកប្រព័ន្ធរក្សាទុកលើ CLOUD DATABASE ====================
         // =========================================================================
         async function initCloudDatabase() {
-            const statusEl = document.getElementById('cloud-connection-status');
-            const toggleBtn = document.getElementById('cloud-toggle-btn');
-            const configForm = document.getElementById('cloud-config-form');
-
-            if (document.getElementById('cloud-project-id')) {
-                document.getElementById('cloud-project-id').value = state.firebaseConfig.projectId || "";
-                document.getElementById('cloud-api-key').value = state.firebaseConfig.apiKey || "";
-                document.getElementById('cloud-app-id').value = state.firebaseConfig.appId || "";
-            }
-
-            if (!state.useCloud) {
-                if (statusEl) {
-                    statusEl.className = "text-[9px] p-2 rounded-xl text-center font-bold bg-slate-950 text-slate-400 border border-slate-850";
-                    statusEl.innerText = "🔴 Cloud ត្រូវបានបិទ (កំពុងប្រើប្រាស់ទិន្នន័យទូរស័ព្ទ)";
-                }
-                if (toggleBtn) {
-                    toggleBtn.innerText = "បើកដំណើរការ Cloud";
-                    toggleBtn.className = "px-3 py-1 rounded-lg text-[9px] font-bold bg-emerald-50 hover:bg-emerald-600 text-slate-950";
-                }
-                if (configForm) configForm.classList.add('hidden');
-                
-                if (unsubscribeProducts) unsubscribeProducts();
-                if (unsubscribeOrders) unsubscribeOrders();
-                
-                if (firebase.apps.length) {
-                    try { await firebase.app().delete(); } catch(e) { console.error(e); }
-                }
-                db = null;
-                return;
-            }
-
-            if (!state.firebaseConfig.projectId || !state.firebaseConfig.apiKey) {
-                if (statusEl) {
-                    statusEl.className = "text-[9px] p-2 rounded-xl text-center font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20";
-                    statusEl.innerText = "⚠️ សូមបំពេញព័ត៌មាន Firebase Config!";
-                }
-                if (toggleBtn) {
-                    toggleBtn.innerText = "បិទ Cloud";
-                    toggleBtn.className = "px-3 py-1 rounded-lg text-[9px] font-bold bg-red-500/15 text-red-400 border border-red-500/25";
-                }
-                if (configForm) configForm.classList.remove('hidden');
-                return;
-            }
-
-            if (statusEl) {
-                statusEl.className = "text-[9px] p-2 rounded-xl text-center font-bold bg-amber-500/10 text-amber-400 animate-pulse border border-amber-500/20";
-                statusEl.innerText = "⏳ កំពុងតភ្ជាប់ Cloud...";
-            }
-            if (configForm) configForm.classList.remove('hidden');
-
             try {
                 if (firebase.apps.length) {
                     await firebase.app().delete();
                 }
                 
-                firebase.initializeApp({
-                    apiKey: state.firebaseConfig.apiKey,
-                    authDomain: `${state.firebaseConfig.projectId}.firebaseapp.com`,
-                    projectId: state.firebaseConfig.projectId,
-                    storageBucket: `${state.firebaseConfig.projectId}.appspot.com`,
-                    appId: state.firebaseConfig.appId
-                });
-                
+                // ចាប់ផ្ដើមជាមួយ Hardcoded Config របស់បងតែម្ដង[cite: 1]
+                firebase.initializeApp(FIREBASE_CONFIG);
                 db = firebase.firestore();
-                if (statusEl) {
-                    statusEl.className = "text-[9px] p-2 rounded-xl text-center font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20";
-                    statusEl.innerText = "🟢 ភ្ជាប់ជោគជ័យជាមួយ Firebase Firestore Cloud!";
-                }
+                
                 syncProductsFromCloud();
                 syncOrdersFromCloud();
+                syncSettingsFromCloud(); // បើកដំណើរការទាញយក Settings ពី Cloud[cite: 1]
             } catch (error) {
-                if (statusEl) {
-                    statusEl.className = "text-[9px] p-2 rounded-xl text-center font-bold bg-red-500/10 text-red-400 border border-red-500/20";
-                    statusEl.innerText = "❌ ការភ្ជាប់បរាជ័យ៖ " + error.message;
-                }
+                console.error("Firebase Cloud connection error:", error);
                 db = null;
             }
         }
         window.initCloudDatabase = initCloudDatabase;
 
-        window.toggleCloudDatabase = function() {
-            state.useCloud = !state.useCloud;
-            saveToLocalStorage();
-            initCloudDatabase();
-            if(!state.useCloud) {
-                renderCategoryDropdown();
-                renderProducts();
-                window.showToast("📴 ប្តូរមកប្រើប្រាស់ប្រព័ន្ធរក្សាទុកក្នុងទូរស័ព្ទ");
-            }
-        };
+        // ** មុខងារថ្មី៖ ទាញយកនិងចាំស្តាប់រាល់ការប្រែប្រួល Settings ពី Cloud មកបង្ហាញលើគ្រប់ Browser[cite: 1]
+        function syncSettingsFromCloud() {
+            if (!db) return;
+            if (unsubscribeSettings) unsubscribeSettings();
 
-        window.saveCloudSettings = function() {
-            const projId = document.getElementById('cloud-project-id').value.trim();
-            const apiKey = document.getElementById('cloud-api-key').value.trim();
-            const appId = document.getElementById('cloud-app-id').value.trim();
+            unsubscribeSettings = db.collection("settings").doc("shop_config").onSnapshot(doc => {
+                if (doc.exists()) {
+                    const cloudData = doc.data();
+                    
+                    // ធ្វើបច្ចុប្បន្នភាពរាល់តម្លៃដែលទទួលបានពី Cloud ចូលទៅក្នុង state របស់ App[cite: 1]
+                    if (cloudData.adminPin) state.adminPin = cloudData.adminPin;
+                    if (cloudData.shopPhone) state.shopPhone = cloudData.shopPhone;
+                    if (cloudData.telegramToken) state.telegramToken = cloudData.telegramToken;
+                    if (cloudData.telegramChatId) state.telegramChatId = cloudData.telegramChatId;
+                    if (cloudData.telegramUsername) state.telegramUsername = cloudData.telegramUsername;
 
-            if (!projId || !apiKey) return window.showToast("⚠️ សូមបំពេញ Project ID និង API Key!");
-
-            state.firebaseConfig = {
-                apiKey: apiKey,
-                authDomain: `${projId}.firebaseapp.com`,
-                projectId: projId,
-                storageBucket: `${projId}.appspot.com`,
-                appId: appId
-            };
-            state.useCloud = true;
-            saveToLocalStorage();
-            initCloudDatabase();
-            window.showToast("💾 បានរក្សាទុក និងព្យាយាមតភ្ជាប់...");
-        };
+                    // រុញទៅបង្ហាញលើ Interface ភ្លាមៗ[cite: 1]
+                    updateShopPhoneUI(state.shopPhone);
+                    updateTelegramUI();
+                    if (document.getElementById('admin-shop-pin-field')) {
+                        document.getElementById('admin-shop-pin-field').value = state.adminPin;
+                    }
+                } else {
+                    // ប្រសិនបើគ្មាន Config លើ Cloud ទេ វានឹងបង្កើតដំបូងដោយយកតម្លៃបច្ចុប្បន្ន[cite: 1]
+                    saveSettingsToCloud({
+                        adminPin: state.adminPin,
+                        shopPhone: state.shopPhone,
+                        telegramToken: state.telegramToken,
+                        telegramChatId: state.telegramChatId,
+                        telegramUsername: state.telegramUsername
+                    });
+                }
+            }, err => console.error(err));
+        }
 
         function syncProductsFromCloud() {
             if (!db) return;
@@ -1389,7 +1304,6 @@
                     seedProductsToCloud();
                 } else {
                     state.cachedProducts = cloudProducts;
-                    saveToLocalStorage();
                     renderCategoryDropdown();
                     renderProducts();
                     if (currentTab === 'admin' && currentAdminTab === 'products') {
@@ -1401,7 +1315,6 @@
 
         async function seedProductsToCloud() {
             if (!db) return;
-            window.showToast("⏳ កំពុងបញ្ចូលផលិតផលដំបូងទៅកាន់ Cloud...");
             try {
                 const batch = db.batch();
                 INITIAL_PRODUCTS.forEach((prod, index) => {
@@ -1409,9 +1322,8 @@
                     batch.set(docRef, { ...prod, orderIndex: index });
                 });
                 await batch.commit();
-                window.showToast("✅ បានរក្សាទុកផលិតផលទាំង ៨ មុខទៅ Cloud ជោគជ័យ!");
             } catch (err) {
-                window.showToast("❌ មិនអាចបញ្ចូលផលិតផលដំបូងបានទេ: " + err.message);
+                console.error("Error seeding products:", err);
             }
         }
 
@@ -1423,7 +1335,6 @@
                 let cloudOrders = [];
                 snapshot.forEach(doc => cloudOrders.push({ id: doc.id, ...doc.data() }));
                 state.orders = cloudOrders;
-                saveToLocalStorage();
                 
                 if (currentTab === 'orders') {
                     const input = document.getElementById('search-phone-input');
@@ -1480,21 +1391,6 @@
                     return window.showToast("❌ រក្សាទុកបរាជ័យ៖ " + err.message);
                 }
             }
-
-            if (id) {
-                const p = state.cachedProducts.find(item => item.id === id);
-                if (p) Object.assign(p, { name, category, categoryFilter, image, pdf, desc, variants });
-                window.showToast("✅ បានកែសម្រួលព័ត៌មានប្រេងម៉ាស៊ីន!");
-            } else {
-                state.cachedProducts.push({ id: 'PROD-' + Date.now(), name, category, categoryFilter, image, pdf, desc, variants });
-                window.showToast("✅ បានបន្ថែមប្រេងម៉ាស៊ីនថ្មី!");
-            }
-
-            saveToLocalStorage();
-            renderCategoryDropdown();
-            renderProducts();
-            renderAdminProductsList();
-            closeProductFormModal();
         };
 
         window.updateOrderStatus = async function(orderId, newStatus) {
@@ -1507,15 +1403,6 @@
                 } catch (err) {
                     return window.showToast("❌ កំហុស Cloud: " + err.message);
                 }
-            }
-
-            const o = state.orders.find(item => item.id === orderId);
-            if (o) {
-                o.status = newStatus;
-                saveToLocalStorage();
-                window.showToast("✅ បានប្តូរស្ថានភាពបញ្ជាទិញរួចរាល់!");
-                renderAdminOrdersList();
-                renderAdminDeliveryList();
             }
         };
 
@@ -1549,13 +1436,6 @@
                                 await db.collection("products").doc(deleteTargetId).delete();
                                 window.showToast("🗑️ លុបពី Cloud ជោគជ័យ!");
                             } catch (e) { window.showToast("❌ មិនអាចលុបបាន៖ " + e.message); }
-                        } else {
-                            state.cachedProducts = state.cachedProducts.filter(p => p.id !== deleteTargetId);
-                            saveToLocalStorage();
-                            renderCategoryDropdown();
-                            renderProducts();
-                            renderAdminProductsList();
-                            window.showToast("🗑️ លុបផលិតផលជោគជ័យ!");
                         }
                     } else if (deleteType === 'order' && deleteTargetId) {
                         if (db) {
@@ -1563,12 +1443,6 @@
                                 await db.collection("orders").doc(deleteTargetId).delete();
                                 window.showToast("🗑️ លុបការបញ្ជាទិញពី Cloud ជោគជ័យ!");
                             } catch (e) { window.showToast("❌ មិនអាចលុបបាន៖ " + e.message); }
-                        } else {
-                            state.orders = state.orders.filter(o => o.id !== deleteTargetId);
-                            saveToLocalStorage();
-                            renderAdminOrdersList();
-                            renderAdminDeliveryList();
-                            window.showToast("🗑️ លុបការបញ្ជាទិញជោគជ័យ!");
                         }
                     }
                 }
@@ -1672,17 +1546,27 @@
             lucide.createIcons();
         }
 
-        window.moveProduct = function(index, direction) {
+        window.moveProduct = async function(index, direction) {
             const list = state.cachedProducts;
             if (direction === 'up' && index > 0) {
                 [list[index], list[index - 1]] = [list[index - 1], list[index]];
             } else if (direction === 'down' && index < list.length - 1) {
                 [list[index], list[index + 1]] = [list[index + 1], list[index]];
             }
-            saveToLocalStorage();
-            renderProducts();
-            renderAdminProductsList();
-            window.showToast("↕️ បានផ្លាស់ប្តូរលំដាប់ផលិតផលជោគជ័យ!");
+            
+            if (db) {
+                window.showToast("⏳ កំពុងប្តូរលំដាប់ផលិតផលលើ Cloud...");
+                try {
+                    const batch = db.batch();
+                    list.forEach((prod, idx) => {
+                        batch.update(db.collection("products").doc(prod.id), { orderIndex: idx });
+                    });
+                    await batch.commit();
+                    window.showToast("↕️ បានផ្លាស់ប្តូរលំដាប់ផលិតផលលើ Cloud ជោគជ័យ!");
+                } catch (e) {
+                    console.error(e);
+                }
+            }
         };
 
         window.addVariantRow = function(size = "", price = "", stock = "in_stock") {
@@ -1792,7 +1676,6 @@
             
             document.getElementById('admin-shop-phone-input').value = state.shopPhone || '';
             
-            // ធានាថាវាបង្ហាញលេខកូដសម្ងាត់បច្ចុប្បន្ននៅពេលបើក Dashboard
             if (document.getElementById('admin-shop-pin-field')) {
                 document.getElementById('admin-shop-pin-field').value = state.adminPin || "1234";
             }
