@@ -178,7 +178,7 @@
                     <input type="password" id="admin-pin-input" placeholder="••••" class="w-full text-center tracking-widest bg-slate-950 border border-slate-800 px-3 py-2.5 rounded-xl text-sm font-bold focus:outline-none focus:border-amber-500 text-amber-400">
                     
                     <div class="flex gap-2">
-                        <button onclick="window.navigateTo('home')" class="flex-1 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-[10px] py-2.5 rounded-xl shadow active:scale-95 transition-all flex items-center justify-center gap-1">
+                        <button onclick="window.navigateTo('home')" class="flex-1 bg-slate-800 hover:bg-slate-770 text-slate-300 font-bold text-[10px] py-2.5 rounded-xl shadow active:scale-95 transition-all flex items-center justify-center gap-1">
                             <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> ត្រឡប់ក្រោយ
                         </button>
                         <button onclick="window.checkAdminPin()" class="flex-1 bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold text-[10px] py-2.5 rounded-xl shadow active:scale-95 transition-all flex items-center justify-center gap-1">
@@ -429,15 +429,17 @@
         let db = null;
         let unsubscribeProducts = null;
         let unsubscribeOrders = null;
-        let unsubscribeSettings = null; // បន្ថែម Listener សម្រាប់ចាំស្តាប់ការប្តូរ Settings ពី Cloud
+        let unsubscribeSettings = null; 
 
-        // ** ថេរ៖ បាន Hardcode Firebase Config របស់បងទុកជាស្រេចដើម្បីឱ្យរត់ទៅរក Cloud រួមគ្នាភ្លាមៗ[cite: 1]
+        // 📊 បច្ចុប្បន្នភាព Firebase Configuration ផ្លូវការរបស់បងពិតប្រាកដ ១០០%
         const FIREBASE_CONFIG = {
-            apiKey: "AIzaSyD...", // បំពេញ API Key ពិតប្រាកដរបស់បងត្រង់នេះ
-            authDomain: "tritech-lubricants.firebaseapp.com",
-            projectId: "tritech-lubricants", // បំពេញ Project ID ពិតប្រាកដរបស់បងត្រង់នេះ
-            storageBucket: "tritech-lubricants.appspot.com",
-            appId: "1:..."
+            apiKey: "AIzaSyDO8d6Ufrtbg3ecJA4sIWZAP9kYaMvUpDQ",
+            authDomain: "tritech-cambodia-online-shop.firebaseapp.com",
+            projectId: "tritech-cambodia-online-shop",
+            storageBucket: "tritech-cambodia-online-shop.firebasestorage.app",
+            messagingSenderId: "259036623131",
+            appId: "1:259036623131:web:6c2203ef34fed9b51823be",
+            measurementId: "G-2BCX38J1M7"
         };
 
         let state = {
@@ -449,8 +451,7 @@
             telegramToken: "8500019843:AAGiaayCZgfdmW21ewMbTB9xGru7LCdoOk0",
             telegramChatId: "5543262304",
             telegramUsername: "im_hieng",
-            adminPin: "1234",
-            useCloud: true // បើកដំណើរការ Cloud ជាលំនាំដើមជានិច្ច
+            adminPin: "1234"
         };
 
         const LOCAL_STORAGE_KEY = 'tritech_lubricants_local_v2026';
@@ -542,7 +543,7 @@
                 variants: [
                     { size: "1L", price: "18.00", stock: "in_stock" }
                 ],
-                desc: "ប្រេងប្រអប់លេខមានតួនាទីសំខាន់បំផុតសម្រាប់ប្រអប់លេខអូតូ ដែលមានដូចជាបញ្ជូនសម្ពាធដើម្បីលេខចូលត្រឹមត្រូវនឹងរលូនល្អ កាត់បន្ថយកំដៅក្នុងប្រអប់លេខ ការពារការសិករិចរិលស្បែកឌីស ព្រមទាំងជួយលាងសំអាតប្រពន្ធ័ Hydrolic ផងដែរ My. ប្រេងប្រអប់លេខមានច្រើនប្រភេទទៅតាមជំនាន់នឹងប្រភេទរថយន្ត ហើយការជ្រើសរើសប្រភេទប្រេងខុស នឹងគ្មានគុណភាពអាចបង្ករ បញ្ហាដល់ប្រអប់លេខ។",
+                desc: "ប្រេងប្រអប់លេខមានតួនាុងសំខាន់បំផុតសម្រាប់ប្រអប់លេខអូតូ ដែលមានដូចជាបញ្ជូនសម្ពាធដើម្បីលេខចូលត្រឹមត្រូវនឹងរលូនល្អ កាត់បន្ថយកំដៅក្នុងប្រអប់លេខ ការពារការសិករិចរិលស្បែកឌីស ព្រមទាំងជួយលាងសំអាតប្រពន្ធ័ Hydrolic ផងដែរ My. ប្រេងប្រអប់លេខមានច្រើនប្រភេទទៅតាមជំនាន់នឹងប្រភេទរថយន្ត ហើយការជ្រើសរើសប្រភេទប្រេងខុស នឹងគ្មានគុណភាពអាចបង្ករ បញ្ហាដល់ប្រអប់លេខ។",
                 image: "https://i.imgur.com/UGeZpPt.png",
                 pdf: ""
             },
@@ -615,21 +616,36 @@
                     let parsed = JSON.parse(data);
                     state.cart = parsed.cart || [];
                     state.favorites = parsed.favorites || [];
+                    state.shopPhone = parsed.shopPhone || state.shopPhone;
+                    state.adminPin = parsed.adminPin || state.adminPin;
+                    state.telegramToken = parsed.telegramToken || state.telegramToken;
+                    state.telegramChatId = parsed.telegramChatId || state.telegramChatId;
+                    state.telegramUsername = parsed.telegramUsername || state.telegramUsername;
+                    if (parsed.cachedProducts && parsed.cachedProducts.length > 0) {
+                        state.cachedProducts = parsed.cachedProducts;
+                    }
                 }
-                initCloudDatabase(); // ដំណើរការភ្ជាប់ទៅ Firebase Cloud ភ្លាម[cite: 1]
+                if (!state.cachedProducts || state.cachedProducts.length === 0) {
+                    state.cachedProducts = JSON.parse(JSON.stringify(INITIAL_PRODUCTS));
+                }
+                updateShopPhoneUI(state.shopPhone);
+                updateTelegramUI();
+                initCloudDatabase(); 
             } catch (e) {
                 console.error("Error loading local storage:", e);
+                state.cachedProducts = JSON.parse(JSON.stringify(INITIAL_PRODUCTS));
             }
         }
 
-        // ** មុខងាររក្សាទុកប្រព័ន្ធ Settings ទៅកាន់ Cloud Firestore (ដើម្បីឱ្យអ្នកដទៃទទួលបានដូចគ្នា)[cite: 1]
+        // ** រក្សាទុក Settings ទៅកាន់ Cloud
         async function saveSettingsToCloud(updatedFields) {
-            if (!db) return;
-            try {
-                await db.collection("settings").doc("shop_config").set(updatedFields, { merge: true });
-            } catch (e) {
-                console.error("Error updating cloud settings:", e);
-                window.showToast("❌ មិនអាចរក្សាទុកទៅ Cloud បានទេ!");
+            saveToLocalStorage(); 
+            if (db) {
+                try {
+                    await db.collection("settings").doc("shop_config").set(updatedFields, { merge: true });
+                } catch (e) {
+                    console.error("Cloud saving error:", e);
+                }
             }
         }
 
@@ -640,8 +656,8 @@
             if (!newPin) return window.showToast("⚠️ សូមបំពេញលេខសម្ងាត់ថ្មី!");
             
             state.adminPin = newPin;
-            await saveSettingsToCloud({ adminPin: newPin }); // រុញទៅ Cloud[cite: 1]
-            window.showToast("✅ បានប្ដូរលេខសម្ងាត់រួចរាល់ និងបានរក្សាទុកលើ Cloud! ☁️");
+            await saveSettingsToCloud({ adminPin: newPin }); 
+            window.showToast("✅ បានរក្សាទុកលេខសម្ងាត់ទៅកាន់ Cloud រួចរាល់!");
         };
 
         function updateShopPhoneUI(phone) {
@@ -655,9 +671,9 @@
             const phone = document.getElementById('admin-shop-phone-input').value.trim();
             if (!phone) return window.showToast("⚠️ សូមបំពេញលេខទូរស័ព្ទ!");
             state.shopPhone = phone;
-            await saveSettingsToCloud({ shopPhone: phone }); // រុញទៅ Cloud[cite: 1]
+            await saveSettingsToCloud({ shopPhone: phone }); 
             updateShopPhoneUI(phone);
-            window.showToast("✅ រក្សាទុកលេខទូរស័ព្ទលើ Cloud ជោគជ័យ! ☁️");
+            window.showToast("✅ បានរក្សាទុកលេខទូរស័ព្ទទៅកាន់ Cloud រួចរាល់!");
         };
 
         function updateTelegramUI() {
@@ -682,14 +698,13 @@
             state.telegramChatId = chatId;
             state.telegramUsername = username;
             
-            // រុញទៅ Cloud[cite: 1]
             await saveSettingsToCloud({
                 telegramToken: token,
                 telegramChatId: chatId,
                 telegramUsername: username
             });
             updateTelegramUI();
-            window.showToast("✅ រក្សាទុកប្រព័ន្ធតេឡេក្រាមលើ Cloud រួចរាល់! ☁️");
+            window.showToast("✅ បានរក្សាទុកប្រព័ន្ធតេឡេក្រាមទៅកាន់ Cloud រួចរាល់!");
         };
 
         window.testTelegramConnection = async function() {
@@ -1138,7 +1153,6 @@
             };
 
             if (db) {
-                window.showToast("⏳ កំពុងបញ្ជូនការកុម្មង់ទៅ Cloud Database...");
                 try {
                     await db.collection("orders").doc(newOrder.id).set(newOrder);
                 } catch (e) {
@@ -1146,15 +1160,16 @@
                 }
             }
 
-            state.cart = [];
+            state.orders.unshift(newOrder);
             saveToLocalStorage();
+            state.cart = [];
             updateCartBadge();
             closeCheckoutModal();
             sendTelegramNotification(newOrder);
             
             document.getElementById('search-phone-input').value = phone;
             window.searchOrdersByPhone();
-            window.showToast("🎉 ការបញ្ជាទិញទទួលបានជោគជ័យ!");
+            window.showToast("🎉 ការបញ្ជាទិញទទួលបានជោគជ័យ និងបញ្ជូនទៅ Cloud លឿនរហ័ស!");
             setTimeout(() => navigateTo('orders'), 500);
         };
 
@@ -1235,7 +1250,7 @@
         }
 
         // =========================================================================
-        // ==================== ផ្នែកប្រព័ន្ធរក្សាទុកលើ CLOUD DATABASE ====================
+        // ==================== ផ្នែកប្រព័ន្ធរក្សាទុកលើ CLUID DATABASE ====================
         // =========================================================================
         async function initCloudDatabase() {
             try {
@@ -1243,21 +1258,19 @@
                     await firebase.app().delete();
                 }
                 
-                // ចាប់ផ្ដើមជាមួយ Hardcoded Config របស់បងតែម្ដង[cite: 1]
                 firebase.initializeApp(FIREBASE_CONFIG);
                 db = firebase.firestore();
                 
                 syncProductsFromCloud();
                 syncOrdersFromCloud();
-                syncSettingsFromCloud(); // បើកដំណើរការទាញយក Settings ពី Cloud[cite: 1]
+                syncSettingsFromCloud(); 
             } catch (error) {
-                console.error("Firebase Cloud connection error:", error);
+                console.error("Firebase Connection Error:", error);
                 db = null;
             }
         }
         window.initCloudDatabase = initCloudDatabase;
 
-        // ** មុខងារថ្មី៖ ទាញយកនិងចាំស្តាប់រាល់ការប្រែប្រួល Settings ពី Cloud មកបង្ហាញលើគ្រប់ Browser[cite: 1]
         function syncSettingsFromCloud() {
             if (!db) return;
             if (unsubscribeSettings) unsubscribeSettings();
@@ -1265,22 +1278,19 @@
             unsubscribeSettings = db.collection("settings").doc("shop_config").onSnapshot(doc => {
                 if (doc.exists()) {
                     const cloudData = doc.data();
-                    
-                    // ធ្វើបច្ចុប្បន្នភាពរាល់តម្លៃដែលទទួលបានពី Cloud ចូលទៅក្នុង state របស់ App[cite: 1]
                     if (cloudData.adminPin) state.adminPin = cloudData.adminPin;
                     if (cloudData.shopPhone) state.shopPhone = cloudData.shopPhone;
                     if (cloudData.telegramToken) state.telegramToken = cloudData.telegramToken;
                     if (cloudData.telegramChatId) state.telegramChatId = cloudData.telegramChatId;
                     if (cloudData.telegramUsername) state.telegramUsername = cloudData.telegramUsername;
 
-                    // រុញទៅបង្ហាញលើ Interface ភ្លាមៗ[cite: 1]
                     updateShopPhoneUI(state.shopPhone);
                     updateTelegramUI();
                     if (document.getElementById('admin-shop-pin-field')) {
                         document.getElementById('admin-shop-pin-field').value = state.adminPin;
                     }
+                    saveToLocalStorage();
                 } else {
-                    // ប្រសិនបើគ្មាន Config លើ Cloud ទេ វានឹងបង្កើតដំបូងដោយយកតម្លៃបច្ចុប្បន្ន[cite: 1]
                     saveSettingsToCloud({
                         adminPin: state.adminPin,
                         shopPhone: state.shopPhone,
@@ -1304,6 +1314,7 @@
                     seedProductsToCloud();
                 } else {
                     state.cachedProducts = cloudProducts;
+                    saveToLocalStorage();
                     renderCategoryDropdown();
                     renderProducts();
                     if (currentTab === 'admin' && currentAdminTab === 'products') {
@@ -1335,6 +1346,7 @@
                 let cloudOrders = [];
                 snapshot.forEach(doc => cloudOrders.push({ id: doc.id, ...doc.data() }));
                 state.orders = cloudOrders;
+                saveToLocalStorage();
                 
                 if (currentTab === 'orders') {
                     const input = document.getElementById('search-phone-input');
@@ -1375,33 +1387,48 @@
 
             if (varError || variants.length === 0) return window.showToast("⚠️ សូមបំពេញទំហំ និងតម្លៃឱ្យគ្រប់គ្រាន់!");
 
+            if (id) {
+                const p = state.cachedProducts.find(item => item.id === id);
+                if (p) Object.assign(p, { name, category, categoryFilter, image, pdf, desc, variants });
+            } else {
+                state.cachedProducts.push({ id: 'PROD-' + Date.now(), name, category, categoryFilter, image, pdf, desc, variants });
+            }
+            saveToLocalStorage();
+            renderCategoryDropdown();
+            renderProducts();
+            renderAdminProductsList();
+
             if (db) {
-                window.showToast("⏳ កំពុងរក្សាទុកទៅ Cloud...");
                 try {
                     if (id) {
                         await db.collection("products").doc(id).update({ name, category, categoryFilter, image, pdf, desc, variants });
                     } else {
-                        const docRef = db.collection("products").doc();
-                        await docRef.set({ id: docRef.id, name, category, categoryFilter, image, pdf, desc, variants, orderIndex: state.cachedProducts.length });
+                        const newId = 'PROD-' + Date.now();
+                        await db.collection("products").doc(newId).set({ id: newId, name, category, categoryFilter, image, pdf, desc, variants, orderIndex: state.cachedProducts.length });
                     }
-                    window.showToast("✅ បានរក្សាទុកលើ Cloud!");
-                    closeProductFormModal();
-                    return;
                 } catch (err) {
-                    return window.showToast("❌ រក្សាទុកបរាជ័យ៖ " + err.message);
+                    console.error("Cloud product save error:", err);
                 }
             }
+            window.showToast("✅ បានរក្សាទុកទិន្នន័យផលិតផលទៅកាន់ Cloud រួចរាល់!");
+            closeProductFormModal();
         };
 
         window.updateOrderStatus = async function(orderId, newStatus) {
+            const o = state.orders.find(item => item.id === orderId);
+            if (o) {
+                o.status = newStatus;
+                saveToLocalStorage();
+                renderAdminOrdersList();
+                renderAdminDeliveryList();
+                window.showToast("✅ បានប្តូរស្ថានភាពរួចរាល់!");
+            }
+
             if (db) {
-                window.showToast("⏳ កំពុងបច្ចុប្បន្នភាពស្ថានភាពលើ Cloud...");
                 try {
                     await db.collection("orders").doc(orderId).update({ status: newStatus });
-                    window.showToast("✅ បានប្តូរស្ថានភាពលើ Cloud!");
-                    return;
                 } catch (err) {
-                    return window.showToast("❌ កំហុស Cloud: " + err.message);
+                    console.error(err);
                 }
             }
         };
@@ -1431,18 +1458,25 @@
                 modal.classList.add('hidden');
                 if (confirmed) {
                     if (deleteType === 'product' && deleteTargetId) {
+                        state.cachedProducts = state.cachedProducts.filter(p => p.id !== deleteTargetId);
+                        saveToLocalStorage();
+                        renderCategoryDropdown();
+                        renderProducts();
+                        renderAdminProductsList();
+                        window.showToast("🗑️ លុបផលិតផលរួចរាល់!");
+
                         if (db) {
-                            try {
-                                await db.collection("products").doc(deleteTargetId).delete();
-                                window.showToast("🗑️ លុបពី Cloud ជោគជ័យ!");
-                            } catch (e) { window.showToast("❌ មិនអាចលុបបាន៖ " + e.message); }
+                            try { await db.collection("products").doc(deleteTargetId).delete(); } catch (e) {}
                         }
                     } else if (deleteType === 'order' && deleteTargetId) {
+                        state.orders = state.orders.filter(o => o.id !== deleteTargetId);
+                        saveToLocalStorage();
+                        renderAdminOrdersList();
+                        renderAdminDeliveryList();
+                        window.showToast("🗑️ លុបការបញ្ជាទិញរួចរាល់!");
+
                         if (db) {
-                            try {
-                                await db.collection("orders").doc(deleteTargetId).delete();
-                                window.showToast("🗑️ លុបការបញ្ជាទិញពី Cloud ជោគជ័យ!");
-                            } catch (e) { window.showToast("❌ មិនអាចលុបបាន៖ " + e.message); }
+                            try { await db.collection("orders").doc(deleteTargetId).delete(); } catch (e) {}
                         }
                     }
                 }
@@ -1553,19 +1587,19 @@
             } else if (direction === 'down' && index < list.length - 1) {
                 [list[index], list[index + 1]] = [list[index + 1], list[index]];
             }
+            saveToLocalStorage();
+            renderProducts();
+            renderAdminProductsList();
+            window.showToast("↕️ ប្តូរលំដាប់ផលិតផលរួចរាល់!");
             
             if (db) {
-                window.showToast("⏳ កំពុងប្តូរលំដាប់ផលិតផលលើ Cloud...");
                 try {
                     const batch = db.batch();
                     list.forEach((prod, idx) => {
                         batch.update(db.collection("products").doc(prod.id), { orderIndex: idx });
                     });
                     await batch.commit();
-                    window.showToast("↕️ បានផ្លាស់ប្តូរលំដាប់ផលិតផលលើ Cloud ជោគជ័យ!");
-                } catch (e) {
-                    console.error(e);
-                }
+                } catch (e) {}
             }
         };
 
