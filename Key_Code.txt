@@ -1,3 +1,5 @@
+Claud Information
+================
 apiKey: "AIzaSyDO8d6Ufrtbg3ecJA4sIWZAP9kYaMvUpDQ",
   authDomain: "tritech-cambodia-online-shop.firebaseapp.com",
   projectId: "tritech-cambodia-online-shop",
@@ -15,7 +17,7 @@ apiKey: "AIzaSyDO8d6Ufrtbg3ecJA4sIWZAP9kYaMvUpDQ",
 	ជំហានទី ៣៖
 		PS D:\My_App\TriTech_Online> git add .
 	ជំហានទី ៤៖
-		PS D:\My_App\TriTech_Online> git commit -m "Updated"
+		PS D:\My_App\TriTech_Online> git commit -m "Updated Password"
 	ជំហានទី ៥៖
 		PS D:\My_App\TriTech_Online> git push
 ចំណុចសំខាន់
