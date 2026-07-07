@@ -140,7 +140,7 @@
         <section id="page-admin" class="hidden space-y-3.5">
             <div class="flex justify-between items-center">
                 <h3 class="text-xs font-bold text-slate-200 flex items-center gap-2">
-                    <i data-lucide="shield-check" class="text-amber-500 w-4 h-4"></i> ប្រព័ន្ធគ្រប់គ្រងហាងប្រេងម៉ាស៊ីន
+                    <i data-lucide="shield-check" class="text-amber-500 w-4 h-4"></i> <span id="admin-panel-title">ប្រព័ន្ធគ្រប់គ្រងហាងប្រេងម៉ាស៊ីន</span>
                 </h3>
                 <button onclick="window.logoutAdmin()" id="admin-logout-btn" class="hidden text-[9px] bg-red-500/10 hover:bg-red-500/20 text-red-400 px-2.5 py-1 rounded-lg border border-red-500/25 font-bold">
                     ចាកចេញ
@@ -153,7 +153,7 @@
                 </div>
                 <div>
                     <h4 class="font-bold text-[11px] text-slate-200">សុវត្ថិភាពចូលប្រព័ន្ធ</h4>
-                    <p class="text-[9px] text-slate-400 mt-0.5">សូមបញ្ចូលលេខកូដសម្ងាត់អ្នកគ្រប់គ្រងដើម្បីបន្ត</p>
+                    <p class="text-[9px] text-slate-400 mt-0.5">សូមបញ្ចូលលេខកូដសម្ងាត់ដើម្បីបន្ត</p>
                 </div>
                 <div class="max-w-xs mx-auto space-y-3">
                     <input type="password" id="admin-pin-input" placeholder="••••" class="w-full text-center tracking-widest bg-slate-950 border border-slate-800 px-3 py-2.5 rounded-xl text-sm font-bold focus:outline-none focus:border-amber-500 text-amber-400">
@@ -188,43 +188,55 @@
 
                 <div id="admin-subpage-products" class="hidden space-y-3">
                     
-                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3.5 space-y-2">
-                        <h4 class="text-[10px] font-bold text-slate-200 flex items-center gap-1.5">
-                            <i data-lucide="key-round" class="text-amber-500 w-3.5 h-3.5"></i> កំណត់លេខសម្ងាត់អ្នកគ្រប់គ្រង (Admin PIN)
-                        </h4>
-                        <div class="flex gap-2">
-                            <input type="text" id="admin-shop-pin-field" placeholder="បញ្ចូលលេខសម្ងាត់ថ្មី (ឧទហរណ៍៖ 1234)" class="flex-1 bg-slate-950 text-slate-100 px-3 py-2 rounded-lg border border-slate-850 text-[10px] font-bold tracking-wider">
-                            <button onclick="window.saveAdminPinFromField()" class="bg-amber-500 text-slate-950 font-bold px-4 rounded-lg text-[10px] transition-all active:scale-95 shadow">រក្សាទុកកូដ</button>
-                        </div>
-                    </div>
-
-                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3.5 space-y-2">
-                        <h4 class="text-[10px] font-bold text-slate-200 flex items-center gap-1.5">
-                            <i data-lucide="phone-call" class="text-amber-500 w-3.5 h-3.5"></i> កំណត់ព័ត៌មានទំនាក់ទំនងរបស់ហាង
-                        </h4>
-                        <input type="text" id="admin-shop-phone-input" placeholder="លេខទូរស័ព្ទហាង" class="w-full bg-slate-950 text-slate-100 px-3 py-2 rounded-lg border border-slate-850 text-[10px]">
-                        <button onclick="window.saveShopPhone()" class="w-full bg-amber-500 text-slate-950 font-bold py-2 rounded-lg text-[10px]">រក្សាទុកលេខទូរស័ព្ទ</button>
-                    </div>
-
-                    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3.5 space-y-2">
-                        <h4 class="text-[10px] font-bold text-slate-200 flex items-center gap-1.5">
-                            <i data-lucide="bell-ring" class="text-sky-400 w-3.5 h-3.5"></i> កំណត់ប្រព័ន្ធ Telegram Bots
-                        </h4>
-                        <div class="space-y-2 text-[10px]">
-                            <input type="text" id="admin-telegram-username-input" placeholder="Telegram Username (គ្មាន @)" class="w-full bg-slate-950 px-3 py-2 rounded-lg border border-slate-850">
-                            <input type="text" id="admin-telegram-token-input" placeholder="Bot Token" class="w-full bg-slate-950 px-3 py-2 rounded-lg border border-slate-850">
-                            <input type="text" id="admin-telegram-chatid-input" placeholder="Chat ID" class="w-full bg-slate-950 px-3 py-2 rounded-lg border border-slate-850">
-                            <div class="grid grid-cols-2 gap-2">
-                                <button onclick="window.saveTelegramSettings()" class="bg-sky-500 text-slate-950 font-bold py-2 rounded-lg">រក្សាទុក</button>
-                                <button onclick="window.testTelegramConnection()" class="bg-slate-800 text-sky-400 font-bold py-2 rounded-lg border border-sky-500/20">សាកល្បងតេស្ត</button>
+                    <div id="super-admin-settings-container" class="space-y-3 hidden">
+                        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3.5 space-y-2">
+                            <h4 class="text-[10px] font-bold text-slate-200 flex items-center gap-1.5">
+                                <i data-lucide="key-round" class="text-amber-500 w-3.5 h-3.5"></i> កំណត់លេខសម្ងាត់ Super Admin PIN
+                            </h4>
+                            <div class="flex gap-2">
+                                <input type="text" id="admin-shop-pin-field" placeholder="បញ្ចូលលេខសម្ងាត់ថ្មី" class="flex-1 bg-slate-950 text-slate-100 px-3 py-2 rounded-lg border border-slate-850 text-[10px] font-bold tracking-wider">
+                                <button onclick="window.saveAdminPinFromField()" class="bg-amber-500 text-slate-950 font-bold px-4 rounded-lg text-[10px] transition-all active:scale-95 shadow">រក្សាទុកកូដមេ</button>
                             </div>
-                            <div id="telegram-test-status" class="hidden text-[9px] p-2 rounded-xl"></div>
+                        </div>
+
+                        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3.5 space-y-2">
+                            <h4 class="text-[10px] font-bold text-slate-200 flex items-center gap-1.5">
+                                <i data-lucide="users" class="text-sky-400 w-3.5 h-3.5"></i> កំណត់លេខសម្ងាត់បុគ្គលិក (Staff PIN)
+                            </h4>
+                            <div class="flex gap-2">
+                                <input type="text" id="admin-staff-pin-field" placeholder="លេខសម្ងាត់បុគ្គលិកថ្មី (លំនាំដើម៖ 5476)" class="flex-1 bg-slate-950 text-slate-100 px-3 py-2 rounded-lg border border-slate-850 text-[10px] font-bold tracking-wider">
+                                <button onclick="window.saveStaffPinFromField()" class="bg-sky-500 text-slate-950 font-bold px-4 rounded-lg text-[10px] transition-all active:scale-95 shadow">រក្សាទុកកូដបុគ្គលិក</button>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3.5 space-y-2">
+                            <h4 class="text-[10px] font-bold text-slate-200 flex items-center gap-1.5">
+                                <i data-lucide="phone-call" class="text-amber-500 w-3.5 h-3.5"></i> កំណត់ព័ត៌មានទំនាក់ទំនងរបស់ហាង
+                            </h4>
+                            <input type="text" id="admin-shop-phone-input" placeholder="លេខទូរស័ព្ទហាង" class="w-full bg-slate-950 text-slate-100 px-3 py-2 rounded-lg border border-slate-850 text-[10px]">
+                            <button onclick="window.saveShopPhone()" class="w-full bg-amber-500 text-slate-950 font-bold py-2 rounded-lg text-[10px]">រក្សាទុកលេខទូរស័ព្ទ</button>
+                        </div>
+
+                        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3.5 space-y-2">
+                            <h4 class="text-[10px] font-bold text-slate-200 flex items-center gap-1.5">
+                                <i data-lucide="bell-ring" class="text-sky-400 w-3.5 h-3.5"></i> កំណត់ប្រព័ន្ធ Telegram Bots
+                            </h4>
+                            <div class="space-y-2 text-[10px]">
+                                <input type="text" id="admin-telegram-username-input" placeholder="Telegram Username (គ្មាន @)" class="w-full bg-slate-950 px-3 py-2 rounded-lg border border-slate-850">
+                                <input type="text" id="admin-telegram-token-input" placeholder="Bot Token" class="w-full bg-slate-950 px-3 py-2 rounded-lg border border-slate-850">
+                                <input type="text" id="admin-telegram-chatid-input" placeholder="Chat ID" class="w-full bg-slate-950 px-3 py-2 rounded-lg border border-slate-850">
+                                <div class="grid grid-cols-2 gap-2">
+                                    <button onclick="window.saveTelegramSettings()" class="bg-sky-500 text-slate-950 font-bold py-2 rounded-lg">រក្សាទុក</button>
+                                    <button onclick="window.testTelegramConnection()" class="bg-slate-800 text-sky-400 font-bold py-2 rounded-lg border border-sky-500/20">សាកល្បងតេស្ត</button>
+                                </div>
+                                <div id="telegram-test-status" class="hidden text-[9px] p-2 rounded-xl"></div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="flex justify-between items-center pt-2">
                         <span class="text-[11px] font-bold text-slate-400">បញ្ជីផលិតផលទាំងអស់</span>
-                        <button onclick="window.openProductFormModal()" class="bg-amber-500 text-slate-950 font-extrabold text-[9px] px-3 py-1.5 rounded-lg flex items-center gap-1">
+                        <button id="admin-add-product-btn" onclick="window.openProductFormModal()" class="bg-amber-500 text-slate-950 font-extrabold text-[9px] px-3 py-1.5 rounded-lg flex items-center gap-1 hidden">
                             <i data-lucide="plus-circle" class="w-3.5 h-3.5"></i> បន្ថែមទំនិញថ្មី
                         </button>
                     </div>
@@ -385,7 +397,10 @@
         let selectedVariantInModal = null;
         let modalQuantity = 1;
         let checkoutPaymentMethod = 'cod';
-        let adminAuthenticated = false;
+        
+        let adminAuthenticated = false; 
+        let userRole = 'staff'; 
+
         let currentAdminTab = 'orders';
         let deleteTargetId = null;
         let deleteType = 'product';
@@ -415,7 +430,8 @@
             telegramToken: "8500019843:AAGiaayCZgfdmW21ewMbTB9xGru7LCdoOk0",
             telegramChatId: "5543262304",
             telegramUsername: "im_hieng",
-            adminPin: "1234"
+            adminPin: "1234",
+            staffPin: "5476" // 🛠️ បន្ថែមការរក្សាទុក Staff PIN ទៅក្នុង State រួម
         };
 
         const LOCAL_STORAGE_KEY = 'tritech_lubricants_local_v2026';
@@ -483,7 +499,7 @@
                     { size: "5L", price: "28.00", stock: "in_stock" },
                     { size: "18L", price: "95.00", stock: "in_stock" }
                 ],
-                desc: "ប្រេងម៉ាស៊ីនពាក់កណ្ដាលសំយោគ (Semi Synthetic) ប្រភេទនេះជួយសន្សំសំចៃប្រេងឥន្ធនៈបានល្អ ផ្តល់នូវកម្រិតការពារខ្ពស់បំផុតពីសិករិចរិលក្នុងម៉ាស៊ីន កាត់បន្ថយការឡើងកំដៅខ្លាំង លាងសំអាតផ្នែកខាងក្នុងមានស្អាតល្អ。\n\nត្រូវបានណែនាំឱ្យប្រើប្រាស់យ៉ាងពិសេសសម្រាប់ម៉ាស៊ីនទាំងរថយន្តម៉ាស៊ូតតូចធំ និងថរយន្តប្រើហ្គ្រាសផងដែរ。",
+                desc: "ប្រេងម៉ាស៊ីនពាក់កណ្ដាលសំយោគ (Semi Synthetic) ប្រភេទនេះជួយសន្សំសំចៃប្រេងឥន្ធនៈបានល្អ ផ្តល់នូវកម្រិតការពារខ្ពស់បំផុតពីសិករិចរិលក្នុងម៉ាស៊ីន កាត់បន្ថយការឡើងកំដៅខ្លាំង លាងសំអាតផ្នែកខាងក្នុងមានស្អាតល្អ。\n\nត្រូវបានណែនាំឱ្យប្រើប្រាស់យ៉ាងពិសេសសម្រាប់ម៉ាស៊ីនទាំងរថយន្តម៉ាស៊ូតតូចធំ និងថរយន្តប្រើហ្គ្រាសផងដែរ包装。",
                 image: "https://i.imgur.com/zvwmGr9.png",
                 pdf: ""
             },
@@ -582,6 +598,7 @@
                     state.favorites = parsed.favorites || [];
                     state.shopPhone = parsed.shopPhone || state.shopPhone;
                     state.adminPin = parsed.adminPin || state.adminPin;
+                    state.staffPin = parsed.staffPin || state.staffPin; // ទាញយក Staff PIN
                     state.telegramToken = parsed.telegramToken || state.telegramToken;
                     state.telegramChatId = parsed.telegramChatId || state.telegramChatId;
                     state.telegramUsername = parsed.telegramUsername || state.telegramUsername;
@@ -601,7 +618,7 @@
             }
         }
 
-        // ** រក្សាទុក Settings ទៅកាន់ Cloud
+        // រក្សាទុក Settings ទៅកាន់ Cloud
         async function saveSettingsToCloud(updatedFields) {
             saveToLocalStorage(); 
             if (db) {
@@ -617,11 +634,23 @@
             const field = document.getElementById('admin-shop-pin-field');
             if (!field) return;
             const newPin = field.value.trim();
-            if (!newPin) return window.showToast("⚠️ សូមបំពេញលេខសម្ងាត់ថ្មី!");
+            if (!newPin) return window.showToast("⚠️ សូមបំពេញលេខសម្ងាត់មេថ្មី!");
             
             state.adminPin = newPin;
             await saveSettingsToCloud({ adminPin: newPin }); 
-            window.showToast("✅ បានរក្សាទុកលេខសម្ងាត់ទៅកាន់ Cloud រួចរាល់!");
+            window.showToast("✅ បានរក្សាទុកលេខសម្ងាត់មេទៅកាន់ Cloud រួចរាល់!");
+        };
+
+        // 🛠️ មុខងារថ្មី៖ រក្សាទុកលេខសម្ងាត់បុគ្គលិកថ្មីទៅកាន់ Cloud
+        window.saveStaffPinFromField = async function() {
+            const field = document.getElementById('admin-staff-pin-field');
+            if (!field) return;
+            const newStaffPin = field.value.trim();
+            if (!newStaffPin) return window.showToast("⚠️ សូមបំពេញលេខសម្ងាត់បុគ្គលិកថ្មី!");
+            
+            state.staffPin = newStaffPin;
+            await saveSettingsToCloud({ staffPin: newStaffPin }); 
+            window.showToast("✅ បានផ្លាស់ប្តូរលេខសម្ងាត់បុគ្គលិកនៅលើ Cloud រួចរាល់!");
         };
 
         function updateShopPhoneUI(phone) {
@@ -1124,7 +1153,6 @@
                 }
             }
 
-            // 🛠️ ជួសជុល៖ ដកបញ្ជា state.orders.unshift(newOrder); ចេញ ដើម្បីទុកភារកិច្ចឱ្យ Listener ស្វ័យប្រវត្តជាអ្នកទាញមកបង្ហាញ ការពារកុំឱ្យស្ទួន ២ដង
             state.cart = []; 
             saveToLocalStorage(); 
             updateCartBadge();
@@ -1241,12 +1269,12 @@
 
             unsubscribeProducts = db.collection("products").onSnapshot(snapshot => {
                 let cloudProducts = [];
-                let hasSettings = false;
 
                 snapshot.forEach(doc => {
                     if (doc.id === "_app_settings") {
                         const cloudData = doc.data();
                         if (cloudData.adminPin) state.adminPin = cloudData.adminPin;
+                        if (cloudData.staffPin) state.staffPin = cloudData.staffPin; // 🛠️ ទាញយក Staff PIN ពី Cloud
                         if (cloudData.shopPhone) state.shopPhone = cloudData.shopPhone;
                         if (cloudData.telegramToken) state.telegramToken = cloudData.telegramToken;
                         if (cloudData.telegramChatId) state.telegramChatId = cloudData.telegramChatId;
@@ -1257,7 +1285,9 @@
                         if (document.getElementById('admin-shop-pin-field')) {
                             document.getElementById('admin-shop-pin-field').value = state.adminPin;
                         }
-                        hasSettings = true;
+                        if (document.getElementById('admin-staff-pin-field')) {
+                            document.getElementById('admin-staff-pin-field').value = state.staffPin; // បំពេញក្នុងប្រអប់ស្រាប់
+                        }
                     } else {
                         cloudProducts.push({ id: doc.id, ...doc.data() });
                     }
@@ -1288,6 +1318,7 @@
                 const setRef = db.collection("products").doc("_app_settings");
                 batch.set(setRef, {
                     adminPin: state.adminPin,
+                    staffPin: state.staffPin, // រុញ Staff PIN ទៅដំបូង
                     shopPhone: state.shopPhone,
                     telegramToken: state.telegramToken,
                     telegramChatId: state.telegramChatId,
@@ -1396,6 +1427,9 @@
         };
 
         window.deleteOrder = function(orderId) {
+            if (userRole !== 'super_admin') {
+                return window.showToast("⛔ បុគ្គលិកគ្មានសិទ្ធិលុបការបញ្ជាទិញឡើយ!");
+            }
             deleteTargetId = orderId;
             deleteType = 'order';
             document.getElementById('confirm-modal-title').innerText = "បញ្ជាក់ការលុបការបញ្ជាទិញ";
@@ -1404,6 +1438,9 @@
         };
 
         window.deleteProduct = function(productId) {
+            if (userRole !== 'super_admin') {
+                return window.showToast("⛔ បុគ្គលិកគ្មានសិទ្ធិលុបផលិតផលឡើយ!");
+            }
             deleteTargetId = productId;
             deleteType = 'product';
             document.getElementById('confirm-modal-title').innerText = "បញ្ជាក់ការលុបផលិតផល";
@@ -1491,7 +1528,7 @@
                                 <option value="កំពុងពិនិត្យ" ${o.status === 'កំពុងពិនិត្យ' ? 'selected' : ''}>កំពុងពិនិត្យ</option>
                                 <option value="កំពុងរៀបចំ" ${o.status === 'កំពុងរៀបចំ' ? 'selected' : ''}>កំពុងរៀបចំ</option>
                                 <option value="កំពុងដឹកជញ្ជូន" ${o.status === 'កំពុងដឹកជញ្ជូន' ? 'selected' : ''}>កំពុងដឹកជញ្ជូន</option>
-                                option value="ជោគជ័យ" ${o.status === 'ជោគជ័យ' ? 'selected' : ''}>ជោគជ័យ</option>
+                                <option value="ជោគជ័យ" ${o.status === 'ជោគជ័យ' ? 'selected' : ''}>ជោគជ័យ</option>
                             </select>
                         </div>
                         <div>${itemsHtml}</div>
@@ -1503,46 +1540,75 @@
                             </div>
                             <div class="text-right">
                                 <span class="font-black text-amber-400 block">${formatPrice(o.total)}</span>
-                                <button onclick="window.deleteOrder('${o.id}')" class="text-red-500 font-bold mt-1 inline-flex items-center gap-0.5"><i data-lucide="trash-2" class="w-3 h-3"></i> លុបចោល</button>
+                                ${userRole === 'super_admin' ? `<button onclick="window.deleteOrder('${o.id}')" class="text-red-500 font-bold mt-1 inline-flex items-center gap-0.5"><i data-lucide="trash-2" class="w-3 h-3"></i> លុបចោល</button>` : ''}
                             </div>
                         </div>
                     </div>`;
             }).join('');
         }
 
+        window.changeStockStatusByStaff = async function(productId, variantIndex, newStockStatus) {
+            const p = state.cachedProducts.find(item => item.id === productId);
+            if (p && p.variants && p.variants[variantIndex]) {
+                p.variants[variantIndex].stock = newStockStatus;
+                saveToLocalStorage();
+                if (db) {
+                    try {
+                        await db.collection("products").doc(productId).update({ variants: p.variants });
+                        window.showToast("✅ បានកែប្រែស្ថានភាពស្តុកជោគជ័យ!");
+                    } catch (e) {
+                        console.error(e);
+                    }
+                }
+            }
+        };
+
         function renderAdminProductsList() {
             const container = document.getElementById('admin-products-list-container');
             if (!container) return;
+            
             container.innerHTML = state.cachedProducts.map((p, index) => {
-                const varsHtml = p.variants.map(v => {
-                    const isOut = v.stock === 'out_of_stock';
-                    return `<span class="bg-slate-950 px-1.5 py-0.5 rounded text-[8px] border ${isOut ? 'border-red-500/20 text-red-400' : 'border-slate-800 text-slate-300'}">${v.size}: ${formatPrice(v.price)} ${isOut ? '(អស់)' : ''}</span>`;
+                const varsHtml = p.variants.map((v, vIdx) => {
+                    return `
+                        <div class="flex items-center gap-1.5 bg-slate-950 px-2 py-1 rounded-lg border border-slate-850 mt-1">
+                            <span class="text-[9px] text-slate-300 font-bold">${v.size}: ${formatPrice(v.price)}</span>
+                            <select onchange="window.changeStockStatusByStaff('${p.id}', ${vIdx}, this.value)" class="bg-slate-900 text-slate-200 text-[8px] font-bold border border-slate-800 rounded px-1 py-0.5 outline-none">
+                                <option value="in_stock" ${v.stock === 'in_stock' ? 'selected' : ''}>មានស្តុក</option>
+                                <option value="out_of_stock" ${v.stock === 'out_of_stock' ? 'selected' : ''}>អស់ស្តុក</option>
+                            </select>
+                        </div>`;
                 }).join(' ');
 
+                const superAdminControls = userRole === 'super_admin' ? `
+                    <div class="flex items-center gap-1 shrink-0 mt-2 sm:mt-0">
+                        <button onclick="window.moveProduct(${index}, 'up')" class="p-1.5 bg-slate-800 text-slate-300 rounded-lg" ${index === 0 ? 'disabled opacity-30' : ''}><i data-lucide="arrow-up" class="w-3 h-3"></i></button>
+                        <button onclick="window.moveProduct(${index}, 'down')" class="p-1.5 bg-slate-800 text-slate-300 rounded-lg" ${index === state.cachedProducts.length - 1 ? 'disabled opacity-30' : ''}><i data-lucide="arrow-down" class="w-3 h-3"></i></button>
+                        <button onclick="window.openProductFormModal('${p.id}')" class="p-1.5 bg-amber-500/10 text-amber-400 rounded-lg border border-amber-500/20"><i data-lucide="edit" class="w-3 h-3"></i></button>
+                        <button onclick="window.deleteProduct('${p.id}')" class="p-1.5 bg-red-500/10 text-red-400 rounded-lg border border-red-500/20"><i data-lucide="trash-2" class="w-3 h-3"></i></button>
+                    </div>` : '';
+
                 return `
-                    <div class="bg-slate-900 p-2 rounded-xl border border-slate-800 flex items-center justify-between gap-2.5 text-[10px]">
-                        <div class="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center shrink-0 border border-slate-300 p-1 overflow-hidden">
-                            ${getProductImageHtml(p, "w-full h-full object-contain")}
-                        </div>
-                        <div class="flex-1 space-y-0.5">
-                            <div class="flex items-center gap-1">
-                                <h4 class="font-bold text-slate-100 line-clamp-1">${p.name}</h4>
-                                <span class="text-[7px] bg-slate-950 text-amber-500 px-1 rounded border border-slate-800">${p.categoryFilter || 'No Filter'}</span>
+                    <div class="bg-slate-900 p-2.5 rounded-xl border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[10px]">
+                        <div class="flex items-center gap-2.5 flex-1">
+                            <div class="w-10 h-10 bg-slate-100 rounded-lg flex items-center justify-center shrink-0 border border-slate-300 p-1 overflow-hidden">
+                                ${getProductImageHtml(p, "w-full h-full object-contain")}
                             </div>
-                            <div class="flex flex-wrap gap-1">${varsHtml}</div>
+                            <div class="flex-1 space-y-0.5">
+                                <div class="flex items-center gap-1">
+                                    <h4 class="font-bold text-slate-100 line-clamp-1">${p.name}</h4>
+                                    <span class="text-[7px] bg-slate-950 text-amber-500 px-1 rounded border border-slate-800">${p.categoryFilter || 'No Filter'}</span>
+                                </div>
+                                <div class="flex flex-wrap gap-1">${varsHtml}</div>
+                            </div>
                         </div>
-                        <div class="flex items-center gap-1 shrink-0">
-                            <button onclick="window.moveProduct(${index}, 'up')" class="p-1.5 bg-slate-800 text-slate-300 rounded-lg" ${index === 0 ? 'disabled opacity-30' : ''}><i data-lucide="arrow-up" class="w-3 h-3"></i></button>
-                            <button onclick="window.moveProduct(${index}, 'down')" class="p-1.5 bg-slate-800 text-slate-300 rounded-lg" ${index === state.cachedProducts.length - 1 ? 'disabled opacity-30' : ''}><i data-lucide="arrow-down" class="w-3 h-3"></i></button>
-                            <button onclick="window.openProductFormModal('${p.id}')" class="p-1.5 bg-amber-500/10 text-amber-400 rounded-lg border border-amber-500/20"><i data-lucide="edit" class="w-3 h-3"></i></button>
-                            <button onclick="window.deleteProduct('${p.id}')" class="p-1.5 bg-red-500/10 text-red-400 rounded-lg border border-red-500/20"><i data-lucide="trash-2" class="w-3 h-3"></i></button>
-                        </div>
+                        ${superAdminControls}
                     </div>`;
             }).join('');
             lucide.createIcons();
         }
 
         window.moveProduct = async function(index, direction) {
+            if (userRole !== 'super_admin') return;
             const list = state.cachedProducts;
             if (direction === 'up' && index > 0) {
                 [list[index], list[index - 1]] = [list[index - 1], list[index]];
@@ -1583,6 +1649,7 @@
         };
 
         window.openProductFormModal = function(productId = null) {
+            if (userRole !== 'super_admin') return; 
             const modal = document.getElementById('product-form-modal');
             const title = document.getElementById('form-modal-title');
             
@@ -1658,7 +1725,7 @@
             lucide.createIcons();
         };
 
-        // --- Admin Authentication ---
+        // --- Authentication & Role Management ---
         function showAdminLogin() {
             document.getElementById('admin-login-card').classList.remove('hidden');
             document.getElementById('admin-dashboard').classList.add('hidden');
@@ -1670,10 +1737,26 @@
             document.getElementById('admin-dashboard').classList.remove('hidden');
             document.getElementById('admin-logout-btn').classList.remove('hidden');
             
+            const settingsContainer = document.getElementById('super-admin-settings-container');
+            const addProductBtn = document.getElementById('admin-add-product-btn');
+            const panelTitle = document.getElementById('admin-panel-title');
+
+            if (userRole === 'super_admin') {
+                panelTitle.innerText = "ប្រព័ន្ធគ្រប់គ្រងជាន់ខ្ពស់ (Super Admin)";
+                settingsContainer.classList.remove('hidden');
+                addProductBtn.classList.remove('hidden');
+            } else {
+                panelTitle.innerText = "ប្រព័ន្ធគ្រប់គ្រងបុគ្គលិក (Staff Dashboard)";
+                settingsContainer.classList.add('hidden');
+                addProductBtn.classList.add('hidden');
+            }
+
             document.getElementById('admin-shop-phone-input').value = state.shopPhone || '';
-            
             if (document.getElementById('admin-shop-pin-field')) {
                 document.getElementById('admin-shop-pin-field').value = state.adminPin || "1234";
+            }
+            if (document.getElementById('admin-staff-pin-field')) {
+                document.getElementById('admin-staff-pin-field').value = state.staffPin || "5476";
             }
             
             window.switchAdminSubpage(currentAdminTab);
@@ -1683,12 +1766,21 @@
             const inputEl = document.getElementById('admin-pin-input');
             const pin = inputEl.value.trim();
             
-            if (pin === state.adminPin || pin === "1234") {
+            // 🛠️ ពិនិត្យសិទ្ធិដោយផ្អែកលើ Staff PIN ដែលទាញចេញពី Cloud ស្វ័យប្រវត្ត
+            if (pin === state.staffPin || pin === "5476") {
                 adminAuthenticated = true;
+                userRole = 'staff';
                 inputEl.value = '';
-                inputEl.blur(); 
+                inputEl.blur();
                 showAdminDashboard();
-                window.showToast("🔑 ចូលប្រព័ន្ធជោគជ័យ!");
+                window.showToast("🔑 បុគ្គលិកចូលប្រព័ន្ធជោគជ័យ!");
+            } else if (pin === state.adminPin || pin === "1234") {
+                adminAuthenticated = true;
+                userRole = 'super_admin';
+                inputEl.value = '';
+                inputEl.blur();
+                showAdminDashboard();
+                window.showToast("👑 Super Admin ចូលប្រព័ន្ធជោគជ័យ!");
             } else {
                 window.showToast("❌ លេខកូដសម្ងាត់មិនត្រឹមត្រូវ!");
             }
@@ -1696,6 +1788,7 @@
 
         window.logoutAdmin = function() {
             adminAuthenticated = false;
+            userRole = 'staff';
             showAdminLogin();
             window.showToast("🔒 បានចាកចេញពីប្រព័ន្ធ!");
         };
@@ -1722,14 +1815,15 @@
             else if (subtab === 'products') renderAdminProductsList();
         };
 
-        // --- Secret Hold Trigger for Admin ---
+        // --- Secret Hold Trigger for Super Admin ---
         function setupHoldTrigger() {
             const trigger = document.getElementById('secret-admin-trigger');
             let timer;
             const startTimer = () => {
                 timer = setTimeout(() => {
+                    adminAuthenticated = false; 
                     window.navigateTo('admin');
-                    window.showToast("🔑 កំពុងចូលទៅកាន់ប្រព័ន្ធគ្រប់គ្រង...");
+                    window.showToast("👑 កំពុងចូលទៅផ្ទាំង Super Admin... សូមវាយកូដសម្ងាត់របស់បង!");
                 }, 1500);
             };
             const cancelTimer = () => clearTimeout(timer);
