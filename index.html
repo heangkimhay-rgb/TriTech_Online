@@ -22,7 +22,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght=300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
     
     <style>
         body, input, textarea, button, select, span, p, h1, h2, h3, h4, h5, h6 {
@@ -1124,11 +1124,11 @@
                 }
             }
 
-            state.orders.unshift(newOrder);
-            state.cart = []; // ជម្រះទិន្នន័យក្នុងកូដ
-            saveToLocalStorage(); // 🛠️ កែសម្រួល៖ រក្សាទុកកន្ត្រកទទេស្អាតចូលទៅទូរស័ព្ទភ្លាម កុំឱ្យសល់ទំនិញពេលរ៉េឡូដ App
+            // 🛠️ ជួសជុល៖ ដកបញ្ជា state.orders.unshift(newOrder); ចេញ ដើម្បីទុកភារកិច្ចឱ្យ Listener ស្វ័យប្រវត្តជាអ្នកទាញមកបង្ហាញ ការពារកុំឱ្យស្ទួន ២ដង
+            state.cart = []; 
+            saveToLocalStorage(); 
             updateCartBadge();
-            renderCart(); // 🛠️ កែសម្រួល៖ គូរផ្ទាំងកន្ត្រកឡើងវិញឱ្យទៅជាទំនេរភ្លាមៗ
+            renderCart(); 
             closeCheckoutModal();
             sendTelegramNotification(newOrder);
             
@@ -1235,7 +1235,6 @@
         }
         window.initCloudDatabase = initCloudDatabase;
 
-        // 🛠️ មុខងាររួមគ្នា៖ ទាញយកបញ្ជីផលិតផលផង និងប្រព័ន្ធ Settings ពី Cloud ផងក្នុងពេលតែមួយ
         function syncProductsAndSettingsFromCloud() {
             if (!db) return;
             if (unsubscribeProducts) unsubscribeProducts();
@@ -1266,7 +1265,6 @@
 
                 cloudProducts.sort((a, b) => (a.orderIndex || 0) - (b.orderIndex || 0));
 
-                // 🛠️ សុវត្ថិភាពខ្ពស់៖ លុបចោលមុខងារ seedProductsToCloud() ពីកូដអតិថិជនចោល មិនឱ្យជាន់ទិន្នន័យឡើយ
                 if (cloudProducts.length > 0) {
                     state.cachedProducts = cloudProducts;
                     saveToLocalStorage();
@@ -1279,7 +1277,6 @@
             }, err => console.error(err));
         }
 
-        // 🛠️ មុខងារបង្កើតទិន្នន័យដំបូងនេះ ទុកសម្រាប់តែប៊ូតុងរបស់ Admin ប៉ុណ្ណោះ មិនឱ្យដើរស្វ័យប្រវត្តលើម៉ាស៊ីន Client ទៀតទេ
         async function seedProductsToCloud() {
             if (!db) return;
             try {
@@ -1288,7 +1285,6 @@
                     const docRef = db.collection("products").doc(prod.id);
                     batch.set(docRef, { ...prod, orderIndex: index });
                 });
-                // រុញ Settings លំនាំដើមទៅជាមួយគ្នា
                 const setRef = db.collection("products").doc("_app_settings");
                 batch.set(setRef, {
                     adminPin: state.adminPin,
@@ -1495,7 +1491,7 @@
                                 <option value="កំពុងពិនិត្យ" ${o.status === 'កំពុងពិនិត្យ' ? 'selected' : ''}>កំពុងពិនិត្យ</option>
                                 <option value="កំពុងរៀបចំ" ${o.status === 'កំពុងរៀបចំ' ? 'selected' : ''}>កំពុងរៀបចំ</option>
                                 <option value="កំពុងដឹកជញ្ជូន" ${o.status === 'កំពុងដឹកជញ្ជូន' ? 'selected' : ''}>កំពុងដឹកជញ្ជូន</option>
-                                <option value="ជោគជ័យ" ${o.status === 'ជោគជ័យ' ? 'selected' : ''}>ជោគជ័យ</option>
+                                option value="ជោគជ័យ" ${o.status === 'ជោគជ័យ' ? 'selected' : ''}>ជោគជ័យ</option>
                             </select>
                         </div>
                         <div>${itemsHtml}</div>
