@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>TriTech Lubricants Store</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -17,13 +16,10 @@
             }
         }
     </script>
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Firebase SDK Compat version -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
     
-    <!-- Google Fonts for Khmer -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
@@ -39,7 +35,6 @@
 </head>
 <body class="bg-slate-950 text-slate-100 h-full flex flex-col justify-between overflow-hidden select-none">
 
-    <!-- ក្បាលកម្មវិធី (App Header) -->
     <header class="bg-slate-900 text-white px-4 pt-3.5 pb-2.5 shadow-md shrink-0 flex justify-between items-center z-30 border-b border-slate-800">
         <div class="flex items-center gap-2">
             <div class="bg-amber-500 p-1.5 rounded-lg text-slate-900">
@@ -58,17 +53,21 @@
         </div>
     </header>
 
-    <!-- តួខ្លួនកម្មវិធី (Main Scrollable Container) -->
     <main class="flex-1 overflow-y-auto p-3.5 pb-20 no-scrollbar" id="main-content">
         
-        <!-- ================= ផ្នែកទី ១៖ ទំព័រដើម / បង្ហាញផលិតផល ================= -->
         <section id="page-home" class="space-y-3.5">
-            <!-- ផ្ទាំងផ្សព្វផ្សាយ (Promo Banner) -->
             <div class="bg-gradient-to-r from-amber-500 via-orange-600 to-red-600 rounded-2xl p-4 text-slate-950 shadow-lg relative overflow-hidden">
                 <div class="absolute right-[-10px] bottom-[-15px] opacity-10">
                     <i data-lucide="gauge" class="w-28 h-28"></i>
                 </div>
-                <span class="bg-slate-950 text-amber-400 text-[8px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">នាំចូល ១០០% ពីអូស្ត្រាលី 🇦🇺</span>
+                
+                <div class="flex justify-between items-center w-full">
+                    <span class="bg-slate-950 text-amber-400 text-[8px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">នាំចូល ១០០% ពីអូស្ត្រាលី 🇦🇺</span>
+                    <a href="https://tritechlubricants.lube-guide.com.au/" target="_blank" class="text-[10px] font-extrabold text-slate-950 hover:text-slate-900 bg-amber-400/30 hover:bg-amber-400/40 px-2 py-0.5 rounded-lg transition-all flex items-center gap-1 active:scale-95">
+                        <i data-lucide="book-open" class="w-3 h-3"></i> Lube Guide 📖
+                    </a>
+                </div>
+
                 <h2 class="text-sm font-extrabold mt-2 mb-0.5 text-slate-950">ប្រេងម៉ាស៊ីនលំដាប់ពិភពលោក! 🏎️</h2>
                 <p class="text-[10px] text-slate-900 mb-2.5 font-medium leading-relaxed">បច្ចេកវិទ្យាការពារម៉ាស៊ីន TriTech កាត់បន្ថយការកកិត និងសឹករីករិលបានខ្ពស់បំផុត。</p>
                 
@@ -84,33 +83,26 @@
                 </div>
             </div>
 
-            <!-- ផ្នែកចម្រោះប្រភេទផលិតផល -->
             <div class="flex justify-center items-center w-full my-2">
                 <div class="relative w-full max-w-[280px]">
                     <select id="category-filter-dropdown" onchange="window.onCategoryDropdownChange(this.value)" class="w-full bg-slate-900 text-slate-200 text-[11px] font-bold pl-3 pr-8 py-2 rounded-xl border border-slate-800 focus:outline-none focus:border-amber-500 appearance-none text-center shadow-md">
-                        <!-- ជម្រើសត្រូវបានបំពេញដោយស្វ័យប្រវត្តតាមរយៈ JS -->
-                    </select>
+                        </select>
                     <div class="absolute inset-y-0 right-3 flex items-center pointer-events-none text-slate-400">
                         <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
                     </div>
                 </div>
             </div>
 
-            <!-- បញ្ជីផលិតផល (Product Grid) -->
             <div class="grid grid-cols-2 gap-3 mt-1" id="products-grid">
-                <!-- គូរចេញពី JS -->
-            </div>
+                </div>
         </section>
 
-        <!-- ================= ផ្នែកទី ២៖ កន្ត្រកទំនិញ ================= -->
         <section id="page-cart" class="hidden space-y-3.5">
             <h3 class="text-xs font-bold text-slate-200 flex items-center gap-2">
                 <i data-lucide="shopping-bag" class="text-amber-500 w-4 h-4"></i> កន្ត្រកទំនិញរបស់អ្នក
             </h3>
             <div class="space-y-2.5" id="cart-items-container">
-                <!-- គូរចេញពី JS -->
-            </div>
-            <!-- ផ្ទាំងសរុបតម្លៃ និងប៊ូតុងគិតលុយ -->
+                </div>
             <div id="cart-summary-card" class="bg-slate-900 rounded-2xl p-3.5 border border-slate-800 shadow-sm space-y-2.5 hidden">
                 <div class="space-y-1.5 text-[11px] border-b border-slate-800 pb-2.5">
                     <div class="flex justify-between text-slate-400">
@@ -132,7 +124,6 @@
             </div>
         </section>
 
-        <!-- ================= ផ្នែកទី ៣៖ ប្រវត្តិបញ្ជាទិញ ================= -->
         <section id="page-orders" class="hidden space-y-3.5">
             <h3 class="text-xs font-bold text-slate-200 flex items-center gap-2">
                 <i data-lucide="receipt" class="text-amber-500 w-4 h-4"></i> ប្រវត្តិការបញ្ជាទិញរបស់អ្នក
@@ -150,11 +141,9 @@
                 </div>
             </div>
             <div class="space-y-2.5" id="orders-history-container">
-                <!-- គូរចេញពី JS -->
-            </div>
+                </div>
         </section>
 
-        <!-- ================= ផ្នែកទី ៤៖ ផ្ទាំងគ្រប់គ្រង (Control Panel) ================= -->
         <section id="page-admin" class="hidden space-y-3.5">
             <div class="flex justify-between items-center">
                 <h3 class="text-xs font-bold text-slate-200 flex items-center gap-2">
@@ -165,7 +154,6 @@
                 </button>
             </div>
 
-            <!-- ទម្រង់កូដសម្ងាត់ចូល -->
             <div id="admin-login-card" class="bg-slate-900 border border-slate-800 rounded-2xl p-5 text-center space-y-3.5">
                 <div class="p-2 bg-amber-500/10 rounded-xl w-max mx-auto text-amber-500 border border-amber-500/20">
                     <i data-lucide="lock" class="w-5 h-5"></i>
@@ -188,9 +176,7 @@
                 </div>
             </div>
 
-            <!-- ផ្ទាំងបញ្ជា (Dashboard) -->
             <div id="admin-dashboard" class="hidden space-y-3.5">
-                <!-- ម៉ឺនុយរងសម្រាប់ Dashboard (៣ Tab) -->
                 <div class="flex border-b border-slate-850 mb-3" id="admin-tabs-bar">
                     <button onclick="window.switchAdminSubpage('orders')" id="admin-tab-orders" class="flex-1 pb-2 font-bold text-[10px] text-center text-amber-500 border-b-2 border-amber-500">
                         ការកុម្មង់ថ្មី
@@ -203,18 +189,13 @@
                     </button>
                 </div>
 
-                <!-- ផ្នែកការបញ្ជាទិញរបស់អតិថិជន (New Orders) -->
                 <div id="admin-subpage-orders" class="space-y-2.5"></div>
 
-                <!-- ផ្នែកដឹកជញ្ជូនសកម្ម (Delivery) -->
                 <div id="admin-subpage-delivery" class="hidden space-y-2.5"></div>
 
-                <!-- ផ្នែកគ្រប់គ្រងផលិតផល & Settings -->
                 <div id="admin-subpage-products" class="hidden space-y-3">
                     
-                    <!-- ផ្នែក Settings ទាំងនេះបង្ហាញតែចំពោះ Super Admin ប៉ុណ្ណោះ -->
                     <div id="super-admin-settings-container" class="space-y-3 hidden">
-                        <!-- កំណត់លេខសម្ងាត់ Super Admin PIN -->
                         <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3.5 space-y-2">
                             <h4 class="text-[10px] font-bold text-slate-200 flex items-center gap-1.5">
                                 <i data-lucide="key-round" class="text-amber-500 w-3.5 h-3.5"></i> កំណត់លេខសម្ងាត់ Super Admin PIN
@@ -225,7 +206,6 @@
                             </div>
                         </div>
 
-                        <!-- កំណត់លេខសម្ងាត់បុគ្គលិក (Staff PIN) -->
                         <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3.5 space-y-2">
                             <h4 class="text-[10px] font-bold text-slate-200 flex items-center gap-1.5">
                                 <i data-lucide="users" class="text-sky-400 w-3.5 h-3.5"></i> កំណត់លេខសម្ងាត់បុគ្គលិក (Staff PIN)
@@ -236,7 +216,6 @@
                             </div>
                         </div>
 
-                        <!-- កំណត់ព័ត៌មានទំនាក់ទំនងរបស់ហាង -->
                         <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3.5 space-y-2">
                             <h4 class="text-[10px] font-bold text-slate-200 flex items-center gap-1.5">
                                 <i data-lucide="phone-call" class="text-amber-500 w-3.5 h-3.5"></i> កំណត់ព័ត៌មានទំនាក់ទំនងរបស់ហាង
@@ -245,7 +224,6 @@
                             <button onclick="window.saveShopPhone()" class="w-full bg-amber-500 text-slate-950 font-bold py-2 rounded-lg text-[10px]">រក្សាទុកលេខទូរស័ព្ទ</button>
                         </div>
 
-                        <!-- កំណត់ការផ្ញើដំណឹងតាម Telegram -->
                         <div class="bg-slate-900 border border-slate-800 rounded-2xl p-3.5 space-y-2">
                             <h4 class="text-[10px] font-bold text-slate-200 flex items-center gap-1.5">
                                 <i data-lucide="bell-ring" class="text-sky-400 w-3.5 h-3.5"></i> កំណត់ប្រព័ន្ធ Telegram Bots
@@ -263,7 +241,6 @@
                         </div>
                     </div>
 
-                    <!-- បញ្ជីផលិតផលសម្រាប់ការគ្រប់គ្រង -->
                     <div class="flex justify-between items-center pt-2">
                         <span class="text-[11px] font-bold text-slate-400">បញ្ជីផលិតផលទាំងអស់</span>
                         <button id="admin-add-product-btn" onclick="window.openProductFormModal()" class="bg-amber-500 text-slate-950 font-extrabold text-[9px] px-3 py-1.5 rounded-lg flex items-center gap-1 hidden">
@@ -277,7 +254,6 @@
 
     </main>
 
-    <!-- ================= ផ្ទាំង MODAL បន្ថែម / កែសម្រួលផលិតផល ================= -->
     <div id="product-form-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-end justify-center hidden opacity-0 transition-opacity duration-300">
         <div id="product-form-content" class="bg-slate-900 border-t border-slate-800 w-full max-w-md rounded-t-3xl p-5 space-y-3 shadow-2xl transform translate-y-full transition-transform duration-300 max-h-[90vh] overflow-y-auto no-scrollbar">
             <div class="flex justify-between items-center">
@@ -303,7 +279,6 @@
         </div>
     </div>
 
-    <!-- ================= ផ្ទាំង MODAL ព័ត៌មានលម្អិតផលិតផល ================= -->
     <div id="product-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-end justify-center hidden opacity-0 transition-opacity duration-300">
         <div id="product-modal-content" class="bg-slate-900 border-t border-slate-800 w-full max-w-md rounded-t-3xl p-5 space-y-3 shadow-2xl transform translate-y-full transition-transform duration-300 max-h-[90vh] overflow-y-auto no-scrollbar">
             <div class="w-10 h-1 bg-slate-700 rounded-full mx-auto cursor-pointer mb-1" onclick="window.closeProductModal()"></div>
@@ -352,7 +327,6 @@
         </div>
     </div>
 
-    <!-- ================= ផ្ទាំង MODAL បញ្ជាទិញ / Checkout ================= -->
     <div id="checkout-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-end justify-center hidden opacity-0 transition-opacity duration-300">
         <div id="checkout-modal-content" class="bg-slate-900 border-t border-slate-800 w-full max-w-md rounded-t-3xl p-5 space-y-3 shadow-2xl transform translate-y-full transition-transform duration-300">
             <div class="flex justify-between items-center">
@@ -381,7 +355,6 @@
         </div>
     </div>
 
-    <!-- ផ្ទាំងបញ្ជាក់ការលុប / Confirm Modal -->
     <div id="confirm-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
         <div id="confirm-modal-content" class="bg-slate-900 border border-slate-800 w-72 rounded-2xl p-4 text-center transform scale-95 transition-all duration-300 space-y-3">
             <div class="p-2 bg-red-500/10 rounded-xl w-max mx-auto text-red-500 border border-red-500/20">
@@ -398,13 +371,11 @@
         </div>
     </div>
 
-    <!-- ផ្ទាំងជូនដំណឹងរហ័ស (Toast Alert) -->
     <div id="toast-message" class="fixed top-5 left-1/2 -translate-x-1/2 bg-slate-900/95 backdrop-blur text-white px-4 py-2 rounded-xl text-[10px] font-semibold shadow-2xl flex items-center gap-1.5 transition-all duration-300 transform scale-0 pointer-events-none z-50 border border-slate-800">
         <i data-lucide="info" class="w-3.5 h-3.5 text-amber-400"></i>
         <span id="toast-text">សារជូនដំណឹង</span>
     </div>
 
-    <!-- របារបញ្ជាខាងក្រោម (Bottom Navigation Bar) -->
     <nav class="fixed bottom-0 left-0 right-0 bg-slate-900/90 backdrop-blur border-t border-slate-850 py-1 flex justify-around items-center shadow-lg z-40 shrink-0 text-slate-400">
         <button onclick="window.navigateTo('home')" id="nav-home" class="flex flex-col items-center gap-0.5 py-0.5 px-3 text-amber-500 font-bold scale-105 transition-all">
             <i data-lucide="home" class="w-4 h-4"></i>
@@ -425,7 +396,6 @@
         </button>
     </nav>
 
-    <!-- ================= JAVASCRIPT LOGIC ================= -->
     <script>
         // --- Application State ---
         let currentTab = 'home';
@@ -536,7 +506,7 @@
                     { size: "5L", price: "28.00", stock: "in_stock" },
                     { size: "18L", price: "95.00", stock: "in_stock" }
                 ],
-                desc: "ប្រេងម៉ាស៊ីនពាក់កណ្ដាលសំយោគ (Semi Synthetic) ប្រភេទនេះជួយសន្សំសំចៃប្រេងឥន្ធនៈបានល្អ ផ្តល់នូវកម្រិតការពារខ្ពស់បំផុតពីសិករិចរិលក្នុងម៉ាស៊ីន កាត់បន្ថយការឡើងកំដៅខ្លាំង លាងសំអាតផ្នែកខាងក្នុងមានស្អាតល្អ。\n\nត្រូវបានណែនាំឱ្យប្រើប្រាស់យ៉ាងពិសេសសម្រាប់ម៉ាស៊ីនទាំងរថយន្តម៉ាស៊ូតតូចធំ និងថរយន្តប្រើហ្គ្រាសផងដែរ包装。",
+                desc: "ប្រេងម៉ាស៊ីនពាក់កណ្ដាលសំយោគ (Semi Synthetic) ប្រភេទនេះជួយសន្សំសំចៃប្រេងឥន្ធនៈបានល្អ ផ្តល់នូវកម្រិតការពារខ្ពស់បំផុតពីសិករិចរិលក្នុងម៉ាស៊ីន កាត់បន្ថយការឡើងកំដៅខ្លាំង លាងសំអាតផ្នែកខាងក្នុងមានស្អាតល្អ。\n\nត្រូវបានណែនាំឱ្យប្រើប្រាស់យ៉ាងពិសេសសម្រាប់ម៉ាស៊ីនទាំងរថយន្តម៉ាស៊ូតតូចធំ និងថរយន្តប្រើហ្គ្រាសផងដែរ។",
                 image: "https://i.imgur.com/zvwmGr9.png",
                 pdf: ""
             },
@@ -1131,7 +1101,7 @@
                          `🛍️ <b>ប្រេងដែលកុម្មង់:</b> ${itemsText}\n` +
                          `━━━━━━━━━━━━━━━━━━\n` +
                          `💰 <b>តម្លៃសរុបចុងក្រោយ:</b> <b>$${parseFloat(order.total).toFixed(2)}</b>\n` +
-                         `📅 <b>កាលបរិច្ខេទ:</b> ${order.date}`;
+                         `📅 <b>កាលបរិច្ឆេទ:</b> ${order.date}`;
 
             try {
                 await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
@@ -1733,7 +1703,6 @@
 
         // --- Navigation ---
         window.navigateTo = function(tabId) {
-            // 🛠️ ជួសជុលចំណុចទី២៖ ប្រសិនបើកំពុងស្ថិតនៅក្នុងប្រព័ន្ធគ្រប់គ្រង ហើយចុចចាកចេញទៅ Tab ផ្សេង គឺត្រូវ Auto-Lock ភ្លាមៗ
             if (currentTab === 'admin' && tabId !== 'admin') {
                 adminAuthenticated = false; 
                 userRole = 'staff'; 
@@ -1775,7 +1744,6 @@
         }
 
         function showAdminDashboard() {
-            // 🛠️ ជួសជុលចំណុចទី១៖ ពេលចូលបំពេញលេខសម្ងាត់ត្រឹមត្រូវរួចហើយ ត្រូវបិទផ្ទាំង Login ចេញភ្លាម
             document.getElementById('admin-login-card').classList.add('hidden');
             document.getElementById('admin-dashboard').classList.remove('hidden');
             document.getElementById('admin-logout-btn').classList.remove('hidden');
